@@ -20,8 +20,8 @@ WORK_DIR="$1"
 mkdir -p "${WORK_DIR}"/database
 
 ## Attempt to identify reference fasta in the project ref/ directory
-ref_fa="${WORK_DIR}"/ref/*.fa*
-int_bed="${WORK_DIR}"/reference_intervals/*gene.bed
+ref_fa="$(basename "${WORK_DIR}"/ref/*.fa*)"
+int_bed="$(basename "${WORK_DIR}"/reference_intervals/*gene.bed)"
 
 # You must change "/workdir/user/DockerTuningTests/..." to match your own directory paths
 docker1 run --name load_phg_container --rm \
@@ -30,7 +30,7 @@ docker1 run --name load_phg_container --rm \
     -v "${WORK_DIR}"/config/:/tempFileDir/data/ \
     -v "${WORK_DIR}"/reference_intervals/:/tempFileDir/answer/ \
     -t maizegenetics/phg \
-    /LoadGenomeIntervals.sh "${WORK_DIR}"/config/config.txt "$ref_fa" "$int_bed" "${WORK_DIR}"/config/load_reference.txt true
+    /LoadGenomeIntervals.sh config.txt "$ref_fa" "$int_bed" load_reference.txt true
 
 docker1 claim
 
