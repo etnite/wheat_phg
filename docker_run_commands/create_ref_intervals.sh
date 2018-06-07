@@ -17,12 +17,20 @@
 ##
 ## Will probably change this in future to use positional input params.
 
-
-WORK_DIR="/workdir/bpward2/wheat_prac_hap_graph/ref"
+PROJ_DIR="/workdir/bpward2/wheat_prac_hap_graph"
 REF_FA="161010_Chinese_Spring_v1.0_pseudomolecules_parts_renamed.fasta"
 GFF="geneModel_v1.gff3"
 
-docker run --rm \
-    -v ${WORK_DIR}/:/tempFileDir/data \
+## Directory containing ref. genome should just be ref/
+ref_dir="${PROJ_DIR}"/ref
+
+docker1 run --rm \
+    -v "${ref_dir}"/:/tempFileDir/data \
     maizegenetics/phg \
-    /CreateReferenceIntervals.sh -f $REF_FA -a $GFF -e 0
+    /CreateReferenceIntervals.sh -f "$REF_FA" -a "$GFF" -e 0
+
+docker1 claim
+
+mv "${ref_dir}"/genomic_intervals* "$PROJ_DIR"/
+
+exit 0;

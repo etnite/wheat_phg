@@ -73,13 +73,21 @@ command in a terminal:
 
 ```
 docker pull maizegenetics/phg
+docker pull maizegenetics/phg_postgres
 ```
 
 ## Directory setup and download
 
 The script dir_data_setup.sh will attempt to set up a directory and data
 structure that is suitable for running the PHG. Note that this script will
-require modification over time as data sources change.
+require some modification over time as data sources change.
+
+## Config directory
+
+The directory config/ holds some sample configuration files from the Buckler
+lab. When dir_data_setup.sh is run it will copy these files into the new
+project directory - that is, to [project_directory]/config. Note that these files
+should be modified as necessary after copying to customize the graph construction.
 
 
 ## Steps in PHG Creation
