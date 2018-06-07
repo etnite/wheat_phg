@@ -15,7 +15,7 @@ set -e
 ##   /tempFileDir/outputDir/  This in only relevant when running an SQLite 
 ##   database.  This path shows up in the config file, parameter "db".
 
-WORK_DIR="/workdir/bpward2/wheat_phg_test"
+WORK_DIR="$1"
 
 mkdir -p "${WORK_DIR}"/database
 
@@ -29,7 +29,7 @@ docker1 run --name load_phg_container --rm \
     -v "${WORK_DIR}"/ref/:/tempFileDir/data/reference/ \
     -v "${WORK_DIR}"/config/:/tempFileDir/data/ \
     -v "${WORK_DIR}"/reference_intervals/:/tempFileDir/answer/ \
-    -t phgrepository_test:latest \
+    -t maizegenetics/phg \
     /LoadGenomeIntervals.sh "${WORK_DIR}"/config/config.txt "$ref_fa" "$int_bed" "${WORK_DIR}"/config/load_reference.txt true
 
 docker1 claim
