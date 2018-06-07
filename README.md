@@ -9,15 +9,16 @@ project. For that, refer to:
 
 Rather, this repository is a collection of scripts used to create a practical 
 haplotype graph for wheat. The first step is to set up directories and input
-data. This repository does not house most of the required data, as much of
-this data consists of large files that are several Gb in size.
+data. This repository does not house the required input data, as much of
+this data consists of large files. Instead, it sets up a separate directory
+structure where data is downloaded and then processed.
 
 ## Dependencies
 
 ### Operating system and hardware
 
 For the actual graph construction, a 64-bit Linux distribution is required,
-along with hefty computational resources (e.g. multiple cores and a large
+along with beefy computational resources (e.g. multiple cores and a significant
 amount of RAM). Subsequent use of the graph to call/impute genotypes should
 be much less resource-intensive.
 
@@ -77,8 +78,8 @@ docker pull maizegenetics/phg
 ## Directory setup and download
 
 The script dir_data_setup.sh will attempt to set up a directory and data
-structure that is suitable for running the PHG. Note that this script might
-require some fine-tuning over time as data sources are moved or modified.
+structure that is suitable for running the PHG. Note that this script will
+require modification over time as data sources change.
 
 
 ## Steps in PHG Creation
@@ -115,3 +116,13 @@ Note that for exome capture data, which should theoretically consist of only
 genic regions, -e should simply be set to 0. The script 
 docker_run_commands/create_ref_intervals.sh is designed to perform this step of
 the process with wheat exome capture data.
+
+**NOTE**: One wheat-specific detail - some chroms are larger than 512Mb, which is
+a problem for short-read aligners. The IWGSC v1.0 RefSeq has each chromosome
+split into two halves. The way they split them was not very elegant -
+chromosome 6D appears to have been split inside a gene, so the gene is present in 
+both halves of the chrom. The start position of the gene is 450509070, so it can
+be grepped out of the .bed file before proceeding (might have to add 1 to the
+position - I can never remember). Many of the wheat chroms are less than 512Mb,
+so the halves of these chroms could be appended together, but maybe that's more
+trouble than it's worth.
