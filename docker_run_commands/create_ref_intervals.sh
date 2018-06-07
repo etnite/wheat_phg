@@ -31,6 +31,6 @@ docker1 run --rm \
 
 docker1 claim
 
-mv "${ref_dir}"/genomic_intervals* "$PROJ_DIR"/
+mv "${ref_dir}"/genomic_intervals* "${PROJ_DIR}"/reference_intervals
 
 exit 0;
