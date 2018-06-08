@@ -134,3 +134,23 @@ be grepped out of the .bed file before proceeding (might have to add 1 to the
 position - I can never remember). Many of the wheat chroms are less than 512Mb,
 so the halves of these chroms could be appended together, but maybe that's more
 trouble than it's worth.
+
+## Loading reference genome
+
+This step runs the script docker_run_commands/load_ref_data.sh, and requires the
+use of two configuration files:
+
+1. config_files/config.txt
+2. config_files/load_reference.txt
+
+Note that the config.txt file is a larger file with parameters for multiple steps
+of the pipeline - only the top block of parameters are relevant here. I tried
+to fill out the load_reference.txt file as best I could - see details at:
+
+https://bytebucket.org/bucklerlab/practicalhaplotypegraph/wiki/DockerPipeline/Sample_load_data.txt?rev=b9df8cd0d1d0d64aa3b19ca367c12712bb804f2c
+
+Otherwise, this step does not require any difficult parameter selection. We just
+need to give the script the reference fasta file, and the previously-generated
+reference intervals file, and it will create a SQL database. Currently
+docker_run_commands/load_ref_data.sh is hard-coded to take input files from
+previous steps of this repository workflow.
