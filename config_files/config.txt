@@ -2,7 +2,7 @@
 host=localHost
 user=sqlite
 password=sqlite
-DB=/tempFileDir/outputDir/phgTestMaizeDB.db
+DB=/tempFileDir/outputDir/wheat_phg_test.db
 DBtype=sqlite
 
 #Java arguments
