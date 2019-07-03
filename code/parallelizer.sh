@@ -29,11 +29,11 @@
 ## Options with two comment chars are deactivated
 
 #SBATCH --job-name="parallel-test" #name of the job submitted
-#SBATCH --partition=short #name of the queue you are submitting job to
+#SBATCH --partition=debug #name of the queue you are submitting job to
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=6 #number of cores/tasks
-#SBATCH --time=00:01:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=00:10:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -44,8 +44,8 @@ module load parallel
 
 #### User-Defined Constants ####
 
-iter_file=""
-script="./my_script.sh"
+iter_file="../SRW_samples.txt"
+script="./parallel_print_test.sh"
 
 
 #### Executable ####
@@ -54,6 +54,6 @@ mapfile -t iter < $iter_file
 
 date
 
-parallel -j $SLURM_NTASKS --delay 1 --joblog parallel_run.log srun -n1 $script {} ::: "${iter[@]}"
+parallel -j $SLURM_NTASKS --delay 1 --joblog parallel_run.log sbatch -n1 $script {} ::: "${iter[@]}"
 
 date
