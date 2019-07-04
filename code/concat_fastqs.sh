@@ -9,7 +9,7 @@
 ## The user must define an input directory, and an output directory.
 ##
 ## The fastq files should be in the input directory, named in the format 
-## *NAME*R1.fastq.gz for forward reads and *NAME*R2.fastq.gz for reverse reads.
+## *NAME*_R1_*.fastq.gz for forward reads and *NAME*_R2_*.fastq.gz for reverse reads.
 ##
 ## The script will match any fastq files matching these patterns, and concatenate
 ## them into a single fastq file. It doesn't matter if the files are gzipped or
@@ -20,22 +20,23 @@
 #### User-defined variables ####
 
 ## No trailing slashes!
-in_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_parents"
-out_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_pars_merged"
+in_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents/separated_fq"
+out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/concat_raw_fastq"
 
 
 #### Executable ####
 
+date
 name=$1
+mkdir -p "${out_dir}"
 
 ## Enable recursive globbing
 shopt -s globstar nullglob
 
 ## Concatenate forward reads
-cat "${in_dir}"/**/*"${name}"*R1.fastq.gz > "${out_dir}"/"${name}"_R1.fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R1_*.fastq.gz > "${out_dir}"/"${name}"_R1.fastq.gz
 
 ## Concatenate reverse reads
-cat "${in_dir}"/**/*"${name}"*R2.fastq.gz > "${out_dir}"/"${name}"_R2.fastq.gz
-
+cat "${in_dir}"/**/*"${name}"*_R2_*.fastq.gz > "${out_dir}"/"${name}"_R2.fastq.gz
 
 date

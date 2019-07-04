@@ -31,7 +31,7 @@
 #SBATCH --job-name="fastq-concat" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
   ##SBATCH --nodes=1 #Number of nodes
-#SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
+#SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=6 #number of cores/tasks
 #SBATCH --time=00:30:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
@@ -44,7 +44,7 @@ module load parallel
 
 #### User-Defined Constants ####
 
-iter_file="../wheatCAP_samples.txt"
+iter_file="../one_wheatCAP_samp.txt"
 script="./concat_fastqs.sh"
 
 
