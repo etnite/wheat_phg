@@ -17,7 +17,7 @@
 
 ## Options with two comment chars are deactivated
 
-#SBATCH --job-name="bowtie2-index" #name of the job submitted
+#SBATCH --job-name="bbduk-filt" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
