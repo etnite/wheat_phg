@@ -29,6 +29,7 @@ out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/filt_fastq"
 module load bbtools
 
 echo
+echo "Start bbduk_filt_trim_paired_parallel.sh"
 echo "Start time:"
 date
 
