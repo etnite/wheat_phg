@@ -43,6 +43,9 @@ ref_file=$1
 
 #### Executable ####
 
+echo
+echo "Start bwa_index_ref.sh"
+echo "Start time:"
 date
 
 source activate bwa
@@ -51,4 +54,6 @@ bwa index -a bwtsw "${ref_file}"
 
 source deactivate
 
+echo
+echo "End time:"
 date
