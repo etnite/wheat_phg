@@ -41,9 +41,14 @@ nthreads=$SLURM_NTASKS
 
 #### Executable ####
 
+echo
+echo "Start bowtie2_index_ref.sh"
+echo "Start time:"
 date
 
 ind_name="${ref_file%.*}"
 bowtie2-build --threads $nthreads "${ref_file}" "${ind_name}"
 
+echo
+echo "End time:"
 date
