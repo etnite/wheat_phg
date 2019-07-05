@@ -42,7 +42,11 @@ ncores=$SLURM_NTASKS
 
 #### Executable  ####
 
+echo
+echo "Start bbduk_filt_trim_paired_multithread.sh"
+echo "Start time:"
 date
+
 mkdir "${out_dir}"
 
 ## First recursively find all fastq files in fastq_dir
@@ -93,4 +97,6 @@ for i in "${samps[@]}"; do
     done
 done
 
+echo
+echo "End time:"
 date
