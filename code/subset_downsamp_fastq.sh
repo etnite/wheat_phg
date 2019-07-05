@@ -21,7 +21,9 @@
 ## parallel runs on multiple samples simultaneously.
 ##
 ## NOTES:
-##   If downsamp_dir is set to "NA", no subsetting will be performed
+##   1) If downsamp_dir is set to "NA", no subsetting will be performed
+##   2) Working directory inherited from parallelizing script - it is easiest
+##      to define absolute paths
 ################################################################################
 
 

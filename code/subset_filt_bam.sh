@@ -22,6 +22,8 @@
 ##      flags/arguments in the samtools view and samtools index calls should be
 ##      inspected and changed as necessary
 ##   2) Input BAM files should be sorted, to avoid having to sort in this step
+##   3) Working directory inherited from parallelizing script - it is easiest
+##      to define absolute paths
 ################################################################################
 
 

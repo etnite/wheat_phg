@@ -22,6 +22,8 @@
 ##      the reference fasta
 ##   4) This script requires two sorting steps in samtools, so can be a bit
 ##      slow...
+##   5) Working directory inherited from parallelizing script - it is easiest
+##      to define absolute paths
 ################################################################################
 
 

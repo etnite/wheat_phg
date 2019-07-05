@@ -14,6 +14,11 @@
 ## The script will match any fastq files matching these patterns, and concatenate
 ## them into a single fastq file. It doesn't matter if the files are gzipped or
 ## not.
+##
+## NOTES:
+##   1) Working directory inherited from parallelizing script - it is easiest
+##      to define absolute paths
+##
 ################################################################################
 
 

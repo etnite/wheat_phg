@@ -33,7 +33,7 @@
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=6 #number of cores/tasks
-#SBATCH --time=00:30:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=01:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -45,15 +45,20 @@ module load parallel
 #### User-Defined Constants ####
 
 iter_file="../one_wheatCAP_samp.txt"
-script="./concat_fastqs.sh"
+script="fastq_filt_trim/bbduk_filt_trim_paired_parallel.sh"
 
 
 #### Executable ####
 
 mapfile -t iter < $iter_file
 
+echo
+echo "${script}"
+echo "Start time:"
 date
 
 parallel -j $SLURM_NTASKS --delay 1 --joblog parallel_run.log sbatch -n1 $script {} ::: "${iter[@]}"
 
+echo
+echo "End time:"
 date
