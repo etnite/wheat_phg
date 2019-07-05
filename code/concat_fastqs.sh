@@ -31,7 +31,11 @@ out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/concat_raw_fastq"
 
 #### Executable ####
 
+echo
+echo "Start concat_fastqs.sh"
+echo "Start time:"
 date
+
 name=$1
 mkdir -p "${out_dir}"
 
@@ -44,4 +48,6 @@ cat "${in_dir}"/**/*"${name}"*_R1_*.fastq.gz > "${out_dir}"/"${name}"_R1.fastq.g
 ## Concatenate reverse reads
 cat "${in_dir}"/**/*"${name}"*_R2_*.fastq.gz > "${out_dir}"/"${name}"_R2.fastq.gz
 
+echo
+echo "End time:"
 date
