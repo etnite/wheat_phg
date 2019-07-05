@@ -42,7 +42,11 @@ module load samtools
 module load bbtools
 if [[ "${downsamp_dir}" != "NA" ]]; then source activate seqtk; fi
 
+echo
+echo "Start subset_downsamp_fastq.sh"
+echo "Start time:"
 date
+
 samp=$1
 
 ## Isolate only properly paired reads
@@ -66,4 +70,7 @@ fi
 ## Cleanup and exit
 rm "${bam_dir}"/"${samp}"_temp.sam
 source deactivate
+
+echo
+echo "End time:"
 date
