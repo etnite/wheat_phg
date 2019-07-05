@@ -21,7 +21,7 @@
 ##   1) This script is intended to be modified by hand as needed, so some
 ##      flags/arguments in the samtools view and samtools index calls should be
 ##      inspected and changed as necessary
-##   2) Input BAM files should be sorted, to avoid having to sort in this step
+##   2) Input BAM files should be sorted
 ##   3) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
 ################################################################################
@@ -38,14 +38,22 @@ regions_file=""
 
 module load samtools
 
+echo
+echo "Start subset_filt_bam.sh"
+echo "Start time:"
 date
+
 mkdir -p "${out_dir}"
 samp=$1
 
+## Input and output BAM paths
 in_bam="${in_dir}"/"${samp}".bam
 out_bam="${out_dir}"/"${samp}".bam
 
+## Customize as necessary
 samtools view "${in_bam}" -h -R "${regions_file}" -f 2 -b -o "${out_bam}"
 samtools index -c "${out_bam}"
 
+echo
+echo "End time:"
 date
