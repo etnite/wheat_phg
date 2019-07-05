@@ -40,7 +40,11 @@ ref=""
 module load bowtie2
 module load samtools
 
+echo
+echo "Start bowtie2_align_parallel.sh"
+echo "Start time:"
 date
+
 mkdir -p "${out_dir}"
 samp=$1
 
@@ -88,4 +92,6 @@ else
     samtools index -b "${out_dir}"/"${samp}".bam
 fi
 
+echo
+echo "End time:"
 date
