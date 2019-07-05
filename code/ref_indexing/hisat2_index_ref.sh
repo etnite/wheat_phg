@@ -37,9 +37,14 @@ ref_file=$1
 
 #### Executable ####
 
+echo
+echo "Start hisat2_index_ref.sh"
+echo "Start time:"
 date
 
 ind_name="${ref_file%.*}"
 hisat2-build "${ref_file}" "${ind_name}"
 
+echo
+echo "End time:"
 date
