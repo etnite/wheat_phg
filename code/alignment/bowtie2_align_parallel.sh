@@ -31,7 +31,7 @@
 
 ## Reference genome fasta ("ref") must already be indexed using bowtie2-build
 ## and samtools index
-fastq_dir="/project/genolabswheatphg/test/BPW_pipeline_test/subsamp_fastq"
+fastq_dir="/project/genolabswheatphg/test/BPW_pipeline_test/filt_fastq"
 out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/alignments"
 ref="/project/genolabswheatphg/v1_refseq/Clay_splitchroms_reference/161010_Chinese_Spring_v1.0_pseudomolecules_parts.fasta"
 
@@ -80,6 +80,7 @@ fq2="${fastq_dir}"/"${samp}"_10K_R2.fastq.gz
 
 ref="${ref%.*}"
 bowtie2 -x "${ref}" \
+        --threads $SLURM_NTASKS \
         --rg-id "${samp}" \
         --rg SM:"${samp}" \
         --rg PL:ILLUMINA \
