@@ -7,7 +7,7 @@
 ## argument. Then it searches for corresponding fastq files using the pattern:
 ## fastq_dir/samplename_R[12].fastq[.gz]
 ##
-## The output consists of a single sorted BAM file.
+## The output consists of a single sorted BAM file, with PCR duplicates marked.
 ##
 ## This script is intended to be used with parallelize.sh, to enable independent
 ## parallel runs on multiple samples simultaneously.
@@ -30,9 +30,10 @@
 #### User-defined constants ####
 
 ## Reference genome fasta ("ref") must already be indexed using bowtie2-build
-fastq_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents"
-out_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_parents"
-ref=""
+## and samtools index
+fastq_dir="/project/genolabswheatphg/test/BPW_pipeline_test/subsamp_fastq"
+out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/alignments"
+ref="/project/genolabswheatphg/v1_refseq/Clay_splitchroms_reference/161010_Chinese_Spring_v1.0_pseudomolecules_parts.fasta"
 
 
 #### Executable  ####
@@ -58,27 +59,34 @@ fi
 max_chr=$(cut -f2 "${ref}".fai | sort -nr | head -n 1)
 
 ## Set forward and reverse read fastq files
-fq1="${fastq_dir}"/"${samp}"_R1.fastq*
-fq2="${fastq_dir}"/"${samp}"_R2.fastq*
+fq1="${fastq_dir}"/"${samp}"_10K_R1.fastq.gz
+fq2="${fastq_dir}"/"${samp}"_10K_R2.fastq.gz
 
 ## For some reason, the barcode indexes in FASTQ files can contain some N
 ## values for the first few reads. I don't know the significance of this. 
 ## Let's just grab line 10,001:
-one_line=$(zcat $fq1 | head -n 10001 | tail -n -1)
+## NOTE: In the case of concatenated fastq files, flowcells, lanes,
+## barcodes, etc. may all vary. Therefore these sections are disabled
+#one_line=$(zcat $fq1 | head -n 10001 | tail -n -1)
 
 ## This sets the first four fields (instrument:run_id:flowcell:lane) of the 
 ## first line of the fastq file as a variable named "id"
-id=$(echo "$one_line" | cut -f 1-4 -d":" | sed 's/@//' | sed 's/:/_/g')
+#id=$(echo "$one_line" | cut -f 1-4 -d":" | sed 's/@//' | sed 's/:/_/g')
 
 ## Now get the barcode from the 10th field of the line
-bar=$(echo "$one_line" | cut -f 10 -d":" | sed 's/+/-/')
+## NO
+#bar=$(echo "$one_line" | cut -f 10 -d":" | sed 's/+/-/')
 
+
+ref="${ref%.*}"
 bowtie2 -x "${ref}" \
+        --rg-id "${samp}" \
+        --rg SM:"${samp}" \
+        --rg PL:ILLUMINA \
+        --sensitive-local \
+        --phred33 \
         -1 "${fq1}" \
-        -2 "${fq2}" \
-        --rg-id $(echo "@RG\tID:${id}\tSM:${i}\tLB:${id}_${i}\tBC:${bar}\tPL:ILLUMINA") \
-        --phred33 \ 
-        --sensitive-local |
+        -2 "${fq2}" |
         samtools sort -n -O SAM - |
         samtools fixmate -m -O SAM - - |
         samtools sort -O SAM - |

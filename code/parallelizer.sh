@@ -28,12 +28,12 @@
 
 ## Options with two comment chars are deactivated
 
-#SBATCH --job-name="fastq-concat" #name of the job submitted
+#SBATCH --job-name="bowtie2-align" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
-  ##SBATCH --ntasks-per-node=6 #number of cores/tasks
-#SBATCH --time=01:00:00 #time allocated for this job hours:mins:seconds
+  ##SBATCH --ntasks-per-node=1 #number of cores/tasks
+#SBATCH --time=06:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -44,8 +44,8 @@ module load parallel
 
 #### User-Defined Constants ####
 
-iter_file="../one_wheatCAP_samp.txt"
-script="fastq_filt_trim/bbduk_filt_trim_paired_parallel.sh"
+iter_file="../sample_lists/one_wheatCAP_samp.txt"
+script="alignment/bowtie2_align_parallel.sh"
 
 
 #### Executable ####

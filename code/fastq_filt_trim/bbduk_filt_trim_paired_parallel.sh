@@ -14,6 +14,8 @@
 ##   1) bbduk parameters are hard coded in the bbduk.sh call below.
 ##   2) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
+##   3) Processing ~50 million paired end reads with one core took around
+##      3 mins. on Ceres cluster
 ################################################################################
 
 

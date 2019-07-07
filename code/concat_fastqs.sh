@@ -42,11 +42,16 @@ mkdir -p "${out_dir}"
 ## Enable recursive globbing
 shopt -s globstar nullglob
 
+## Convert sample name to uppercase and underscores to dashes
+## Personal pref - I like samples to have dashes to make pattern recognition easier
+upname="${name^^}"
+upname=$(echo "${upname}" | sed 's/_/-/g')
+
 ## Concatenate forward reads
-cat "${in_dir}"/**/*"${name}"*_R1_*.fastq.gz > "${out_dir}"/"${name}"_R1.fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R1_*.fastq.gz > "${out_dir}"/"${upname}"_R1.fastq.gz
 
 ## Concatenate reverse reads
-cat "${in_dir}"/**/*"${name}"*_R2_*.fastq.gz > "${out_dir}"/"${name}"_R2.fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R2_*.fastq.gz > "${out_dir}"/"${upname}"_R2.fastq.gz
 
 echo
 echo "End time:"
