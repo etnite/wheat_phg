@@ -1,0 +1,31 @@
+# db connection parameters
+host=localHost
+user=sqlite
+password=sqlite
+DB=/tempFileDir/outputDir/phgSmallSeq.db
+DBtype=sqlite
+# Haplotype creation parameters
+extendedWindowSize=0
+GQ_min=50
+DP_poisson_min=.01
+DP_poisson_max=.99
+filterHets=true
+# HapCountBestPathToTextPlugin parameters
+maxNodesPerRange=30
+minTaxaPerRange=1
+minReads=0
+maxGBSReads=1000
+minTransitionProb=0.001
+probReadMappedCorrectly=0.99
+emissionMethod=allCounts
+splitTaxa=true
+# RunHapCollapsePipelinePlugin parameters
+minTaxa=2
+minSites=20
+method=upgma
+includeVariants=true
+mxDiv=0.005
+maxError=0.2
+useDepth=false
+replaceNsWithMajor=false
+exportMergedVCF=/tempFileDir/data/outputs/mergedVCFs/

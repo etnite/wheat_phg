@@ -1,0 +1,822 @@
+##fileformat=VCFv4.2
+##ALT=<ID=NON_REF,Description="Represents any possible alternative allele at this location">
+##FILTER=<ID=LowQual,Description="Low quality">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=MIN_DP,Number=1,Type=Integer,Description="Minimum DP observed within the GVCF block">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification">
+##FORMAT=<ID=SB,Number=4,Type=Integer,Description="Per-sample component statistics which comprise the Fisher's Exact Test to detect strand bias.">
+##GATKCommandLine=<ID=HaplotypeCaller,CommandLine="HaplotypeCaller  --emit-ref-confidence GVCF --sample-ploidy 1 --output /tempFileDir/data/gvcfs//RefA1_haplotype_caller_output.g.vcf --intervals /tempFileDir/data/intervals.bed --input /tempFileDir/data/bam/RefA1/filteredBAMs/RefA1_phg_id_0_srt_dedup_trimmed_intervals_mapQ_48.bam --reference /tempFileDir/data/reference/Ref.fa  --annotation-group StandardAnnotation --annotation-group StandardHCAnnotation --disable-tool-default-annotations false --gvcf-gq-bands 1 --gvcf-gq-bands 2 --gvcf-gq-bands 3 --gvcf-gq-bands 4 --gvcf-gq-bands 5 --gvcf-gq-bands 6 --gvcf-gq-bands 7 --gvcf-gq-bands 8 --gvcf-gq-bands 9 --gvcf-gq-bands 10 --gvcf-gq-bands 11 --gvcf-gq-bands 12 --gvcf-gq-bands 13 --gvcf-gq-bands 14 --gvcf-gq-bands 15 --gvcf-gq-bands 16 --gvcf-gq-bands 17 --gvcf-gq-bands 18 --gvcf-gq-bands 19 --gvcf-gq-bands 20 --gvcf-gq-bands 21 --gvcf-gq-bands 22 --gvcf-gq-bands 23 --gvcf-gq-bands 24 --gvcf-gq-bands 25 --gvcf-gq-bands 26 --gvcf-gq-bands 27 --gvcf-gq-bands 28 --gvcf-gq-bands 29 --gvcf-gq-bands 30 --gvcf-gq-bands 31 --gvcf-gq-bands 32 --gvcf-gq-bands 33 --gvcf-gq-bands 34 --gvcf-gq-bands 35 --gvcf-gq-bands 36 --gvcf-gq-bands 37 --gvcf-gq-bands 38 --gvcf-gq-bands 39 --gvcf-gq-bands 40 --gvcf-gq-bands 41 --gvcf-gq-bands 42 --gvcf-gq-bands 43 --gvcf-gq-bands 44 --gvcf-gq-bands 45 --gvcf-gq-bands 46 --gvcf-gq-bands 47 --gvcf-gq-bands 48 --gvcf-gq-bands 49 --gvcf-gq-bands 50 --gvcf-gq-bands 51 --gvcf-gq-bands 52 --gvcf-gq-bands 53 --gvcf-gq-bands 54 --gvcf-gq-bands 55 --gvcf-gq-bands 56 --gvcf-gq-bands 57 --gvcf-gq-bands 58 --gvcf-gq-bands 59 --gvcf-gq-bands 60 --gvcf-gq-bands 70 --gvcf-gq-bands 80 --gvcf-gq-bands 90 --gvcf-gq-bands 99 --indel-size-to-eliminate-in-ref-model 10 --use-alleles-trigger false --disable-optimizations false --just-determine-active-regions false --dont-genotype false --dont-trim-active-regions false --max-disc-ar-extension 25 --max-gga-ar-extension 300 --padding-around-indels 150 --padding-around-snps 20 --kmer-size 10 --kmer-size 25 --dont-increase-kmer-sizes-for-cycles false --allow-non-unique-kmers-in-ref false --num-pruning-samples 1 --recover-dangling-heads false --do-not-recover-dangling-branches false --min-dangling-branch-length 4 --consensus false --max-num-haplotypes-in-population 128 --error-correct-kmers false --min-pruning 2 --debug-graph-transformations false --kmer-length-for-read-error-correction 25 --min-observations-for-kmer-to-be-solid 20 --likelihood-calculation-engine PairHMM --base-quality-score-threshold 18 --pair-hmm-gap-continuation-penalty 10 --pair-hmm-implementation FASTEST_AVAILABLE --pcr-indel-model CONSERVATIVE --phred-scaled-global-read-mismapping-rate 45 --native-pair-hmm-threads 4 --native-pair-hmm-use-double-precision false --debug false --use-filtered-reads-for-annotations false --bam-writer-type CALLED_HAPLOTYPES --dont-use-soft-clipped-bases false --capture-assembly-failure-bam false --error-correct-reads false --do-not-run-physical-phasing false --min-base-quality-score 10 --smith-waterman JAVA --use-new-qual-calculator false --annotate-with-num-discovered-alleles false --heterozygosity 0.001 --indel-heterozygosity 1.25E-4 --heterozygosity-stdev 0.01 --standard-min-confidence-threshold-for-calling 10.0 --max-alternate-alleles 6 --max-genotype-count 1024 --genotyping-mode DISCOVERY --genotype-filtered-alleles false --contamination-fraction-to-filter 0.0 --output-mode EMIT_VARIANTS_ONLY --all-site-pls false --min-assembly-region-size 50 --max-assembly-region-size 300 --assembly-region-padding 100 --max-reads-per-alignment-start 50 --active-probability-threshold 0.002 --max-prob-propagation-distance 50 --interval-set-rule UNION --interval-padding 0 --interval-exclusion-padding 0 --interval-merging-rule ALL --read-validation-stringency SILENT --seconds-between-progress-updates 10.0 --disable-sequence-dictionary-validation false --create-output-bam-index true --create-output-bam-md5 false --create-output-variant-index true --create-output-variant-md5 false --lenient false --add-output-sam-program-record true --add-output-vcf-command-line true --cloud-prefetch-buffer 40 --cloud-index-prefetch-buffer -1 --disable-bam-index-caching false --help false --version false --showHidden false --verbosity INFO --QUIET false --use-jdk-deflater false --use-jdk-inflater false --gcs-max-retries 20 --disable-tool-default-read-filters false --minimum-mapping-quality 20",Version=4.0.4.0,Date="July 8, 2019 8:08:52 PM UTC">
+##GVCFBlock0-1=minGQ=0(inclusive),maxGQ=1(exclusive)
+##GVCFBlock1-2=minGQ=1(inclusive),maxGQ=2(exclusive)
+##GVCFBlock10-11=minGQ=10(inclusive),maxGQ=11(exclusive)
+##GVCFBlock11-12=minGQ=11(inclusive),maxGQ=12(exclusive)
+##GVCFBlock12-13=minGQ=12(inclusive),maxGQ=13(exclusive)
+##GVCFBlock13-14=minGQ=13(inclusive),maxGQ=14(exclusive)
+##GVCFBlock14-15=minGQ=14(inclusive),maxGQ=15(exclusive)
+##GVCFBlock15-16=minGQ=15(inclusive),maxGQ=16(exclusive)
+##GVCFBlock16-17=minGQ=16(inclusive),maxGQ=17(exclusive)
+##GVCFBlock17-18=minGQ=17(inclusive),maxGQ=18(exclusive)
+##GVCFBlock18-19=minGQ=18(inclusive),maxGQ=19(exclusive)
+##GVCFBlock19-20=minGQ=19(inclusive),maxGQ=20(exclusive)
+##GVCFBlock2-3=minGQ=2(inclusive),maxGQ=3(exclusive)
+##GVCFBlock20-21=minGQ=20(inclusive),maxGQ=21(exclusive)
+##GVCFBlock21-22=minGQ=21(inclusive),maxGQ=22(exclusive)
+##GVCFBlock22-23=minGQ=22(inclusive),maxGQ=23(exclusive)
+##GVCFBlock23-24=minGQ=23(inclusive),maxGQ=24(exclusive)
+##GVCFBlock24-25=minGQ=24(inclusive),maxGQ=25(exclusive)
+##GVCFBlock25-26=minGQ=25(inclusive),maxGQ=26(exclusive)
+##GVCFBlock26-27=minGQ=26(inclusive),maxGQ=27(exclusive)
+##GVCFBlock27-28=minGQ=27(inclusive),maxGQ=28(exclusive)
+##GVCFBlock28-29=minGQ=28(inclusive),maxGQ=29(exclusive)
+##GVCFBlock29-30=minGQ=29(inclusive),maxGQ=30(exclusive)
+##GVCFBlock3-4=minGQ=3(inclusive),maxGQ=4(exclusive)
+##GVCFBlock30-31=minGQ=30(inclusive),maxGQ=31(exclusive)
+##GVCFBlock31-32=minGQ=31(inclusive),maxGQ=32(exclusive)
+##GVCFBlock32-33=minGQ=32(inclusive),maxGQ=33(exclusive)
+##GVCFBlock33-34=minGQ=33(inclusive),maxGQ=34(exclusive)
+##GVCFBlock34-35=minGQ=34(inclusive),maxGQ=35(exclusive)
+##GVCFBlock35-36=minGQ=35(inclusive),maxGQ=36(exclusive)
+##GVCFBlock36-37=minGQ=36(inclusive),maxGQ=37(exclusive)
+##GVCFBlock37-38=minGQ=37(inclusive),maxGQ=38(exclusive)
+##GVCFBlock38-39=minGQ=38(inclusive),maxGQ=39(exclusive)
+##GVCFBlock39-40=minGQ=39(inclusive),maxGQ=40(exclusive)
+##GVCFBlock4-5=minGQ=4(inclusive),maxGQ=5(exclusive)
+##GVCFBlock40-41=minGQ=40(inclusive),maxGQ=41(exclusive)
+##GVCFBlock41-42=minGQ=41(inclusive),maxGQ=42(exclusive)
+##GVCFBlock42-43=minGQ=42(inclusive),maxGQ=43(exclusive)
+##GVCFBlock43-44=minGQ=43(inclusive),maxGQ=44(exclusive)
+##GVCFBlock44-45=minGQ=44(inclusive),maxGQ=45(exclusive)
+##GVCFBlock45-46=minGQ=45(inclusive),maxGQ=46(exclusive)
+##GVCFBlock46-47=minGQ=46(inclusive),maxGQ=47(exclusive)
+##GVCFBlock47-48=minGQ=47(inclusive),maxGQ=48(exclusive)
+##GVCFBlock48-49=minGQ=48(inclusive),maxGQ=49(exclusive)
+##GVCFBlock49-50=minGQ=49(inclusive),maxGQ=50(exclusive)
+##GVCFBlock5-6=minGQ=5(inclusive),maxGQ=6(exclusive)
+##GVCFBlock50-51=minGQ=50(inclusive),maxGQ=51(exclusive)
+##GVCFBlock51-52=minGQ=51(inclusive),maxGQ=52(exclusive)
+##GVCFBlock52-53=minGQ=52(inclusive),maxGQ=53(exclusive)
+##GVCFBlock53-54=minGQ=53(inclusive),maxGQ=54(exclusive)
+##GVCFBlock54-55=minGQ=54(inclusive),maxGQ=55(exclusive)
+##GVCFBlock55-56=minGQ=55(inclusive),maxGQ=56(exclusive)
+##GVCFBlock56-57=minGQ=56(inclusive),maxGQ=57(exclusive)
+##GVCFBlock57-58=minGQ=57(inclusive),maxGQ=58(exclusive)
+##GVCFBlock58-59=minGQ=58(inclusive),maxGQ=59(exclusive)
+##GVCFBlock59-60=minGQ=59(inclusive),maxGQ=60(exclusive)
+##GVCFBlock6-7=minGQ=6(inclusive),maxGQ=7(exclusive)
+##GVCFBlock60-70=minGQ=60(inclusive),maxGQ=70(exclusive)
+##GVCFBlock7-8=minGQ=7(inclusive),maxGQ=8(exclusive)
+##GVCFBlock70-80=minGQ=70(inclusive),maxGQ=80(exclusive)
+##GVCFBlock8-9=minGQ=8(inclusive),maxGQ=9(exclusive)
+##GVCFBlock80-90=minGQ=80(inclusive),maxGQ=90(exclusive)
+##GVCFBlock9-10=minGQ=9(inclusive),maxGQ=10(exclusive)
+##GVCFBlock90-99=minGQ=90(inclusive),maxGQ=99(exclusive)
+##GVCFBlock99-100=minGQ=99(inclusive),maxGQ=100(exclusive)
+##INFO=<ID=BaseQRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt Vs. Ref base qualities">
+##INFO=<ID=ClippingRankSum,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref number of hard clipped bases">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth; some reads may have been filtered">
+##INFO=<ID=DS,Number=0,Type=Flag,Description="Were any of the samples downsampled?">
+##INFO=<ID=END,Number=1,Type=Integer,Description="Stop position of the interval">
+##INFO=<ID=ExcessHet,Number=1,Type=Float,Description="Phred-scaled p-value for exact test of excess heterozygosity">
+##INFO=<ID=InbreedingCoeff,Number=1,Type=Float,Description="Inbreeding coefficient as estimated from the genotype likelihoods per-sample when compared against the Hardy-Weinberg expectation">
+##INFO=<ID=MLEAC,Number=A,Type=Integer,Description="Maximum likelihood expectation (MLE) for the allele counts (not necessarily the same as the AC), for each ALT allele, in the same order as listed">
+##INFO=<ID=MLEAF,Number=A,Type=Float,Description="Maximum likelihood expectation (MLE) for the allele frequency (not necessarily the same as the AF), for each ALT allele, in the same order as listed">
+##INFO=<ID=MQ,Number=1,Type=Float,Description="RMS Mapping Quality">
+##INFO=<ID=MQRankSum,Number=1,Type=Float,Description="Z-score From Wilcoxon rank sum test of Alt vs. Ref read mapping qualities">
+##INFO=<ID=RAW_MQ,Number=1,Type=Float,Description="Raw data for RMS Mapping Quality">
+##INFO=<ID=ReadPosRankSum,Number=1,Type=Float,Description="Z-score from Wilcoxon rank sum test of Alt vs. Ref read position bias">
+##contig=<ID=1,length=138000>
+##source=HaplotypeCaller
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	RefA1
+1	1	.	A	<NON_REF>	.	.	END=1	GT:DP:GQ:MIN_DP:PL	0:0:0:0:0,0
+1	2	.	A	<NON_REF>	.	.	END=21	GT:DP:GQ:MIN_DP:PL	0:1:44:1:0,44
+1	22	.	G	<NON_REF>	.	.	END=30	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	31	.	C	<NON_REF>	.	.	END=212	GT:DP:GQ:MIN_DP:PL	0:11:99:3:0,131
+1	213	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	214	.	C	<NON_REF>	.	.	END=320	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,306
+1	321	.	A	T,<NON_REF>	363	.	BaseQRankSum=0.000;ClippingRankSum=0.000;DP=11;MLEAC=1,0;MLEAF=1.00,0.00;MQRankSum=0.000;RAW_MQ=39600.00;ReadPosRankSum=-0.235	GT:AD:DP:GQ:PL:SB	1:1,10,0:11:99:393,0,437:1,0,10,0
+1	322	.	C	<NON_REF>	.	.	END=467	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,350
+1	468	.	A	T,<NON_REF>	510	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:540,0,540:0,0,12,0
+1	469	.	A	<NON_REF>	.	.	END=472	GT:DP:GQ:MIN_DP:PL	0:12:99:12:0,495
+1	473	.	G	T,<NON_REF>	510	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:540,0,540:0,0,12,0
+1	474	.	A	<NON_REF>	.	.	END=619	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,306
+1	620	.	A	T,<NON_REF>	361	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:391,0,391:0,0,9,0
+1	621	.	C	<NON_REF>	.	.	END=904	GT:DP:GQ:MIN_DP:PL	0:8:99:3:0,131
+1	905	.	C	<NON_REF>	.	.	END=905	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	906	.	C	<NON_REF>	.	.	END=957	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,131
+1	958	.	C	<NON_REF>	.	.	END=958	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	959	.	G	<NON_REF>	.	.	END=1433	GT:DP:GQ:MIN_DP:PL	0:10:99:3:0,131
+1	1434	.	A	<NON_REF>	.	.	END=1444	GT:DP:GQ:MIN_DP:PL	0:4:90:3:0,90
+1	1445	.	G	<NON_REF>	.	.	END=1450	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	1451	.	C	<NON_REF>	.	.	END=1466	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	1467	.	C	<NON_REF>	.	.	END=1467	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	1468	.	A	<NON_REF>	.	.	END=1479	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,175
+1	1480	.	C	<NON_REF>	.	.	END=1480	GT:DP:GQ:MIN_DP:PL	0:5:44:5:0,44
+1	1481	.	A	<NON_REF>	.	.	END=1492	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	1493	.	C	<NON_REF>	.	.	END=1493	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	1494	.	A	<NON_REF>	.	.	END=1832	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	1833	.	C	T,<NON_REF>	320	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	1834	.	A	<NON_REF>	.	.	END=1862	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,270
+1	1863	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	1864	.	G	<NON_REF>	.	.	END=1896	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,263
+1	1897	.	C	T,<NON_REF>	363	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:393,0,393:0,0,9,0
+1	1898	.	C	<NON_REF>	.	.	END=2451	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,263
+1	2452	.	A	T,<NON_REF>	802	.	DP=19;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=68400.00	GT:AD:DP:GQ:PL:SB	1:0,19,0:19:99:832,0,832:0,0,19,0
+1	2453	.	G	<NON_REF>	.	.	END=2500	GT:DP:GQ:MIN_DP:PL	0:19:99:18:0,675
+1	4601	.	C	<NON_REF>	.	.	END=5335	GT:DP:GQ:MIN_DP:PL	0:11:99:3:0,131
+1	5336	.	A	T,<NON_REF>	665	.	DP=16;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=57600.00	GT:AD:DP:GQ:PL:SB	1:0,16,0:16:99:695,0,695:0,0,16,0
+1	5337	.	A	<NON_REF>	.	.	END=5645	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,175
+1	5646	.	A	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	5647	.	G	<NON_REF>	.	.	END=5706	GT:DP:GQ:MIN_DP:PL	0:13:99:13:0,394
+1	5707	.	C	T,<NON_REF>	627	.	DP=15;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=54000.00	GT:AD:DP:GQ:PL:SB	1:0,15,0:15:99:657,0,657:0,0,15,0
+1	5708	.	A	<NON_REF>	.	.	END=6069	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	6070	.	C	<NON_REF>	.	.	END=6070	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	6071	.	G	<NON_REF>	.	.	END=6302	GT:DP:GQ:MIN_DP:PL	0:11:99:4:0,131
+1	6303	.	A	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	6304	.	A	<NON_REF>	.	.	END=6549	GT:DP:GQ:MIN_DP:PL	0:10:99:9:0,306
+1	6550	.	G	T,<NON_REF>	407	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:437,0,437:0,0,10,0
+1	6551	.	A	<NON_REF>	.	.	END=6579	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,350
+1	6580	.	C	T,<NON_REF>	451	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	6581	.	G	<NON_REF>	.	.	END=6718	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,306
+1	6719	.	A	T,<NON_REF>	276	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	6720	.	A	<NON_REF>	.	.	END=6872	GT:DP:GQ:MIN_DP:PL	0:9:99:7:0,219
+1	6873	.	G	T,<NON_REF>	357	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:387,0,387:0,0,9,0
+1	6874	.	C	<NON_REF>	.	.	END=7100	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,175
+1	9201	.	C	<NON_REF>	.	.	END=9280	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,225
+1	9281	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	9282	.	C	<NON_REF>	.	.	END=9425	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,263
+1	9426	.	A	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	9427	.	A	<NON_REF>	.	.	END=9463	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,306
+1	9464	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	9465	.	C	<NON_REF>	.	.	END=9719	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	9720	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	9721	.	A	<NON_REF>	.	.	END=10006	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,175
+1	10007	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	10008	.	G	<NON_REF>	.	.	END=10213	GT:DP:GQ:MIN_DP:PL	0:13:99:7:0,263
+1	10214	.	A	T,<NON_REF>	627	.	DP=15;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=54000.00	GT:AD:DP:GQ:PL:SB	1:0,15,0:15:99:657,0,657:0,0,15,0
+1	10215	.	C	<NON_REF>	.	.	END=10995	GT:DP:GQ:MIN_DP:PL	0:12:99:5:0,131
+1	10996	.	G	T,<NON_REF>	145	.	DP=4;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=14400.00	GT:AD:DP:GQ:PL:SB	1:0,4,0:4:99:175,0,175:0,0,4,0
+1	10997	.	C	<NON_REF>	.	.	END=11239	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	11240	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	11241	.	G	<NON_REF>	.	.	END=11700	GT:DP:GQ:MIN_DP:PL	0:12:99:6:0,219
+1	13801	.	G	<NON_REF>	.	.	END=14283	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,131
+1	14284	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	14285	.	C	<NON_REF>	.	.	END=14461	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,135
+1	14462	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	14463	.	C	<NON_REF>	.	.	END=14717	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,131
+1	14718	.	C	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	14719	.	A	<NON_REF>	.	.	END=14744	GT:DP:GQ:MIN_DP:PL	0:15:99:13:0,481
+1	14745	.	C	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	14746	.	A	<NON_REF>	.	.	END=15843	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,131
+1	15844	.	G	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	15845	.	G	<NON_REF>	.	.	END=15931	GT:DP:GQ:MIN_DP:PL	0:12:99:8:0,175
+1	15932	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	15933	.	C	<NON_REF>	.	.	END=16196	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	16197	.	C	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	16198	.	A	<NON_REF>	.	.	END=16259	GT:DP:GQ:MIN_DP:PL	0:13:99:11:0,394
+1	16260	.	G	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	16261	.	G	<NON_REF>	.	.	END=16285	GT:DP:GQ:MIN_DP:PL	0:12:99:11:0,315
+1	16286	.	C	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	16287	.	A	<NON_REF>	.	.	END=16300	GT:DP:GQ:MIN_DP:PL	0:10:99:9:0,306
+1	18401	.	A	<NON_REF>	.	.	END=18479	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,219
+1	18480	.	G	T,<NON_REF>	446	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:476,0,476:0,0,11,0
+1	18481	.	G	<NON_REF>	.	.	END=18730	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,131
+1	18731	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	18732	.	C	<NON_REF>	.	.	END=18993	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,306
+1	18994	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	18995	.	G	<NON_REF>	.	.	END=19072	GT:DP:GQ:MIN_DP:PL	0:6:99:4:0,135
+1	19073	.	G	<NON_REF>	.	.	END=19073	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	19074	.	C	<NON_REF>	.	.	END=19318	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,135
+1	19319	.	G	T,<NON_REF>	270	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:300,0,300:0,0,7,0
+1	19320	.	G	<NON_REF>	.	.	END=19349	GT:DP:GQ:MIN_DP:PL	0:6:99:5:0,175
+1	19350	.	A	T,<NON_REF>	272	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:302,0,302:0,0,7,0
+1	19351	.	C	<NON_REF>	.	.	END=19437	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,135
+1	19438	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	19439	.	C	<NON_REF>	.	.	END=20018	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	20019	.	G	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	20020	.	A	<NON_REF>	.	.	END=20475	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	20476	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	20477	.	G	<NON_REF>	.	.	END=20740	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	20741	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	20742	.	G	<NON_REF>	.	.	END=20900	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,219
+1	23001	.	C	<NON_REF>	.	.	END=23029	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,263
+1	23030	.	A	T,<NON_REF>	363	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:393,0,393:0,0,9,0
+1	23031	.	G	<NON_REF>	.	.	END=23162	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	23163	.	C	T,<NON_REF>	443	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:473,0,473:0,0,11,0
+1	23164	.	G	<NON_REF>	.	.	END=24459	GT:DP:GQ:MIN_DP:PL	0:8:99:3:0,131
+1	24460	.	G	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	24461	.	C	<NON_REF>	.	.	END=24485	GT:DP:GQ:MIN_DP:PL	0:13:99:11:0,438
+1	24486	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	24487	.	A	<NON_REF>	.	.	END=24983	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,219
+1	24984	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	24985	.	A	<NON_REF>	.	.	END=25075	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,263
+1	25076	.	A	T,<NON_REF>	276	.	BaseQRankSum=0.000;ClippingRankSum=0.000;DP=9;MLEAC=1,0;MLEAF=1.00,0.00;MQRankSum=0.000;RAW_MQ=32400.00;ReadPosRankSum=0.967	GT:AD:DP:GQ:PL:SB	1:1,8,0:9:99:306,0,350:1,0,8,0
+1	25077	.	C	<NON_REF>	.	.	END=25110	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,219
+1	25111	.	A	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	25112	.	G	<NON_REF>	.	.	END=25150	GT:DP:GQ:MIN_DP:PL	0:6:99:4:0,135
+1	25151	.	A	<NON_REF>	.	.	END=25157	GT:DP:GQ:MIN_DP:PL	0:4:90:4:0,90
+1	25158	.	G	<NON_REF>	.	.	END=25159	GT:DP:GQ:MIN_DP:PL	0:4:45:4:0,45
+1	25160	.	C	<NON_REF>	.	.	END=25167	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	25168	.	C	<NON_REF>	.	.	END=25188	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	25189	.	A	<NON_REF>	.	.	END=25189	GT:DP:GQ:MIN_DP:PL	0:2:0:2:0,0
+1	25190	.	G	<NON_REF>	.	.	END=25208	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	25209	.	C	<NON_REF>	.	.	END=25209	GT:DP:GQ:MIN_DP:PL	0:2:45:2:0,45
+1	25210	.	G	<NON_REF>	.	.	END=25216	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	25217	.	C	<NON_REF>	.	.	END=25217	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	25218	.	C	<NON_REF>	.	.	END=25218	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	25219	.	C	<NON_REF>	.	.	END=25229	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	25230	.	C	<NON_REF>	.	.	END=25261	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	25262	.	C	T,<NON_REF>	145	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,4,0:4:99:175,0,175:0,0,4,0
+1	25263	.	A	<NON_REF>	.	.	END=25432	GT:DP:GQ:MIN_DP:PL	0:6:99:3:0,131
+1	25433	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	25434	.	C	<NON_REF>	.	.	END=25500	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,219
+1	27601	.	G	<NON_REF>	.	.	END=27792	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,263
+1	27793	.	A	T,<NON_REF>	361	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:391,0,391:0,0,9,0
+1	27794	.	A	<NON_REF>	.	.	END=27886	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,131
+1	27887	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	27888	.	C	<NON_REF>	.	.	END=27914	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,263
+1	27915	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	27916	.	C	<NON_REF>	.	.	END=28064	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,306
+1	28065	.	A	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	28066	.	A	<NON_REF>	.	.	END=28220	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,175
+1	28221	.	C	<NON_REF>	.	.	END=28221	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	28222	.	C	<NON_REF>	.	.	END=28844	GT:DP:GQ:MIN_DP:PL	0:8:99:3:0,131
+1	28845	.	C	<NON_REF>	.	.	END=28845	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	28846	.	A	<NON_REF>	.	.	END=28878	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	28879	.	A	<NON_REF>	.	.	END=28879	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	28880	.	A	<NON_REF>	.	.	END=28885	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,135
+1	28886	.	C	<NON_REF>	.	.	END=28895	GT:DP:GQ:MIN_DP:PL	0:4:90:3:0,90
+1	28896	.	G	<NON_REF>	.	.	END=28903	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	28904	.	G	<NON_REF>	.	.	END=28908	GT:DP:GQ:MIN_DP:PL	0:2:45:2:0,45
+1	28909	.	G	<NON_REF>	.	.	END=28913	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	28914	.	A	<NON_REF>	.	.	END=28915	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	28916	.	A	<NON_REF>	.	.	END=29207	GT:DP:GQ:MIN_DP:PL	0:7:99:3:0,131
+1	29208	.	A	<NON_REF>	.	.	END=29208	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	29209	.	A	<NON_REF>	.	.	END=29246	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,175
+1	29247	.	A	T,<NON_REF>	239	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:269,0,269:0,0,5,0
+1	29248	.	A	<NON_REF>	.	.	END=29257	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,225
+1	29258	.	C	T,<NON_REF>	284	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:314,0,314:0,0,6,0
+1	29259	.	A	<NON_REF>	.	.	END=29259	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,306
+1	29260	.	G	T,<NON_REF>	240	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:270,0,270:0,0,6,0
+1	29261	.	C	<NON_REF>	.	.	END=29830	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	29831	.	C	T,<NON_REF>	312	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:342,0,342:0,0,8,0
+1	29832	.	C	<NON_REF>	.	.	END=29937	GT:DP:GQ:MIN_DP:PL	0:9:99:7:0,225
+1	29938	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	29939	.	G	<NON_REF>	.	.	END=30100	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	32201	.	C	<NON_REF>	.	.	END=32286	GT:DP:GQ:MIN_DP:PL	0:13:99:11:0,394
+1	32287	.	C	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	32288	.	A	<NON_REF>	.	.	END=32312	GT:DP:GQ:MIN_DP:PL	0:11:99:11:0,394
+1	32313	.	A	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	32314	.	G	<NON_REF>	.	.	END=32350	GT:DP:GQ:MIN_DP:PL	0:13:99:11:0,394
+1	32351	.	A	T,<NON_REF>	670	.	DP=16;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=57600.00	GT:AD:DP:GQ:PL:SB	1:0,16,0:16:99:700,0,700:0,0,16,0
+1	32352	.	C	<NON_REF>	.	.	END=32764	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,219
+1	32765	.	A	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	32766	.	C	<NON_REF>	.	.	END=33221	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,131
+1	33222	.	A	T,<NON_REF>	275	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:305,0,305:0,0,7,0
+1	33223	.	C	<NON_REF>	.	.	END=34115	GT:DP:GQ:MIN_DP:PL	0:11:99:5:0,131
+1	34116	.	A	T,<NON_REF>	669	.	DP=16;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=57600.00	GT:AD:DP:GQ:PL:SB	1:0,16,0:16:99:699,0,699:0,0,16,0
+1	34117	.	A	<NON_REF>	.	.	END=34341	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,306
+1	34342	.	A	T,<NON_REF>	626	.	DP=15;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=54000.00	GT:AD:DP:GQ:PL:SB	1:0,15,0:15:99:656,0,656:0,0,15,0
+1	34343	.	G	<NON_REF>	.	.	END=34470	GT:DP:GQ:MIN_DP:PL	0:17:99:13:0,394
+1	34471	.	G	T,<NON_REF>	492	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:522,0,522:0,0,12,0
+1	34472	.	G	<NON_REF>	.	.	END=34512	GT:DP:GQ:MIN_DP:PL	0:12:99:10:0,405
+1	34513	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	34514	.	A	<NON_REF>	.	.	END=34582	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,131
+1	34583	.	C	<NON_REF>	.	.	END=34591	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	34592	.	A	<NON_REF>	.	.	END=34592	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,135
+1	34593	.	G	<NON_REF>	.	.	END=34595	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	34596	.	C	<NON_REF>	.	.	END=34615	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	34616	.	C	<NON_REF>	.	.	END=34616	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	34617	.	A	<NON_REF>	.	.	END=34645	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	34646	.	C	<NON_REF>	.	.	END=34646	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	34647	.	G	<NON_REF>	.	.	END=34700	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,135
+1	36801	.	C	<NON_REF>	.	.	END=38313	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,131
+1	38314	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	38315	.	C	<NON_REF>	.	.	END=38366	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,263
+1	38367	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	38368	.	G	<NON_REF>	.	.	END=38404	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,219
+1	38405	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	38406	.	C	<NON_REF>	.	.	END=38534	GT:DP:GQ:MIN_DP:PL	0:6:99:5:0,135
+1	38535	.	G	<NON_REF>	.	.	END=38535	GT:DP:GQ:MIN_DP:PL	0:6:88:6:0,88
+1	38536	.	G	<NON_REF>	.	.	END=38689	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,175
+1	38690	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	38691	.	G	<NON_REF>	.	.	END=38756	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,306
+1	38757	.	A	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	38758	.	G	<NON_REF>	.	.	END=38885	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,263
+1	38886	.	A	T,<NON_REF>	283	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:313,0,313:0,0,7,0
+1	38887	.	C	<NON_REF>	.	.	END=38909	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,219
+1	38910	.	A	T,<NON_REF>	195	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:225,0,225:0,0,5,0
+1	38911	.	C	<NON_REF>	.	.	END=38941	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,131
+1	38942	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	38943	.	A	<NON_REF>	.	.	END=39300	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,175
+1	41401	.	G	<NON_REF>	.	.	END=41612	GT:DP:GQ:MIN_DP:PL	0:14:99:7:0,219
+1	41613	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	41614	.	G	<NON_REF>	.	.	END=41884	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	41885	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	41886	.	A	<NON_REF>	.	.	END=41917	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,394
+1	41918	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	41919	.	A	<NON_REF>	.	.	END=42429	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,131
+1	42430	.	G	<NON_REF>	.	.	END=42430	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	42431	.	G	<NON_REF>	.	.	END=42778	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,175
+1	42779	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	42780	.	A	<NON_REF>	.	.	END=42842	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,219
+1	42843	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	42844	.	A	<NON_REF>	.	.	END=42882	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,350
+1	42883	.	G	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	42884	.	A	<NON_REF>	.	.	END=42948	GT:DP:GQ:MIN_DP:PL	0:13:99:12:0,438
+1	42949	.	G	T,<NON_REF>	538	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:568,0,568:0,0,13,0
+1	42950	.	A	<NON_REF>	.	.	END=43126	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	43127	.	A	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	43128	.	C	<NON_REF>	.	.	END=43444	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	43445	.	C	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	43446	.	A	<NON_REF>	.	.	END=43900	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	46001	.	C	<NON_REF>	.	.	END=46566	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	46567	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	46568	.	C	<NON_REF>	.	.	END=46682	GT:DP:GQ:MIN_DP:PL	0:12:99:10:0,394
+1	46683	.	G	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	46684	.	A	<NON_REF>	.	.	END=46865	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,175
+1	46866	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	46867	.	A	<NON_REF>	.	.	END=47058	GT:DP:GQ:MIN_DP:PL	0:7:99:3:0,131
+1	47059	.	G	<NON_REF>	.	.	END=47059	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	47060	.	G	<NON_REF>	.	.	END=47146	GT:DP:GQ:MIN_DP:PL	0:5:99:3:0,131
+1	47147	.	C	T,<NON_REF>	353	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:383,0,383:0,0,9,0
+1	47148	.	A	<NON_REF>	.	.	END=47204	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,306
+1	47205	.	C	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	47206	.	G	<NON_REF>	.	.	END=47483	GT:DP:GQ:MIN_DP:PL	0:13:99:6:0,135
+1	47484	.	A	T,<NON_REF>	230	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:260,0,260:0,0,6,0
+1	47485	.	G	<NON_REF>	.	.	END=47557	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,135
+1	47558	.	G	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	47559	.	C	<NON_REF>	.	.	END=47697	GT:DP:GQ:MIN_DP:PL	0:13:99:8:0,350
+1	47698	.	G	T,<NON_REF>	670	.	DP=16;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=57600.00	GT:AD:DP:GQ:PL:SB	1:0,16,0:16:99:700,0,700:0,0,16,0
+1	47699	.	G	<NON_REF>	.	.	END=48258	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	48259	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	48260	.	C	<NON_REF>	.	.	END=48500	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,175
+1	50601	.	A	<NON_REF>	.	.	END=50668	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,306
+1	50669	.	A	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	50670	.	G	<NON_REF>	.	.	END=50768	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,306
+1	50769	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	50770	.	C	<NON_REF>	.	.	END=51180	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	51181	.	G	T,<NON_REF>	317	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:347,0,347:0,0,8,0
+1	51182	.	A	<NON_REF>	.	.	END=51680	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,131
+1	51681	.	G	T,<NON_REF>	419	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:449,0,449:0,0,9,0
+1	51682	.	A	<NON_REF>	.	.	END=51683	GT:DP:GQ:MIN_DP:PL	0:10:99:10:0,405
+1	51684	.	G	T,<NON_REF>	419	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:449,0,449:0,0,10,0
+1	51685	.	C	<NON_REF>	.	.	END=51826	GT:DP:GQ:MIN_DP:PL	0:11:99:8:0,306
+1	51827	.	C	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	51828	.	A	<NON_REF>	.	.	END=52728	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,131
+1	52729	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	52730	.	C	<NON_REF>	.	.	END=52825	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,263
+1	52826	.	C	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	52827	.	A	<NON_REF>	.	.	END=52907	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,306
+1	52908	.	G	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	52909	.	A	<NON_REF>	.	.	END=53100	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,219
+1	55201	.	A	<NON_REF>	.	.	END=55204	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,306
+1	55205	.	G	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	55206	.	A	<NON_REF>	.	.	END=55362	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	55363	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	55364	.	C	<NON_REF>	.	.	END=55594	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,131
+1	55595	.	C	T,<NON_REF>	627	.	DP=15;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=54000.00	GT:AD:DP:GQ:PL:SB	1:0,15,0:15:99:657,0,657:0,0,15,0
+1	55596	.	C	<NON_REF>	.	.	END=56288	GT:DP:GQ:MIN_DP:PL	0:11:99:4:0,131
+1	56289	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	56290	.	G	<NON_REF>	.	.	END=56769	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,175
+1	56770	.	A	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	56771	.	A	<NON_REF>	.	.	END=57014	GT:DP:GQ:MIN_DP:PL	0:11:99:8:0,175
+1	57015	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	57016	.	A	<NON_REF>	.	.	END=57112	GT:DP:GQ:MIN_DP:PL	0:10:99:9:0,306
+1	57113	.	C	T,<NON_REF>	271	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:301,0,301:0,0,7,0
+1	57114	.	C	<NON_REF>	.	.	END=57432	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,225
+1	57433	.	G	T,<NON_REF>	273	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:303,0,303:0,0,7,0
+1	57434	.	G	<NON_REF>	.	.	END=57509	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,219
+1	57510	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	57511	.	G	<NON_REF>	.	.	END=57700	GT:DP:GQ:MIN_DP:PL	0:13:99:10:0,306
+1	59801	.	G	<NON_REF>	.	.	END=59805	GT:DP:GQ:MIN_DP:PL	0:17:99:17:0,720
+1	59806	.	A	T,<NON_REF>	709	.	DP=17;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=61200.00	GT:AD:DP:GQ:PL:SB	1:0,17,0:17:99:739,0,739:0,0,17,0
+1	59807	.	A	<NON_REF>	.	.	END=60230	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,135
+1	60231	.	G	<NON_REF>	.	.	END=60232	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	60233	.	G	<NON_REF>	.	.	END=60241	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	60242	.	G	<NON_REF>	.	.	END=60242	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	60243	.	G	<NON_REF>	.	.	END=60243	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,135
+1	60244	.	G	<NON_REF>	.	.	END=60245	GT:DP:GQ:MIN_DP:PL	0:4:90:4:0,90
+1	60246	.	C	<NON_REF>	.	.	END=60277	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	60278	.	C	<NON_REF>	.	.	END=60278	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	60279	.	C	<NON_REF>	.	.	END=60558	GT:DP:GQ:MIN_DP:PL	0:7:99:3:0,131
+1	60559	.	G	<NON_REF>	.	.	END=60559	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	60560	.	C	<NON_REF>	.	.	END=60590	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	60591	.	A	<NON_REF>	.	.	END=60591	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	60592	.	A	<NON_REF>	.	.	END=60597	GT:DP:GQ:MIN_DP:PL	0:4:90:3:0,90
+1	60598	.	G	<NON_REF>	.	.	END=60611	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	60612	.	G	<NON_REF>	.	.	END=60612	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	60613	.	G	<NON_REF>	.	.	END=60641	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,131
+1	60642	.	G	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	60643	.	G	<NON_REF>	.	.	END=60755	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	60756	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	60757	.	C	<NON_REF>	.	.	END=60897	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	60898	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	60899	.	G	<NON_REF>	.	.	END=60942	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,175
+1	60943	.	C	<NON_REF>	.	.	END=60943	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	60944	.	A	<NON_REF>	.	.	END=60981	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,175
+1	60982	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	60983	.	A	<NON_REF>	.	.	END=61049	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,219
+1	61050	.	G	<NON_REF>	.	.	END=61050	GT:DP:GQ:MIN_DP:PL	0:6:88:6:0,88
+1	61051	.	G	<NON_REF>	.	.	END=61113	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,131
+1	61114	.	G	T,<NON_REF>	227	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:257,0,257:0,0,6,0
+1	61115	.	G	<NON_REF>	.	.	END=61314	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,131
+1	61315	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	61316	.	A	<NON_REF>	.	.	END=61473	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,175
+1	61474	.	A	T,<NON_REF>	230	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:260,0,260:0,0,6,0
+1	61475	.	G	<NON_REF>	.	.	END=61556	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	61557	.	A	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	61558	.	G	<NON_REF>	.	.	END=62300	GT:DP:GQ:MIN_DP:PL	0:12:99:8:0,219
+1	64401	.	G	<NON_REF>	.	.	END=64472	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,394
+1	64473	.	G	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	64474	.	A	<NON_REF>	.	.	END=64774	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,131
+1	64775	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	64776	.	G	<NON_REF>	.	.	END=64809	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,175
+1	64810	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	64811	.	A	<NON_REF>	.	.	END=64841	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,263
+1	64842	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	64843	.	C	<NON_REF>	.	.	END=65729	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,175
+1	65730	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	65731	.	A	<NON_REF>	.	.	END=66068	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,219
+1	66069	.	A	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	66070	.	A	<NON_REF>	.	.	END=66516	GT:DP:GQ:MIN_DP:PL	0:12:99:5:0,131
+1	66517	.	A	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	66518	.	T	<NON_REF>	.	.	END=66532	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,263
+1	66533	.	A	T,<NON_REF>	276	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	66534	.	G	<NON_REF>	.	.	END=66900	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	69001	.	C	<NON_REF>	.	.	END=69016	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,306
+1	69017	.	A	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	69018	.	G	<NON_REF>	.	.	END=69220	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,175
+1	69221	.	C	T,<NON_REF>	534	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:564,0,564:0,0,13,0
+1	69222	.	A	<NON_REF>	.	.	END=69354	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	69355	.	A	T,<NON_REF>	144	.	BaseQRankSum=0.000;ClippingRankSum=0.000;DP=6;MLEAC=1,0;MLEAF=1.00,0.00;MQRankSum=0.000;RAW_MQ=21600.00;ReadPosRankSum=-0.967	GT:AD:DP:GQ:PL:SB	1:1,5,0:6:99:174,0,218:1,0,5,0
+1	69356	.	G	<NON_REF>	.	.	END=69499	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	69500	.	G	<NON_REF>	.	.	END=69500	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	69501	.	G	<NON_REF>	.	.	END=69521	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	69522	.	G	<NON_REF>	.	.	END=69522	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	69523	.	A	<NON_REF>	.	.	END=69967	GT:DP:GQ:MIN_DP:PL	0:10:99:3:0,131
+1	69968	.	C	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	69969	.	G	<NON_REF>	.	.	END=70178	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,175
+1	70179	.	G	T,<NON_REF>	361	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:391,0,391:0,0,9,0
+1	70180	.	G	<NON_REF>	.	.	END=70275	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	70276	.	A	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	70277	.	C	<NON_REF>	.	.	END=70385	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,180
+1	70386	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	70387	.	G	<NON_REF>	.	.	END=70671	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,175
+1	70672	.	C	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	70673	.	A	<NON_REF>	.	.	END=71217	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,175
+1	71218	.	G	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	71219	.	G	<NON_REF>	.	.	END=71500	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	73601	.	G	<NON_REF>	.	.	END=73830	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,219
+1	73831	.	A	T,<NON_REF>	538	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:568,0,568:0,0,13,0
+1	73832	.	C	<NON_REF>	.	.	END=74109	GT:DP:GQ:MIN_DP:PL	0:14:99:10:0,350
+1	74110	.	G	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	74111	.	A	<NON_REF>	.	.	END=74383	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,270
+1	74384	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	74385	.	G	<NON_REF>	.	.	END=74422	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,350
+1	74423	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	74424	.	A	<NON_REF>	.	.	END=74690	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,306
+1	74691	.	C	T,<NON_REF>	315	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:345,0,345:0,0,8,0
+1	74692	.	C	<NON_REF>	.	.	END=74818	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,225
+1	74819	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	74820	.	A	<NON_REF>	.	.	END=75417	GT:DP:GQ:MIN_DP:PL	0:9:99:3:0,131
+1	75418	.	A	T,<NON_REF>	232	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:262,0,262:0,0,6,0
+1	75419	.	A	<NON_REF>	.	.	END=75609	GT:DP:GQ:MIN_DP:PL	0:12:99:5:0,175
+1	75610	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	75611	.	A	<NON_REF>	.	.	END=75794	GT:DP:GQ:MIN_DP:PL	0:13:99:4:0,175
+1	75795	.	G	<NON_REF>	.	.	END=75799	GT:DP:GQ:MIN_DP:PL	0:5:90:5:0,90
+1	75800	.	C	<NON_REF>	.	.	END=75808	GT:DP:GQ:MIN_DP:PL	0:5:99:3:0,131
+1	75809	.	C	<NON_REF>	.	.	END=75813	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	75814	.	C	<NON_REF>	.	.	END=75972	GT:DP:GQ:MIN_DP:PL	0:12:99:4:0,135
+1	75973	.	C	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	75974	.	G	<NON_REF>	.	.	END=76100	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,219
+1	78201	.	G	<NON_REF>	.	.	END=78229	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,219
+1	78230	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	78231	.	C	<NON_REF>	.	.	END=78646	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,225
+1	78647	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	78648	.	A	<NON_REF>	.	.	END=78689	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,175
+1	78690	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	78691	.	A	<NON_REF>	.	.	END=79045	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,263
+1	79046	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	79047	.	T	<NON_REF>	.	.	END=79372	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,219
+1	79373	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	79374	.	G	<NON_REF>	.	.	END=79453	GT:DP:GQ:MIN_DP:PL	0:9:99:7:0,219
+1	79454	.	A	T,<NON_REF>	330	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:360,0,360:0,0,8,0
+1	79455	.	A	<NON_REF>	.	.	END=79472	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,350
+1	79473	.	G	T,<NON_REF>	461	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:491,0,491:0,0,11,0
+1	79474	.	A	<NON_REF>	.	.	END=80125	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,219
+1	80126	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	80127	.	C	<NON_REF>	.	.	END=80448	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	80449	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	80450	.	G	<NON_REF>	.	.	END=80700	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,175
+1	82801	.	C	<NON_REF>	.	.	END=82866	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,306
+1	82867	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	82868	.	C	<NON_REF>	.	.	END=83225	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	83226	.	A	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	83227	.	G	<NON_REF>	.	.	END=83373	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,225
+1	83374	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	83375	.	C	<NON_REF>	.	.	END=83903	GT:DP:GQ:MIN_DP:PL	0:12:99:7:0,175
+1	83904	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	83905	.	C	<NON_REF>	.	.	END=83977	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,306
+1	83978	.	G	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	83979	.	A	<NON_REF>	.	.	END=84168	GT:DP:GQ:MIN_DP:PL	0:15:99:8:0,225
+1	84169	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	84170	.	C	<NON_REF>	.	.	END=84442	GT:DP:GQ:MIN_DP:PL	0:12:99:6:0,219
+1	84443	.	G	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	84444	.	C	<NON_REF>	.	.	END=85003	GT:DP:GQ:MIN_DP:PL	0:10:99:3:0,131
+1	85004	.	G	<NON_REF>	.	.	END=85004	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	85005	.	A	<NON_REF>	.	.	END=85012	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	85013	.	C	<NON_REF>	.	.	END=85014	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	85015	.	G	<NON_REF>	.	.	END=85019	GT:DP:GQ:MIN_DP:PL	0:3:45:3:0,45
+1	85020	.	A	<NON_REF>	.	.	END=85023	GT:DP:GQ:MIN_DP:PL	0:3:0:2:0,0
+1	85024	.	C	<NON_REF>	.	.	END=85030	GT:DP:GQ:MIN_DP:PL	0:2:45:2:0,45
+1	85031	.	G	<NON_REF>	.	.	END=85051	GT:DP:GQ:MIN_DP:PL	0:1:44:1:0,44
+1	85052	.	C	<NON_REF>	.	.	END=85052	GT:DP:GQ:MIN_DP:PL	0:1:0:1:0,0
+1	85053	.	C	<NON_REF>	.	.	END=85065	GT:DP:GQ:MIN_DP:PL	0:1:44:1:0,44
+1	85066	.	A	<NON_REF>	.	.	END=85073	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	85074	.	C	<NON_REF>	.	.	END=85078	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	85079	.	A	<NON_REF>	.	.	END=85079	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	85080	.	A	<NON_REF>	.	.	END=85259	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	85260	.	A	T,<NON_REF>	275	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:305,0,305:0,0,7,0
+1	85261	.	A	<NON_REF>	.	.	END=85300	GT:DP:GQ:MIN_DP:PL	0:7:99:6:0,219
+1	87401	.	A	<NON_REF>	.	.	END=87403	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	87404	.	G	<NON_REF>	.	.	END=87404	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	87405	.	C	<NON_REF>	.	.	END=87412	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	87413	.	A	<NON_REF>	.	.	END=87417	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	87418	.	A	<NON_REF>	.	.	END=87529	GT:DP:GQ:MIN_DP:PL	0:6:99:3:0,131
+1	87530	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	87531	.	C	<NON_REF>	.	.	END=87606	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,135
+1	87607	.	C	<NON_REF>	.	.	END=87607	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	87608	.	A	<NON_REF>	.	.	END=87759	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,135
+1	87760	.	C	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	87761	.	A	<NON_REF>	.	.	END=88092	GT:DP:GQ:MIN_DP:PL	0:14:99:7:0,219
+1	88093	.	C	T,<NON_REF>	329	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:359,0,359:0,0,7,0
+1	88094	.	C	<NON_REF>	.	.	END=88094	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,306
+1	88095	.	C	T,<NON_REF>	329	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:359,0,359:0,0,8,0
+1	88096	.	G	<NON_REF>	.	.	END=88172	GT:DP:GQ:MIN_DP:PL	0:5:99:3:0,131
+1	88173	.	G	<NON_REF>	.	.	END=88173	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	88174	.	G	<NON_REF>	.	.	END=88248	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	88249	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	88250	.	G	<NON_REF>	.	.	END=88304	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,306
+1	88305	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	88306	.	A	<NON_REF>	.	.	END=88807	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	88808	.	A	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	88809	.	G	<NON_REF>	.	.	END=89055	GT:DP:GQ:MIN_DP:PL	0:12:99:4:0,131
+1	89056	.	C	<NON_REF>	.	.	END=89064	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	89065	.	C	<NON_REF>	.	.	END=89066	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,135
+1	89067	.	C	<NON_REF>	.	.	END=89067	GT:DP:GQ:MIN_DP:PL	0:5:44:5:0,44
+1	89068	.	G	<NON_REF>	.	.	END=89193	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,135
+1	89194	.	G	<NON_REF>	.	.	END=89194	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	89195	.	A	<NON_REF>	.	.	END=89246	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,175
+1	89247	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	89248	.	G	<NON_REF>	.	.	END=89519	GT:DP:GQ:MIN_DP:PL	0:6:99:3:0,131
+1	89520	.	G	<NON_REF>	.	.	END=89520	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	89521	.	G	<NON_REF>	.	.	END=89522	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	89523	.	G	<NON_REF>	.	.	END=89533	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	89534	.	A	<NON_REF>	.	.	END=89534	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	89535	.	A	<NON_REF>	.	.	END=89758	GT:DP:GQ:MIN_DP:PL	0:8:99:3:0,131
+1	89759	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	89760	.	C	<NON_REF>	.	.	END=89900	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,270
+1	92001	.	C	<NON_REF>	.	.	END=92024	GT:DP:GQ:MIN_DP:PL	0:13:99:11:0,394
+1	92025	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	92026	.	G	<NON_REF>	.	.	END=92876	GT:DP:GQ:MIN_DP:PL	0:11:99:4:0,131
+1	92877	.	A	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	92878	.	C	<NON_REF>	.	.	END=92902	GT:DP:GQ:MIN_DP:PL	0:12:99:11:0,438
+1	92903	.	A	T,<NON_REF>	444	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:474,0,474:0,0,11,0
+1	92904	.	C	<NON_REF>	.	.	END=92966	GT:DP:GQ:MIN_DP:PL	0:12:99:10:0,306
+1	92967	.	C	T,<NON_REF>	319	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:349,0,349:0,0,8,0
+1	92968	.	A	<NON_REF>	.	.	END=93019	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,263
+1	93020	.	C	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	93021	.	C	<NON_REF>	.	.	END=93151	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,225
+1	93152	.	C	T,<NON_REF>	188	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:218,0,218:0,0,5,0
+1	93153	.	G	<NON_REF>	.	.	END=93560	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,175
+1	93561	.	G	T,<NON_REF>	583	.	DP=14;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=50400.00	GT:AD:DP:GQ:PL:SB	1:0,14,0:14:99:613,0,613:0,0,14,0
+1	93562	.	C	<NON_REF>	.	.	END=93594	GT:DP:GQ:MIN_DP:PL	0:14:99:13:0,481
+1	93595	.	C	T,<NON_REF>	618	.	DP=15;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=54000.00	GT:AD:DP:GQ:PL:SB	1:0,15,0:15:99:648,0,648:0,0,15,0
+1	93596	.	C	<NON_REF>	.	.	END=93905	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	93906	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	93907	.	C	<NON_REF>	.	.	END=94500	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,175
+1	96601	.	C	<NON_REF>	.	.	END=96699	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,263
+1	96700	.	A	T,<NON_REF>	319	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:349,0,349:0,0,8,0
+1	96701	.	C	<NON_REF>	.	.	END=97160	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,219
+1	97161	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	97162	.	G	<NON_REF>	.	.	END=97364	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,219
+1	97365	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	97366	.	A	<NON_REF>	.	.	END=97411	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,263
+1	97412	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	97413	.	A	<NON_REF>	.	.	END=97481	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,180
+1	97482	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	97483	.	C	<NON_REF>	.	.	END=97549	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,219
+1	97550	.	G	<NON_REF>	.	.	END=97550	GT:DP:GQ:MIN_DP:PL	0:5:44:5:0,44
+1	97551	.	G	<NON_REF>	.	.	END=97986	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	97987	.	A	<NON_REF>	.	.	END=97990	GT:DP:GQ:MIN_DP:PL	0:5:90:4:0,90
+1	97991	.	A	<NON_REF>	.	.	END=97991	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	97992	.	G	<NON_REF>	.	.	END=97997	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	97998	.	G	<NON_REF>	.	.	END=98011	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	98012	.	A	<NON_REF>	.	.	END=98019	GT:DP:GQ:MIN_DP:PL	0:2:45:2:0,45
+1	98020	.	C	<NON_REF>	.	.	END=98021	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	98022	.	A	<NON_REF>	.	.	END=98034	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	98035	.	G	<NON_REF>	.	.	END=98050	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	98051	.	C	T,<NON_REF>	101	.	DP=3;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=10800.00	GT:AD:DP:GQ:PL:SB	1:0,3,0:3:99:131,0,131:0,0,3,0
+1	98052	.	G	<NON_REF>	.	.	END=98055	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	98056	.	A	<NON_REF>	.	.	END=98061	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	98062	.	G	<NON_REF>	.	.	END=98314	GT:DP:GQ:MIN_DP:PL	0:11:99:3:0,131
+1	98315	.	G	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	98316	.	C	<NON_REF>	.	.	END=98730	GT:DP:GQ:MIN_DP:PL	0:12:99:8:0,306
+1	98731	.	G	T,<NON_REF>	443	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:473,0,473:0,0,11,0
+1	98732	.	A	<NON_REF>	.	.	END=98939	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,175
+1	98940	.	G	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	98941	.	G	<NON_REF>	.	.	END=99100	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,219
+1	101201	.	G	<NON_REF>	.	.	END=101256	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,219
+1	101257	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	101258	.	C	<NON_REF>	.	.	END=101337	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	101338	.	G	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	101339	.	C	<NON_REF>	.	.	END=101659	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	101660	.	A	T,<NON_REF>	233	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	101661	.	A	<NON_REF>	.	.	END=101738	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,306
+1	101739	.	G	T,<NON_REF>	448	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:478,0,478:0,0,11,0
+1	101740	.	G	<NON_REF>	.	.	END=102652	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,175
+1	102653	.	A	T,<NON_REF>	408	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	102654	.	G	<NON_REF>	.	.	END=102746	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,175
+1	102747	.	C	<NON_REF>	.	.	END=102747	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	102748	.	G	<NON_REF>	.	.	END=102875	GT:DP:GQ:MIN_DP:PL	0:7:99:3:0,131
+1	102876	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	102877	.	C	<NON_REF>	.	.	END=102905	GT:DP:GQ:MIN_DP:PL	0:12:99:10:0,394
+1	102906	.	C	T,<NON_REF>	495	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:525,0,525:0,0,12,0
+1	102907	.	C	<NON_REF>	.	.	END=103040	GT:DP:GQ:MIN_DP:PL	0:9:99:3:0,131
+1	103041	.	C	<NON_REF>	.	.	END=103043	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	103044	.	G	<NON_REF>	.	.	END=103367	GT:DP:GQ:MIN_DP:PL	0:9:99:3:0,131
+1	103368	.	C	T,<NON_REF>	360	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:390,0,390:0,0,9,0
+1	103369	.	G	<NON_REF>	.	.	END=103578	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,175
+1	103579	.	G	T,<NON_REF>	356	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:386,0,386:0,0,9,0
+1	103580	.	G	<NON_REF>	.	.	END=103700	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,180
+1	105801	.	A	<NON_REF>	.	.	END=106165	GT:DP:GQ:MIN_DP:PL	0:11:99:5:0,175
+1	106166	.	G	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	106167	.	A	<NON_REF>	.	.	END=106447	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,131
+1	106448	.	C	T,<NON_REF>	539	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:569,0,569:0,0,13,0
+1	106449	.	G	<NON_REF>	.	.	END=106503	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,175
+1	106504	.	A	<NON_REF>	.	.	END=106504	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	106505	.	G	<NON_REF>	.	.	END=106510	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	106511	.	A	<NON_REF>	.	.	END=106511	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	106512	.	C	<NON_REF>	.	.	END=106626	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,135
+1	106627	.	G	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	106628	.	A	<NON_REF>	.	.	END=106650	GT:DP:GQ:MIN_DP:PL	0:11:99:9:0,360
+1	106651	.	A	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	106652	.	A	<NON_REF>	.	.	END=106735	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,219
+1	106736	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	106737	.	C	<NON_REF>	.	.	END=107343	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,135
+1	107344	.	A	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	107345	.	C	<NON_REF>	.	.	END=107498	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,263
+1	107499	.	G	T,<NON_REF>	189	.	DP=5;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=18000.00	GT:AD:DP:GQ:PL:SB	1:0,5,0:5:99:219,0,219:0,0,5,0
+1	107500	.	G	<NON_REF>	.	.	END=107511	GT:DP:GQ:MIN_DP:PL	0:6:99:5:0,135
+1	107512	.	A	<NON_REF>	.	.	END=107517	GT:DP:GQ:MIN_DP:PL	0:4:90:3:0,90
+1	107518	.	A	<NON_REF>	.	.	END=107523	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	107524	.	G	<NON_REF>	.	.	END=107524	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	107525	.	A	<NON_REF>	.	.	END=107529	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	107530	.	C	<NON_REF>	.	.	END=107530	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	107531	.	C	<NON_REF>	.	.	END=107534	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	107535	.	C	<NON_REF>	.	.	END=107535	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	107536	.	A	<NON_REF>	.	.	END=107992	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,175
+1	107993	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	107994	.	A	<NON_REF>	.	.	END=108164	GT:DP:GQ:MIN_DP:PL	0:12:99:8:0,350
+1	108165	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	108166	.	A	<NON_REF>	.	.	END=108300	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,263
+1	110401	.	G	<NON_REF>	.	.	END=110570	GT:DP:GQ:MIN_DP:PL	0:11:99:5:0,131
+1	110571	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	110572	.	A	<NON_REF>	.	.	END=111146	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	111147	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	111148	.	A	<NON_REF>	.	.	END=111595	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,131
+1	111596	.	G	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	111597	.	A	<NON_REF>	.	.	END=111631	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,263
+1	111632	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	111633	.	A	<NON_REF>	.	.	END=111892	GT:DP:GQ:MIN_DP:PL	0:14:99:11:0,350
+1	111893	.	G	T,<NON_REF>	447	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:477,0,477:0,0,11,0
+1	111894	.	A	<NON_REF>	.	.	END=112050	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,175
+1	112051	.	G	T,<NON_REF>	319	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:349,0,349:0,0,8,0
+1	112052	.	C	<NON_REF>	.	.	END=112423	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	112424	.	G	T,<NON_REF>	240	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:270,0,270:0,0,6,0
+1	112425	.	C	<NON_REF>	.	.	END=112426	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,219
+1	112427	.	C	T,<NON_REF>	240	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:270,0,270:0,0,6,0
+1	112428	.	C	<NON_REF>	.	.	END=112563	GT:DP:GQ:MIN_DP:PL	0:6:99:4:0,131
+1	112564	.	C	<NON_REF>	.	.	END=112564	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	112565	.	G	<NON_REF>	.	.	END=112565	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	112566	.	G	<NON_REF>	.	.	END=112566	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	112567	.	G	<NON_REF>	.	.	END=112577	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	112578	.	G	<NON_REF>	.	.	END=112578	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	112579	.	G	<NON_REF>	.	.	END=112630	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	112631	.	C	T,<NON_REF>	58	.	DP=2;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=7200.00	GT:AD:DP:GQ:PL:SB	1:0,2,0:2:88:88,0,88:0,0,2,0
+1	112632	.	A	<NON_REF>	.	.	END=112638	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	112639	.	C	<NON_REF>	.	.	END=112639	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	112640	.	C	<NON_REF>	.	.	END=112659	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	112660	.	G	<NON_REF>	.	.	END=112660	GT:DP:GQ:MIN_DP:PL	0:3:44:3:0,44
+1	112661	.	A	<NON_REF>	.	.	END=112674	GT:DP:GQ:MIN_DP:PL	0:3:99:3:0,131
+1	112675	.	A	<NON_REF>	.	.	END=112681	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	112682	.	G	<NON_REF>	.	.	END=112900	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,135
+1	115001	.	A	<NON_REF>	.	.	END=115103	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,131
+1	115104	.	C	T,<NON_REF>	364	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	115105	.	G	<NON_REF>	.	.	END=115140	GT:DP:GQ:MIN_DP:PL	0:11:99:10:0,350
+1	115141	.	G	T,<NON_REF>	489	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:519,0,519:0,0,12,0
+1	115142	.	C	<NON_REF>	.	.	END=115852	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,131
+1	115853	.	G	T,<NON_REF>	494	.	DP=12;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=43200.00	GT:AD:DP:GQ:PL:SB	1:0,12,0:12:99:524,0,524:0,0,12,0
+1	115854	.	C	<NON_REF>	.	.	END=116347	GT:DP:GQ:MIN_DP:PL	0:9:99:4:0,131
+1	116348	.	G	<NON_REF>	.	.	END=116348	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	116349	.	A	<NON_REF>	.	.	END=116732	GT:DP:GQ:MIN_DP:PL	0:11:99:4:0,131
+1	116733	.	C	T,<NON_REF>	320	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	116734	.	C	<NON_REF>	.	.	END=116743	GT:DP:GQ:MIN_DP:PL	0:9:99:9:0,219
+1	116744	.	A	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	116745	.	C	<NON_REF>	.	.	END=116775	GT:DP:GQ:MIN_DP:PL	0:9:99:7:0,270
+1	116776	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	116777	.	A	<NON_REF>	.	.	END=117105	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,175
+1	117106	.	A	T,<NON_REF>	462	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:492,0,492:0,0,11,0
+1	117107	.	G	<NON_REF>	.	.	END=117113	GT:DP:GQ:MIN_DP:PL	0:11:99:11:0,394
+1	117114	.	A	T,<NON_REF>	419	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:449,0,449:0,0,10,0
+1	117115	.	C	<NON_REF>	.	.	END=117500	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,175
+1	119601	.	A	<NON_REF>	.	.	END=119939	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,263
+1	119940	.	A	T,<NON_REF>	273	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:303,0,303:0,0,7,0
+1	119941	.	C	<NON_REF>	.	.	END=120129	GT:DP:GQ:MIN_DP:PL	0:8:99:6:0,263
+1	120130	.	A	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	120131	.	C	<NON_REF>	.	.	END=120280	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,270
+1	120281	.	G	T,<NON_REF>	317	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:347,0,347:0,0,8,0
+1	120282	.	A	<NON_REF>	.	.	END=120475	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,175
+1	120476	.	G	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	120477	.	A	<NON_REF>	.	.	END=120687	GT:DP:GQ:MIN_DP:PL	0:12:99:9:0,306
+1	120688	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	120689	.	A	<NON_REF>	.	.	END=120923	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,175
+1	120924	.	G	T,<NON_REF>	315	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:345,0,345:0,0,8,0
+1	120925	.	G	<NON_REF>	.	.	END=121225	GT:DP:GQ:MIN_DP:PL	0:8:99:5:0,131
+1	121226	.	A	T,<NON_REF>	329	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:359,0,359:0,0,7,0
+1	121227	.	G	<NON_REF>	.	.	END=121234	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,350
+1	121235	.	G	T,<NON_REF>	373	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:403,0,403:0,0,9,0
+1	121236	.	C	<NON_REF>	.	.	END=122100	GT:DP:GQ:MIN_DP:PL	0:12:99:6:0,175
+1	124201	.	G	<NON_REF>	.	.	END=124469	GT:DP:GQ:MIN_DP:PL	0:11:99:6:0,219
+1	124470	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	124471	.	G	<NON_REF>	.	.	END=125123	GT:DP:GQ:MIN_DP:PL	0:11:99:4:0,131
+1	125124	.	C	T,<NON_REF>	233	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:263,0,263:0,0,6,0
+1	125125	.	A	<NON_REF>	.	.	END=125324	GT:DP:GQ:MIN_DP:PL	0:6:99:4:0,131
+1	125325	.	C	<NON_REF>	.	.	END=125325	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	125326	.	A	<NON_REF>	.	.	END=125385	GT:DP:GQ:MIN_DP:PL	0:6:99:4:0,131
+1	125386	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	125387	.	G	<NON_REF>	.	.	END=125513	GT:DP:GQ:MIN_DP:PL	0:13:99:9:0,394
+1	125514	.	C	T,<NON_REF>	405	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:435,0,435:0,0,10,0
+1	125515	.	C	<NON_REF>	.	.	END=125549	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,263
+1	125550	.	C	T,<NON_REF>	330	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:360,0,360:0,0,8,0
+1	125551	.	A	T,<NON_REF>	330	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:360,0,360:0,0,8,0
+1	125552	.	A	<NON_REF>	.	.	END=125778	GT:DP:GQ:MIN_DP:PL	0:10:99:4:0,131
+1	125779	.	G	<NON_REF>	.	.	END=125779	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	125780	.	C	<NON_REF>	.	.	END=125868	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,131
+1	125869	.	C	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	125870	.	A	<NON_REF>	.	.	END=126115	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,263
+1	126116	.	A	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	126117	.	A	<NON_REF>	.	.	END=126441	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	126442	.	A	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	126443	.	C	<NON_REF>	.	.	END=126700	GT:DP:GQ:MIN_DP:PL	0:9:99:3:0,131
+1	128801	.	G	<NON_REF>	.	.	END=129187	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	129188	.	G	T,<NON_REF>	536	.	DP=13;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=46800.00	GT:AD:DP:GQ:PL:SB	1:0,13,0:13:99:566,0,566:0,0,13,0
+1	129189	.	C	<NON_REF>	.	.	END=129324	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,175
+1	129325	.	C	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	129326	.	C	<NON_REF>	.	.	END=129963	GT:DP:GQ:MIN_DP:PL	0:9:99:5:0,175
+1	129964	.	G	T,<NON_REF>	320	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	129965	.	A	<NON_REF>	.	.	END=130359	GT:DP:GQ:MIN_DP:PL	0:11:99:8:0,263
+1	130360	.	C	T,<NON_REF>	416	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:446,0,446:0,0,10,0
+1	130361	.	A	<NON_REF>	.	.	END=130383	GT:DP:GQ:MIN_DP:PL	0:10:99:8:0,315
+1	130384	.	C	T,<NON_REF>	374	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:404,0,404:0,0,8,0
+1	130385	.	C	<NON_REF>	.	.	END=130407	GT:DP:GQ:MIN_DP:PL	0:9:99:8:0,263
+1	130408	.	C	T,<NON_REF>	373	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:403,0,403:0,0,9,0
+1	130409	.	G	<NON_REF>	.	.	END=130587	GT:DP:GQ:MIN_DP:PL	0:8:99:3:0,131
+1	130588	.	G	<NON_REF>	.	.	END=130598	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	130599	.	C	<NON_REF>	.	.	END=130599	GT:DP:GQ:MIN_DP:PL	0:2:88:2:0,88
+1	130600	.	A	<NON_REF>	.	.	END=130639	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	130640	.	G	<NON_REF>	.	.	END=130640	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	130641	.	A	<NON_REF>	.	.	END=130678	GT:DP:GQ:MIN_DP:PL	0:4:99:3:0,131
+1	130679	.	C	T,<NON_REF>	145	.	DP=4;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=14400.00	GT:AD:DP:GQ:PL:SB	1:0,4,0:4:99:175,0,175:0,0,4,0
+1	130680	.	C	<NON_REF>	.	.	END=130684	GT:DP:GQ:MIN_DP:PL	0:4:99:4:0,175
+1	130685	.	A	<NON_REF>	.	.	END=130686	GT:DP:GQ:MIN_DP:PL	0:4:88:4:0,88
+1	130687	.	G	<NON_REF>	.	.	END=130779	GT:DP:GQ:MIN_DP:PL	0:5:99:4:0,131
+1	130780	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	130781	.	A	<NON_REF>	.	.	END=130836	GT:DP:GQ:MIN_DP:PL	0:7:99:7:0,219
+1	130837	.	A	T,<NON_REF>	451	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:481,0,481:0,0,11,0
+1	130838	.	A	<NON_REF>	.	.	END=131279	GT:DP:GQ:MIN_DP:PL	0:12:99:3:0,131
+1	131280	.	A	<NON_REF>	.	.	END=131287	GT:DP:GQ:MIN_DP:PL	0:3:90:3:0,90
+1	131288	.	A	<NON_REF>	.	.	END=131297	GT:DP:GQ:MIN_DP:PL	0:2:45:2:0,45
+1	131298	.	C	<NON_REF>	.	.	END=131300	GT:DP:GQ:MIN_DP:PL	0:1:44:1:0,44
+1	133401	.	C	<NON_REF>	.	.	END=133457	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,306
+1	133458	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	133459	.	G	<NON_REF>	.	.	END=133516	GT:DP:GQ:MIN_DP:PL	0:7:99:5:0,180
+1	133517	.	A	T,<NON_REF>	315	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:345,0,345:0,0,8,0
+1	133518	.	A	<NON_REF>	.	.	END=133732	GT:DP:GQ:MIN_DP:PL	0:10:99:5:0,131
+1	133733	.	G	T,<NON_REF>	276	.	DP=7;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=25200.00	GT:AD:DP:GQ:PL:SB	1:0,7,0:7:99:306,0,306:0,0,7,0
+1	133734	.	C	<NON_REF>	.	.	END=133974	GT:DP:GQ:MIN_DP:PL	0:10:99:7:0,219
+1	133975	.	G	T,<NON_REF>	450	.	DP=11;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=39600.00	GT:AD:DP:GQ:PL:SB	1:0,11,0:11:99:480,0,480:0,0,11,0
+1	133976	.	T	<NON_REF>	.	.	END=134199	GT:DP:GQ:MIN_DP:PL	0:8:99:4:0,175
+1	134200	.	A	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	134201	.	A	<NON_REF>	.	.	END=134367	GT:DP:GQ:MIN_DP:PL	0:9:99:6:0,175
+1	134368	.	A	T,<NON_REF>	227	.	DP=6;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=21600.00	GT:AD:DP:GQ:PL:SB	1:0,6,0:6:99:257,0,257:0,0,6,0
+1	134369	.	G	<NON_REF>	.	.	END=134986	GT:DP:GQ:MIN_DP:PL	0:7:99:4:0,135
+1	134987	.	A	T,<NON_REF>	320	.	DP=8;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=28800.00	GT:AD:DP:GQ:PL:SB	1:0,8,0:8:99:350,0,350:0,0,8,0
+1	134988	.	A	<NON_REF>	.	.	END=135046	GT:DP:GQ:MIN_DP:PL	0:8:99:7:0,263
+1	135047	.	C	T,<NON_REF>	364	.	DP=9;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=32400.00	GT:AD:DP:GQ:PL:SB	1:0,9,0:9:99:394,0,394:0,0,9,0
+1	135048	.	G	<NON_REF>	.	.	END=135465	GT:DP:GQ:MIN_DP:PL	0:10:99:6:0,219
+1	135466	.	C	T,<NON_REF>	408	.	DP=10;MLEAC=1,0;MLEAF=1.00,0.00;RAW_MQ=36000.00	GT:AD:DP:GQ:PL:SB	1:0,10,0:10:99:438,0,438:0,0,10,0
+1	135467	.	C	<NON_REF>	.	.	END=135900	GT:DP:GQ:MIN_DP:PL	0:11:99:7:0,263

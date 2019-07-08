@@ -1,0 +1,7 @@
+host=localHost
+user=sqlite
+password=sqlite
+DB=/root/temp/phgSmallSeq/phgSmallSeq.db
+DBtype=sqlite
+minTaxa=1
+minSites=5

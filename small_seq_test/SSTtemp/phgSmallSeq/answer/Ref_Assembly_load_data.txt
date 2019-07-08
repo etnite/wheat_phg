@@ -1,0 +1,2 @@
+Genotype	Hapnumber	Dataline	ploidy	reference	genesPhased	chromsPhased	confidence	Method	MethodDetails	RefVersion
+Ref_Assembly	0	minimap2	1	false	true	true	1	Assembly_minimap2	Aligned via minimap2	B73Ref_version

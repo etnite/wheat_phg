@@ -76,6 +76,18 @@ docker pull maizegenetics/phg
 docker pull maizegenetics/phg_postgres
 ```
 
+## small_seq_test
+
+This directory holds a set of scripts and data for running a small simulated PHG
+creation. Things to note:
+
+* The lines in all the scripts that start with "PHG_DIR=" will need to be modified
+in order to point to the correct directory. Currently the method for doing this is
+a bit circuitous, so I may modify in the future.
+* The scripts currently use the command docker1, which is specific to the Cornell
+BioHPC. If running on another computer/cluster, these commands should be changed to
+just "docker"
+
 ## Directory setup and download
 
 The script dir_data_setup.sh will attempt to set up a directory and data
@@ -154,3 +166,4 @@ need to give the script the reference fasta file, and the previously-generated
 reference intervals file, and it will create a SQL database. Currently
 docker_run_commands/load_ref_data.sh is hard-coded to take input files from
 previous steps of this repository workflow.
+
