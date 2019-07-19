@@ -9,7 +9,7 @@
 ##
 ## The output consists of a single sorted BAM file, with PCR duplicates marked.
 ##
-## This script is intended to be used with parallelize.sh, to enable independent
+## This script is intended to be used with arrayer.sh, to enable independent
 ## parallel runs on multiple samples simultaneously.
 ##
 ## NOTES: 
@@ -24,6 +24,8 @@
 ##      slow...
 ##   5) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
+##   6) Running one wheat exome capture alignment with 10 cores took 3 hours,
+##      20 minutes
 ################################################################################
 
 
@@ -32,6 +34,7 @@
 ## Reference genome fasta ("ref") must already be indexed using bowtie2-build
 ## and samtools index
 fastq_dir="/project/genolabswheatphg/test/BPW_pipeline_test/filt_fastq"
+samps_file=""
 out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/alignments"
 ref="/project/genolabswheatphg/v1_refseq/Clay_splitchroms_reference/161010_Chinese_Spring_v1.0_pseudomolecules_parts.fasta"
 
@@ -47,7 +50,7 @@ echo "Start time:"
 date
 
 mkdir -p "${out_dir}"
-samp=$1
+array_ind=$1
 
 ## Check if reference genome fasta index exists
 if [[ ! -f "${ref}".fai ]]; then
@@ -58,9 +61,12 @@ fi
 ## Get size of largest chromosome/contig in reference
 max_chr=$(cut -f2 "${ref}".fai | sort -nr | head -n 1)
 
+## Get sample name
+samp=$(head -n "${array_ind}" "${samp_file}" | tail -n 1)
+
 ## Set forward and reverse read fastq files
-fq1="${fastq_dir}"/"${samp}"_10K_R1.fastq.gz
-fq2="${fastq_dir}"/"${samp}"_10K_R2.fastq.gz
+fq1=$(echo "${fastq_dir}"/"${samp}"*R1.fastq.gz)
+fq2=$(echo "${fastq_dir}"/"${samp}"*R2.fastq.gz)
 
 ## For some reason, the barcode indexes in FASTQ files can contain some N
 ## values for the first few reads. I don't know the significance of this. 

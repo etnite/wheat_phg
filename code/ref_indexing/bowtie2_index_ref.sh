@@ -21,10 +21,10 @@
 
 #SBATCH --job-name="bowtie2-index" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
-  ##SBATCH --nodes=1 #Number of nodes
-#SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
-  ##SBATCH --ntasks-per-node=6 #number of cores/tasks
-#SBATCH --time=00:00:30 #time allocated for this job hours:mins:seconds
+#SBATCH --nodes=1 #Number of nodes
+  ##SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
+#SBATCH --ntasks-per-node=10 #number of cores/tasks
+#SBATCH --time=00:10:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -35,7 +35,7 @@ module load bowtie2
 
 #### User-defined constants ####
 
-ref_file=$1
+ref_file="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
 nthreads=$SLURM_NTASKS
 
 

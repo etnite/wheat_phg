@@ -25,8 +25,8 @@
 #### User-defined variables ####
 
 ## No trailing slashes!
-in_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents/separated_fq"
-out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/concat_raw_fastq"
+in_dir="/project/genolabswheatphg/raw_data/Mary_untarred"
+out_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
 
 
 #### Executable ####

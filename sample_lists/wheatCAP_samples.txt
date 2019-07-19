@@ -1,5 +1,6 @@
 16REG01643
 16REG01644
+26R61
 AGS2000
 Altamo
 Billings
@@ -22,7 +23,6 @@ MN98550-5
 MN99294-1
 OPATA
 Overley
-26R61
 Platte
 Reeder
 RioBlanco

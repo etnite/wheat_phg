@@ -30,10 +30,7 @@
 
 #SBATCH --job-name="parallel-print" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
-  ##SBATCH --nodes=1 #Number of nodes
-#SBATCH --ntasks=28  #Number of overall tasks - overrides tasks per node
-  ##SBATCH --ntasks-per-node=1 #number of cores/tasks
-  ##SBATCH --time=00:05:00 #time allocated for this job hours:mins:seconds
+#SBATCH --ntasks=1  #Number of overall tasks
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -44,8 +41,8 @@ module load parallel
 
 #### User-Defined Constants ####
 
-iter_file="../sample_lists/one_wheatCAP_samp.txt"
-script="concat_fastqs.sh"
+iter_file="../../sample_lists/KS_HRW_samples.txt"
+script="../concat_fastqs.sh"
 
 
 #### Executable ####
@@ -57,7 +54,7 @@ echo "${script}"
 echo "Start time:"
 date
 
-parallel -j $SLURM_NTASKS --delay 1 --joblog parallel_run.log sbatch -t 48:00:00 -N1 -n10 $script {} ::: "${iter[@]}"
+parallel -j $SLURM_NTASKS --delay 1 --joblog parallel_run.log sbatch -t 00:30:00 -n 1 $script {} ::: "${iter[@]}"
 
 echo
 echo "End time:"

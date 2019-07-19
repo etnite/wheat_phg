@@ -21,9 +21,10 @@
 
 #### User-defined constants ####
 
-in_dir="/project/genolabswheatphg/test/BPW_pipeline_test/concat_raw_fastq"
+in_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
 adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa"
-out_dir="/project/genolabswheatphg/test/BPW_pipeline_test/filt_fastq"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
+out_dir="/project/genolabswheatphg/filt_fastqs/test_output"
 
 
 #### Executable  ####
@@ -36,10 +37,13 @@ echo "Start time:"
 date
 
 mkdir -p "${out_dir}"
-samp=$1
+array_ind=$1
 
 ## Get length of adapters
 ad_len=$(head -n 2 "${adapt_fasta}" | tail -n -1 | wc -c)
+
+## Get sample name
+samp=$(head -n "${array_ind}" "${samp_file}" | tail -n 1)
 
 ## Set forward and reverse read fastq files
 fq1="${in_dir}"/"${samp}"_R1.fastq.gz
