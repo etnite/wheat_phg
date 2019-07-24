@@ -2,3 +2,4 @@ stderr*
 stdout*
 slurm*
 *.log
+*.bam

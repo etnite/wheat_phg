@@ -24,7 +24,7 @@
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=10  #Number of overall tasks - overrides tasks per node
 #SBATCH --ntasks-per-node=10 #number of cores/tasks
-#SBATCH --time=00:10:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=10:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name

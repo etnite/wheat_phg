@@ -21,11 +21,11 @@
 
 #SBATCH --job-name="arrayer"  #name of the job submitted
 #SBATCH --partition=short  #name of the queue you are submitting job to
-#SBATCH --array=1-4%2  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
+#SBATCH --array=1-59%5  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=28  #Number of overall tasks - overrides tasks per node
-#SBATCH --ntasks-per-node=4 #number of cores/tasks
-#SBATCH --time=00:20:00 #time allocated for this job hours:mins:seconds
+#SBATCH --ntasks-per-node=10 #number of cores/tasks
+#SBATCH --time=06:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -34,7 +34,7 @@
 
 #### User-Defined Constants ####
 
-script="parallel_print_test.sh"
+script="alignment/bowtie2_align_parallel.sh"
 
 
 #### Executable ####
