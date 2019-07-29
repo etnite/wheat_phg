@@ -35,16 +35,18 @@ set -e
 
 #### User-Supplied Constants ####
 
-in_dir="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/lane_bams"
-out_dir="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_merged_bams"
+in_dir="/project/genolabswheatphg/alignments/SRW_wholechrom_bw2_bams"
+out_dir="/project/genolabswheatphg/alignments/SRW_filt_bams"
 mq_thresh=20
 
 
 #### Executable ####
 
+mkdir -p "${out_dir}"
+
 ## Read in array index (integer) - get corresponding .bam file name
 arr_ind=$1
-bam_file=$(ls -1 *.bam | head -n $arr_ind | tail -n 1)
+bam_file=$(ls -1 "${in_dir}"/*.bam | head -n $arr_ind | tail -n 1)
 
 ## Filter input BAM file, sort and output
 samtools view -h "${in_dir}"/"${bam_file}" \
