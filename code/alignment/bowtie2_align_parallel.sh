@@ -33,10 +33,16 @@
 
 ## Reference genome fasta ("ref") must already be indexed using bowtie2-build
 ## and samtools index
-fastq_dir="/project/genolabswheatphg/filt_fastqs/SRW_excap"
-samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
-out_dir="/project/genolabswheatphg/alignments/SRW_wholechrom_bw2_bams"
+#fastq_dir="/project/genolabswheatphg/filt_fastqs/SRW_excap"
+#samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
+#out_dir="/project/genolabswheatphg/alignments/SRW_wholechrom_bw2_bams"
+#ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+
+fastq_dir="/project/genolabswheatphg/filt_fastqs/KS_HRW_excap"
+samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
+out_dir="/project/genolabswheatphg/alignments/KS_HRW_wholechrom_bw2_bams"
 ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+
 
 
 #### Executable  ####
