@@ -42,15 +42,20 @@ mq_thresh=20
 
 #### Executable ####
 
+module load samtools
+
 mkdir -p "${out_dir}"
 
 ## Read in array index (integer) - get corresponding .bam file name
 arr_ind=$1
 bam_file=$(ls -1 "${in_dir}"/*.bam | head -n $arr_ind | tail -n 1)
+bam_base=$(basename "${bam_file}")
 
 ## Filter input BAM file, sort and output
-samtools view -h "${in_dir}"/"${bam_file}" \
+samtools view -h "${bam_file}" \
     -q $mq_thresh \
     -f 2 |
-    samtools sort -O BAM - -o "${out_dir}"/"${bam_file}"
+    samtools sort -O BAM - -o "${out_dir}"/"${bam_base}"
 
+## Index output BAM
+samtools index -c "${out_dir}"/"${bam_base}"
