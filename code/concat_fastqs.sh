@@ -3,7 +3,7 @@
 ## Concatenate fastq files
 ##
 ## This script takes as input a single string (typically a genotype NAME). It
-## will typically be used with parallelizer.sh to run in independent, parallel
+## will typically be used with arrayer.sh to run in independent, parallel
 ## fashion.
 ##
 ## The user must define an input directory, and an output directory.
@@ -18,7 +18,6 @@
 ## NOTES:
 ##   1) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
-##
 ################################################################################
 
 
@@ -27,6 +26,7 @@
 ## No trailing slashes!
 in_dir="/project/genolabswheatphg/raw_data/Mary_untarred"
 out_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_samples.txt"
 
 
 #### Executable ####
@@ -36,8 +36,11 @@ echo "Start concat_fastqs.sh"
 echo "Start time:"
 date
 
-name=$1
+array_ind=$1
 mkdir -p "${out_dir}"
+
+## Get sample name
+name=$(head -n "${array_ind}" "${samp_file}" | tail -n 1)
 
 ## Enable recursive globbing
 shopt -s globstar nullglob
