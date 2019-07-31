@@ -19,8 +19,8 @@ on a cluster.
 
 Code in this repository may be used for either:
 
-a. Building a practical haplotype graph
-b. Performing the steps necessary for classical short variant calling
+1. Building a practical haplotype graph
+2. Performing the steps necessary for classical short variant calling
 using Illumina sequencing data.
 
 For either of these two tasks, a typical initial workflow would be:
