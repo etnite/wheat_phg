@@ -100,9 +100,9 @@ bowtie2 -x "${ref}" \
         --phred33 \
         -1 "${fq1}" \
         -2 "${fq2}" |
-        samtools sort -n -O SAM - |
+        samtools sort -n -T "${out_dir}"/"${samp}"sort1 -O SAM - |
         samtools fixmate -m -O SAM - - |
-        samtools sort -O SAM - |
+        samtools sort -T "${out_dir}"/"${samp}"sort2 -O SAM - |
         samtools markdup - "${out_dir}"/"${samp}".bam
 
 ## Default .bai indices can only handle contigs up to 2^29 bases. If any contig
