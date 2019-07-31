@@ -2,6 +2,9 @@
 
 ## Parallelize script with GNU Parallel
 ##
+## WARNING: This script is generally deprecated. Scripts in this repository are
+## now written to use arrayer.sh instead.
+##
 ## This script is a "universal parallelizer" - it's intended function is to
 ## enable the parallel execution of another script WHEN DIFFERENT PROCESSES
 ## CAN BE RUN INDEPENDENTLY, such as when running the same process on different
