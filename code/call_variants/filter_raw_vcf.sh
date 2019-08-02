@@ -22,7 +22,7 @@ set -e
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=22 #number of cores/tasks
-#SBATCH --time=05:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=06:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -31,15 +31,15 @@ set -e
 
 #### User-defined constants ####
 
-vcf_in="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_imp_VCF/SRW59_excap_GBS_filt_80miss_snps_only_imp.vcf.gz"
-vcf_out="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_imp_VCF/SRW59_excap_GBS_filt_80miss_snps_only_imp_refilt.vcf.gz"
+vcf_in="/project/genolabswheatphg/variants/KS_HRW/raw_vcf/KS_HRW_raw.vcf.gz"
+vcf_out="/project/genolabswheatphg/variants/KS_HRW/filt_vcf/KS_HRW_filt.vcf.gz"
 taxa_list="none"
 min_maf=0.03
 max_miss=0.8
 max_het=0.1
-remove_unal="false"
-snpgap=1
-indelgap=1
+remove_unal="true"
+snpgap=3
+indelgap=3
 
 
 #### Executable #####
@@ -138,11 +138,11 @@ bcftools index -c $vcf_out
 
 
 ## Generate summary stats using TASSEL
-echo "Generating summary statistics with TASSEL"
-$TASSEL_PL -vcf "${vcf_out}" \
-           -GenotypeSummaryPlugin \
-           -endPlugin \
-           -export "${out_dir}"/summary
+#echo "Generating summary statistics with TASSEL"
+#$TASSEL_PL -vcf "${vcf_out}" \
+#           -GenotypeSummaryPlugin \
+#           -endPlugin \
+#           -export "${out_dir}"/summary
 
 rm -rf $temp_dir
 #source deactivate

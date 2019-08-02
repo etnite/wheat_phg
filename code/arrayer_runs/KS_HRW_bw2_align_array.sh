@@ -21,7 +21,7 @@
 
 #SBATCH --job-name="KS-align"  #name of the job submitted
 #SBATCH --partition=short  #name of the queue you are submitting job to
-#SBATCH --array=1-56%5  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
+#SBATCH --array=1  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=28  #Number of overall tasks - overrides tasks per node
 #SBATCH --ntasks-per-node=10 #number of cores/tasks

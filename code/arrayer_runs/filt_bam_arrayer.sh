@@ -21,7 +21,7 @@
 
 #SBATCH --job-name="filt-bam-array"  #name of the job submitted
 #SBATCH --partition=short  #name of the queue you are submitting job to
-#SBATCH --array=1-59  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
+#SBATCH --array=1-56  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=1 #number of cores/tasks

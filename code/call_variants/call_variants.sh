@@ -34,10 +34,10 @@ set -e
 
 #### User-defined constants ####
 
-bams_dir="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_merged_bams"
-ref_gen="/home/gbg_lab_admin/Array_60TB/GBS_Reference_Genomes/Ensembl_v41_IWGSC_v1.0/Triticum_aestivum.IWGSC.dna.toplevel.fa"
-out_vcf="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_raw_VCF/SRW59_excap_GBS.vcf.gz"
-samples="/home/gbg_lab_admin/Array_60TB/git_repos/samtools_snp_call/sample_names.txt"
+bams_dir="/project/genolabswheatphg/alignments/KS_HRW_filt_bams"
+ref_gen="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+out_vcf="/project/genolabswheatphg/variants/KS_HRW/raw_vcf/KS_HRW_raw.vcf.gz"
+samples="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
 ncores=22
 mq_val=10
 save_pile_out="false"
@@ -57,18 +57,18 @@ save_pile_out=${save_pile_out:0:1}
 
 ## Create output directory, cd to it, create subdirectories for single-chrom BCFs
 out_dir=$(dirname "${out_vcf}")
-mkdir "${out_dir}"
+mkdir -p "${out_dir}"
 cd "${out_dir}"
 mkdir chrom_var_bcfs
 
 ## Sanity check on save_pile_out
 if [[ $save_pile_out == [Tt] ]]; then
-	mkdir mpi_bcfs
+    mkdir mpi_bcfs
 elif [[ $save_pile_out == [Ff] ]]; then
-	echo "User elected not to save mpileup BCF files"
+    echo "User elected not to save mpileup BCF files"
 else
-	echo "Please supply 'true' or 'false' for save_pile_out"
-	exit 1;
+    echo "Please supply 'true' or 'false' for save_pile_out"
+    exit 1;
 fi
 
 ## Create list of .bam files
@@ -82,10 +82,10 @@ chroms=( $(cut -f 1 ${ref_gen}.fai) )
 ## By default, mpileup will skip reads that are unmapped, secondary,
 ##   PCR duplicates, or that failed QC.
 if [[ $save_pile_out == [Tt] ]]; then
-	time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
-	time parallel -j $ncores bcftools call -mv -Ou mpi_bcfs/chrom_{}.bcf -o chrom_var_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
+    time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
+    time parallel -j $ncores bcftools call -mv -Ou mpi_bcfs/chrom_{}.bcf -o chrom_var_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
 else
-	 time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -mv -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
+    time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -mv -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
 fi
 
 ## Create list of single-chromosome variant BCFs
@@ -95,7 +95,7 @@ printf '%s\n' chrom_var_bcfs/*.bcf > chrom_var_bcfs/bcf_list.txt
 ## Construct SNP IDs
 ## Normalize indels; discard all but one overlapping SNP, all but one overlapping indel
 bcftools concat --no-version --threads $ncores --file-list chrom_var_bcfs/bcf_list.txt -Ou |
-	bcftools annotate --set-id +'S%CHROM\_%POS' -Ou |
+    bcftools annotate --set-id +'S%CHROM\_%POS' -Ou |
     bcftools norm -f ${ref_gen} -Oz > "${out_vcf}"
  
 bcftools index -c $out_vcf

@@ -38,9 +38,9 @@ set -e
 
 #### User-defined constants ####
 
-vcf_in="/home/gbg_lab_admin/Array_60TB/wheat_exome_capture/ERSGGL_SRW_alignments/excap_GBS_filt_VCF/SRW59_excap_GBS_filt_80miss.vcf.gz"
-ref="/home/gbg_lab_admin/Array_60TB/GBS_Reference_Genomes/Ensembl_v41_IWGSC_v1.0/Triticum_aestivum.IWGSC.dna.toplevel.fa"
-gff="/home/gbg_lab_admin/Array_60TB/GBS_Reference_Genomes/Ensembl_v41_IWGSC_v1.0/Triticum_aestivum.IWGSC.41.gff3.gz"
+vcf_in="/project/genolabswheatphg/variants/KS_HRW/filt_vcf/KS_HRW_filt.vcf.gz"
+ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+gff="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.44.gff3.gz"
 lookup_file="none"
 
 

@@ -35,8 +35,12 @@ set -e
 
 #### User-Supplied Constants ####
 
-in_dir="/project/genolabswheatphg/alignments/SRW_wholechrom_bw2_bams"
-out_dir="/project/genolabswheatphg/alignments/SRW_filt_bams"
+#in_dir="/project/genolabswheatphg/alignments/SRW_wholechrom_bw2_bams"
+#out_dir="/project/genolabswheatphg/alignments/SRW_filt_bams"
+#mq_thresh=20
+
+in_dir="/project/genolabswheatphg/alignments/KS_HRW_wholechrom_bw2_bams"
+out_dir="/project/genolabswheatphg/alignments/KS_HRW_filt_bams"
 mq_thresh=20
 
 
