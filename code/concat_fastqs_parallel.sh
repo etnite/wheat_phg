@@ -24,9 +24,13 @@
 #### User-defined variables ####
 
 ## No trailing slashes!
-in_dir="/project/genolabswheatphg/raw_data/Mary_untarred"
-out_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_samples.txt"
+#in_dir="/project/genolabswheatphg/raw_data/Mary_untarred"
+#out_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
+#samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_samples.txt"
+
+in_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents/separated_fq"
+out_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples.txt"
 
 
 #### Executable ####

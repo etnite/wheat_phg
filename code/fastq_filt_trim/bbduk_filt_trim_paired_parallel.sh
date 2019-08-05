@@ -21,10 +21,15 @@
 
 #### User-defined constants ####
 
-in_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
-adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa"
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
-out_dir="/project/genolabswheatphg/filt_fastqs/test_output"
+#in_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
+#adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa"
+#samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
+#out_dir="/project/genolabswheatphg/filt_fastqs/test_output"
+
+in_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
+adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa" 
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples_reform.txt" 
+out_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_parents" 
 
 
 #### Executable  ####
