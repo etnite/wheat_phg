@@ -16,8 +16,8 @@
 
 #### User-defined constants ####
 
-samp_file=""
-out_dir=""
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/SRA_samp_list.tsv"
+out_dir="/project/genolabswheatphg/raw_data/hapmap_sra_test"
 
 
 #### Executable ####

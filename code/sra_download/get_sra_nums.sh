@@ -17,9 +17,11 @@
 
 mkdir -p "${2}"
 
+## Get SRA run info (.csv file with lots of columns)
 esearch -db sra -query "${1}" |
     efetch --format runinfo > "${2}"/SRA_runinfo.csv
 
+## Isolate and format SRR numbers and sample names
 cut -d "," -f 1,30 "${2}"/SRA_runinfo.csv |
     grep -v "Run" |
     sed 's/SeqCap_//' |
@@ -30,6 +32,10 @@ cut -d "," -f 1,30 "${2}"/SRA_runinfo.csv |
     sed 's/_/-/g' |
     tr ',' '\t' > "${2}"/SRA_samp_list.tsv
 
+## Get list of sample names
+cut -f 2 "${2}"/SRA_samp_list.tsv | uniq > "${2}"/sample_names.txt
+
+## Append line number to sample names to make them unique
+## (Avoids possible overwriting of files)
 awk '{print $s "_samp" NR}' "${2}"/SRA_samp_list.tsv > "${2}"/temp_samp_list.tsv
 mv "${2}"/temp_samp_list.tsv "${2}"/SRA_samp_list.tsv
-
