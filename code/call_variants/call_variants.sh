@@ -8,6 +8,18 @@ set -e
 ## This script performs variant calling using BCFTools, running each chromosome
 ## in parallel.
 ##
+## A minimum mapping-quality threshold may be set. For bowtie2, probability of
+## an incorrect alignment (p) is related to the mapping quality value (Q) by:
+##
+##   p = 10 ^ -(Q/10)
+##
+## A mapq score of 5 translates to a ~32% chance of misalignment
+## A mapq score of 10 translates to a 10% chance
+## A mapq score of 20 translates to a 1% chance, etc.
+##
+## Currently the script only uses reads mapped in "proper pairs". This can be disabled
+## by deleting the "--rf 2" in the bcftools mpileup call.
+##
 ## NOTE: Can save the intermediate, mpileup-generated BCFs for each chrom by setting
 ## save_pile_out to "true". This seems to be somewhat slower, as we then must compress each
 ## of the mpileup BCFs, and then uncompress to feed into bcftools call. Saving uncompressed
@@ -82,10 +94,10 @@ chroms=( $(cut -f 1 ${ref_gen}.fai) )
 ## By default, mpileup will skip reads that are unmapped, secondary,
 ##   PCR duplicates, or that failed QC.
 if [[ $save_pile_out == [Tt] ]]; then
-    time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
+    time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val --rf 2 -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
     time parallel -j $ncores bcftools call -mv -Ou mpi_bcfs/chrom_{}.bcf -o chrom_var_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
 else
-    time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -mv -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
+    time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val --rf 2 -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -mv -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
 fi
 
 ## Create list of single-chromosome variant BCFs
