@@ -21,11 +21,11 @@
 
 #SBATCH --job-name="sra-fq-dump"  #name of the job submitted
 #SBATCH --partition=short  #name of the queue you are submitting job to
-#SBATCH --array=15  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
+#SBATCH --array=1-67%34  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
   ##SBATCH --nodes=1 #Number of nodes
 #SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
   ##SBATCH --ntasks-per-node=10 #number of cores/tasks
-#SBATCH --time=06:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=48:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name

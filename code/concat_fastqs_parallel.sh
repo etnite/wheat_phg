@@ -28,9 +28,13 @@
 #out_dir="/project/genolabswheatphg/merged_fastqs/KS_HRW_excap"
 #samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_samples.txt"
 
-in_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents/separated_fq"
-out_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples.txt"
+#in_dir="/project/genolabswheatphg/raw_data/wheatCAP_parents/separated_fq"
+#out_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
+#samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples.txt"
+
+in_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
+out_dir="/project/genolabswheatphg/merged_fastqs/v1_hapmap"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/sample_names.txt"
 
 
 #### Executable ####
@@ -55,10 +59,10 @@ upname="${name^^}"
 upname=$(echo "${upname}" | sed 's/_/-/g')
 
 ## Concatenate forward reads
-cat "${in_dir}"/**/*"${name}"*_R1_*.fastq.gz > "${out_dir}"/"${upname}"_R1.fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R1*.fastq.gz > "${out_dir}"/"${upname}"_R1.fastq.gz
 
 ## Concatenate reverse reads
-cat "${in_dir}"/**/*"${name}"*_R2_*.fastq.gz > "${out_dir}"/"${upname}"_R2.fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R2*.fastq.gz > "${out_dir}"/"${upname}"_R2.fastq.gz
 
 echo
 echo "End time:"

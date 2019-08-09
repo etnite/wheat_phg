@@ -17,7 +17,7 @@
 #### User-defined constants ####
 
 samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/SRA_samp_list.tsv"
-out_dir="/project/genolabswheatphg/raw_data/hapmap_sra_test"
+out_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
 
 
 #### Executable ####
@@ -36,6 +36,14 @@ srr=$(head -n "${1}" "${samp_file}" | tail -n 1 | cut -f 1)
 
 ## Get sample number
 samp=$(head -n "${1}" "${samp_file}" | tail -n 1 | cut -f 2)
+
+## Echo SRR, sample to stdout and stderr
+echo
+echo >&2
+echo "SRR number: ${srr}"
+echo "SRR number: ${srr}" >&2
+echo "Sample name: ${samp}"
+echo "Sample name: ${samp}" >&2
 
 ## Get fastq files
 fastq-dump --gzip \
