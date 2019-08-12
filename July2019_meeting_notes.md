@@ -55,3 +55,51 @@ are dealing only with inbred lines.
 
 * For assemblies, Buckler lab uses Mummer4 for whole-genome alignment (e.g.
 identification of inversions, translocations, insertions, deletions, etc.)
+
+## Wednesday, 10July2019
+
+Filtering gVCFs - can filter on QUAL (overall base quality??), and on GQ 
+(genotype quality)
+
+
+Send AGS2000 data exome capture to:
+
+dllarkin@uark.edu
+
+### Reference Ranges - Dan Ilut
+
+Good reference range features:
+
+1. Consistently genotyped across samples (e.g. exome capture sites)
+2. Contain variability among lines
+3. Distinct among the wheat sub-genomes (confounded with #2)
+
+Partly depends upon intended use - e.g. genomic selection vs. gene cloning. For 
+genomic selection, it doesn't matter as much if anchors are "tuned" exceptionally
+well
+
+For gene cloning, must take into account the _region of interest_. There
+shouldn't be huge jumps in the number of haplotypes between adjacent anchors (though
+depends on distance between anchors).
+
+Missing data shouldn't matter as long as there is enough data present to define
+different haplotypes.
+
+May be good idea to filter anchors by missing data levels.
+
+First build PHG without any collapsing (or with very strict collapsing thresholds
+to just remove sequencing error), evaluate, and then implement collapsing
+as desired.
+
+For building PHG, use the cleanest, highest-confidence data possible (err on the
+side of quality over quantity)
+
+Need to quantify divergence between subgenomes (within variety) vs. divergence 
+between varieties (at the same locus)
+
+
+## Thursday, 11JULY2019
+
+### Conference Call
+
+

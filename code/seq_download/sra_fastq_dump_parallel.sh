@@ -25,7 +25,7 @@ out_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
 module load sratoolkit
 
 echo
-echo "Start concat_fastqs.sh"
+echo "Start sra_fastq_dump_parallel.sh"
 echo "Start time:"
 date
 
@@ -34,7 +34,7 @@ mkdir -p "${out_dir}"
 ## Get the SRR number
 srr=$(head -n "${1}" "${samp_file}" | tail -n 1 | cut -f 1)
 
-## Get sample number
+## Get sample name
 samp=$(head -n "${1}" "${samp_file}" | tail -n 1 | cut -f 2)
 
 ## Echo SRR, sample to stdout and stderr
