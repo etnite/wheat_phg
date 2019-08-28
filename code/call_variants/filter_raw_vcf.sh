@@ -31,13 +31,15 @@ set -e
 
 #### User-defined constants ####
 
-vcf_in="/project/genolabswheatphg/variants/KS_HRW/raw_vcf/KS_HRW_raw.vcf.gz"
-vcf_out="/project/genolabswheatphg/variants/KS_HRW/filt_vcf/KS_HRW_filt.vcf.gz"
-taxa_list="none"
-min_maf=0.03
-max_miss=0.8
+vcf_in="/home/gbg_lab_admin/Array_60TB/Wheat_GBS/GAWN_and_KM_Yr/GAWN_KM_50miss_filt/prefilt_and_imp/GAWN_KM_Yr_50miss_prefilt.vcf.gz"
+vcf_out="/home/gbg_lab_admin/Downloads/bcftools_filt_test/bcftools_filt_test.vcf.gz"
+taxa_list="/mnt/DATAPART2/brian/repos/manuscripts/manu_2019_stripe_rust/entry_lists_and_randomization/KM_entries.txt"
+min_maf=0.1
+max_miss=0.2
 max_het=0.1
-remove_unal="true"
+min_dp=0
+max_dp=1e6
+remove_unal="false"
 snpgap=3
 indelgap=3
 
@@ -45,7 +47,7 @@ indelgap=3
 #### Executable #####
 
 module load bcftools
-module load vcftools
+#module load vcftools
 
 echo
 echo "Start time:"
@@ -54,91 +56,71 @@ date
 ## Grab first letter of remove_unal
 remove_unal=${remove_unal:0:1}
 
-out_dir=$(dirname ${vcf_out})
-mkdir -p $out_dir
-temp_dir="$(mktemp -d -p "$out_dir")"
-if [[ ! "$temp_dir" || ! -d "$temp_dir" ]]; then
+out_dir=$(dirname "${vcf_out}")
+mkdir -p "${out_dir}"
+temp_dir="$(mktemp -d -p "${out_dir}")"
+if [[ ! "${temp_dir}" || ! -d "${temp_dir}" ]]; then
     echo "Could not create temporary directory"
     exit 1;
 fi
 
 ## Echo input parameters to output dir
-echo "Input VCF: ${vcf_in}" > ${out_dir}/filtering_params.txt
-echo "Output VCF: ${vcf_out}" >> ${out_dir}/filtering_params.txt
-echo "Taxa subset list: ${taxa_list}" >> ${out_dir}/filtering_params.txt
-echo "Minimum MAF: ${min_maf}" >> ${out_dir}/filtering_params.txt
-echo "Max missing proportion: ${max_miss}" >> ${out_dir}/filtering_params.txt
-echo "Max het. proportion: ${max_het}" >> ${out_dir}/filtering_params.txt
-echo "Unaligned contigs removed? ${remove_unal}" >> ${out_dir}/filtering_params.txt
-echo "SNP overlap gap: ${snpgap}" >> ${out_dir}/filtering_params.txt
-echo "Indel overlap gap: ${indelgap}" >> ${out_dir}/filtering_params.txt
+echo -e "Input VCF\t${vcf_in}" > "${out_dir}"/filtering_params.txt
+echo -e "Output VCF\t${vcf_out}" >> "${out_dir}"/filtering_params.txt
+echo -e "Taxa subset list\t${taxa_list}" >> "${out_dir}"/filtering_params.txt
+echo -e "Minimum MAF\t${min_maf}" >> "${out_dir}"/filtering_params.txt
+echo -e "Max missing proportion\t${max_miss}" >> "${out_dir}"/filtering_params.txt
+echo -e "Max het. proportion\t${max_het}" >> "${out_dir}"/filtering_params.txt
+echo -e "Min. average depth\t${min_dp}" >> "${out_dir}"/filtering_params.txt
+echo -e "Max average depth\t${max_dp}" >> "${out_dir}"/filtering_params.txt
+echo -e "Unaligned contigs removed?\t${remove_unal}" >> "${out_dir}"/filtering_params.txt
+echo -e "SNP overlap gap\t${snpgap}" >> "${out_dir}"/filtering_params.txt
+echo -e "Indel overlap gap\t${indelgap}" >> "${out_dir}"/filtering_params.txt
 
 ## If taxa_list exists, use to subset samples
 ## Otherwise retain all samples present in VCF file
 if [[ -f $taxa_list ]]; then
-	cp $taxa_list $temp_dir/taxa_list.txt
+	cp $taxa_list "${temp_dir}"/taxa_list.txt
 else
-	bcftools query -l $vcf_in > $temp_dir/taxa_list.txt
+	bcftools query --list-samples $vcf_in > "${temp_dir}"/taxa_list.txt
 fi
 
-## Invert the max missing parameter
-snpmissinv="$(echo "1 - ${max_miss}" | bc)"
-
-## First round of filtering for taxa list, missing data and MAF
-echo "Filtering by missing data and MAF..."
+## Some real bcftools power-user stuff here
+echo "Filtering VCF..."
 echo
 if [[ $remove_unal == [Tt] ]]; then
-	vcftools --gzvcf $vcf_in \
-	         --keep $temp_dir/taxa_list.txt \
-		     --max-missing $snpmissinv \
-		     --maf $min_maf \
-		     --not-chr UN \
-		     --recode \
-		     --stdout > ${temp_dir}/phase1_filt.vcf
+    bcftools view "${vcf_in}" \
+        --samples-file "${temp_dir}"/taxa_list.txt \
+        --output-type u |
+    bcftools view - \
+        --targets ^UN \
+        --exclude "F_MISSING > ${max_miss} || MAF < ${min_maf} || AVG(FORMAT/DP) < ${min_dp} || AVG(FORMAT/DP) > ${max_dp} || (COUNT(GT=\"het\") / COUNT(GT!~\"\.\")) > ${max_het} " \
+        --output-type u |
+    bcftools filter --SnpGap $snpgap \
+        --IndelGap $indelgap \
+        --output-type z \
+        --output "${vcf_out}"
 elif [[ $remove_unal == [Ff] ]]; then
-	vcftools --gzvcf $vcf_in \
-	         --keep $temp_dir/taxa_list.txt \
-		     --max-missing $snpmissinv \
-		     --maf $min_maf \
-		     --recode \
-		     --stdout > ${temp_dir}/phase1_filt.vcf
+	bcftools view "${vcf_in}" \
+        --samples-file "${temp_dir}"/taxa_list.txt \
+        --output-type u |
+    bcftools view - \
+        --exclude "F_MISSING > ${max_miss} || MAF < ${min_maf} || AVG(FORMAT/DP) < ${min_dp} || AVG(FORMAT/DP) > ${max_dp} || (COUNT(GT=\"het\") / COUNT(GT!~\"\.\")) > ${max_het} " \
+        --output-type u |
+    bcftools filter --SnpGap $snpgap \
+        --IndelGap $indelgap \
+        --output-type z \
+        --output "${vcf_out}"
 else
 	echo "Please supply 'true' or 'false' for remove_unal"
 	exit 1;
 fi
 
-## Find SNPs that pass the specified het level
-## Calculate number of non-missing calls per SNP
-echo "Calculating non-missing calls per site..."
-echo
-bcftools query -f '[\S%CHROM\_%POS\n]' -i 'GT!~".\."' ${temp_dir}/phase1_filt.vcf | sort -T $temp_dir | uniq -c > ${temp_dir}/non_miss.txt
-
-## Calculate number of het calls per SNP
-echo "Calculating heterozygosity per site..."
-echo
-bcftools query -f '[\S%CHROM\_%POS\n]' -i 'GT="het"' ${temp_dir}/phase1_filt.vcf | sort -T $temp_dir | uniq -c > ${temp_dir}/het.txt
-
-## Join the two files together, inserting 0 for missing vals (should only be
-## values from the het file that have missing)
-## Format is: SNP_name het_count non-missing_count
-join -a 2 -e 0 -1 2 -2 2 -o 2.2,1.1,2.1 ${temp_dir}/het.txt ${temp_dir}/non_miss.txt > ${temp_dir}/joined.txt
-
-## Find SNPs passing the het. threshold
-awk -v het="${max_het}" '$2/$3 <= het {print $1}' ${temp_dir}/joined.txt > ${temp_dir}/snps_keep.txt
-
-## Second round of filtering for heterozygosity
-echo "Filtering by site heterozygosity..."
-echo
-vcftools --vcf ${temp_dir}/phase1_filt.vcf \
-         --snps ${temp_dir}/snps_keep.txt \
-         --recode \
-         --stdout | 
-         bcftools filter -g $snpgap -G $indelgap -Oz - -o $vcf_out
-bcftools index -c $vcf_out
+bcftools index -c "${vcf_out}"
 
 
 ## Generate summary stats using TASSEL
-#echo "Generating summary statistics with TASSEL"
+#echo "Generating summary statistics with TASSEL..."
 #$TASSEL_PL -vcf "${vcf_out}" \
 #           -GenotypeSummaryPlugin \
 #           -endPlugin \
