@@ -62,15 +62,6 @@ date
 mkdir -p "${out_dir}"
 array_ind=$1
 
-## Check if reference genome fasta index exists
-if [[ ! -f "${ref}".fai ]]; then
-    echo "Reference genome must be indexed using samtools faidx command"
-    exit 1;
-fi
-
-## Get size of largest chromosome/contig in reference
-max_chr=$(cut -f2 "${ref}".fai | sort -nr | head -n 1)
-
 ## Get sample name
 samp=$(head -n "${array_ind}" "${samps_file}" | tail -n 1)
 
@@ -109,13 +100,8 @@ bowtie2 -x "${ref}" \
         samtools sort -T "${out_dir}"/"${samp}"sort2 -O SAM - |
         samtools markdup - "${out_dir}"/"${samp}".bam
 
-## Default .bai indices can only handle contigs up to 2^29 bases. If any contig
-## exceeds this length, use the more robust .csi index
-if [[ $max_chr > 536870912 ]]; then
-    samtools index -c "${out_dir}"/"${samp}".bam
-else
-    samtools index -b "${out_dir}"/"${samp}".bam
-fi
+## Index BAM file using .csi index format
+samtools index -c "${out_dir}"/"${samp}".bam
 
 echo
 echo "End time:"
