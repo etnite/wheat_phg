@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Concatenate fastq files
+## Concatenate paired fastq files
 ##
 ## This script takes as input a single string (typically a genotype NAME). It
 ## will typically be used with arrayer.sh to run in independent, parallel
@@ -9,7 +9,7 @@
 ## The user must define an input directory, and an output directory.
 ##
 ## The fastq files should be in the input directory, named in the format 
-## *NAME*.fastq.gz.
+## *NAME*_R1_*.fastq.gz for forward reads and *NAME*_R2_*.fastq.gz for reverse reads.
 ##
 ## The script will match any fastq files matching these patterns, and concatenate
 ## them into a single fastq file. It doesn't matter if the files are gzipped or
@@ -19,7 +19,10 @@
 ## within sample names to dashes.
 ##
 ## NOTES:
-##   1) Working directory inherited from parallelizing script - it is easiest
+##   1) THIS SCRIPT DOES NOT CREATE A SINGLE INTERLEAVED FASTQ - instead it
+##      concatenates all forward reads into one file, and all reverse reads into
+##      a second file
+##   2) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
 ################################################################################
 
@@ -61,8 +64,11 @@ shopt -s globstar nullglob
 upname="${name^^}"
 upname=$(echo "${upname}" | sed 's/_/-/g')
 
+## Concatenate forward reads
+cat "${in_dir}"/**/*"${name}"*_R1*.fastq.gz > "${out_dir}"/"${upname}"_R1.fastq.gz
+
 ## Concatenate reverse reads
-cat "${in_dir}"/**/*"${name}"*.fastq.gz > "${out_dir}"/"${upname}".fastq.gz
+cat "${in_dir}"/**/*"${name}"*_R2*.fastq.gz > "${out_dir}"/"${upname}"_R2.fastq.gz
 
 echo
 echo "End time:"

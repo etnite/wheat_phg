@@ -1,11 +1,11 @@
 #!/bin/bash
 
-## Paired end alignment using Bowtie2
+## Single end alignment using Bowtie2
 ##
-## This script aligns a single pair of mated fastq files.
+## This script aligns the reads in a single fastq file.
 ## It takes a single string (usually a sample name) as its only positional
-## argument. Then it searches for corresponding fastq files using the pattern:
-## fastq_dir/samplename_R[1/2].fastq.gz
+## argument. Then it searches for the corresponding fastq file using the pattern:
+## fastq_dir/samplename.fastq.gz
 ##
 ## The output consists of a single sorted BAM file, with PCR duplicates marked.
 ##
@@ -21,8 +21,6 @@
 ##      slow...
 ##   4) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
-##   5) Running one wheat exome capture alignment with 10 cores took 3 hours,
-##      20 minutes
 ################################################################################
 
 
@@ -62,9 +60,8 @@ array_ind=$1
 ## Get sample name
 samp=$(head -n "${array_ind}" "${samps_file}" | tail -n 1)
 
-## Set forward and reverse read fastq files
-fq1=$(echo "${fastq_dir}"/"${samp}"*R1.fastq.gz)
-fq2=$(echo "${fastq_dir}"/"${samp}"*R2.fastq.gz)
+## Set alias for fastq file
+fq=$(echo "${fastq_dir}"/"${samp}".fastq.gz)
 
 ## For some reason, the barcode indexes in FASTQ files can contain some N
 ## values for the first few reads. I don't know the significance of this. 
@@ -90,12 +87,8 @@ bowtie2 -x "${ref}" \
         --rg PL:ILLUMINA \
         --sensitive-local \
         --phred33 \
-        -1 "${fq1}" \
-        -2 "${fq2}" |
-        samtools sort -n -T "${out_dir}"/"${samp}"sort1 -O SAM - |
-        samtools fixmate -m -O SAM - - |
-        samtools sort -T "${out_dir}"/"${samp}"sort2 -O SAM - |
-        samtools markdup - "${out_dir}"/"${samp}".bam
+        -U "${fq}" |
+        samtools sort -T "${out_dir}"/"${samp}"sort1 -O BAM -o "${out_dir}"/"${samp}".bam
 
 ## Index BAM file using .csi index format
 samtools index -c "${out_dir}"/"${samp}".bam
