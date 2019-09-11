@@ -1,11 +1,11 @@
 #!/bin/bash
 
-## Paired end alignment using Bowtie2
+## Single end alignment using Bowtie2
 ##
-## This script aligns a single pair of mated fastq files.
+## This script aligns the reads in a single fastq file.
 ## It takes a single string (usually a sample name) as its only positional
-## argument. Then it searches for corresponding fastq files using the pattern:
-## fastq_dir/samplename_R[12].fastq[.gz]
+## argument. Then it searches for the corresponding fastq file using the pattern:
+## fastq_dir/samplename.fastq.gz
 ##
 ## The output consists of a single sorted BAM file, with PCR duplicates marked.
 ##
@@ -16,16 +16,11 @@
 ##
 ##   1) bowtie2 is run using the --sensitive-local option. This can be changed
 ##      manually in the call to bowtie2 below
-##   2) The reference genome fasta must be indexed using samtools faidx
-##   3) The script will produce either a .bai or a .csi index of the output
-##      BAM file, depending on the length of the largest chromosome/contig in
-##      the reference fasta
-##   4) This script requires two sorting steps in samtools, so can be a bit
+##   2) The script will produce a .csi index of the output BAM file
+##   3) This script requires two sorting steps in samtools, so can be a bit
 ##      slow...
-##   5) Working directory inherited from parallelizing script - it is easiest
+##   4) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
-##   6) Running one wheat exome capture alignment (26,343,777 reads) on Ceres 
-##      with 10 cores took 3 hours, 20 minutes
 ################################################################################
 
 
@@ -62,21 +57,11 @@ date
 mkdir -p "${out_dir}"
 array_ind=$1
 
-## Check if reference genome fasta index exists
-if [[ ! -f "${ref}".fai ]]; then
-    echo "Reference genome must be indexed using samtools faidx command"
-    exit 1;
-fi
-
-## Get size of largest chromosome/contig in reference
-max_chr=$(cut -f2 "${ref}".fai | sort -nr | head -n 1)
-
 ## Get sample name
 samp=$(head -n "${array_ind}" "${samps_file}" | tail -n 1)
 
-## Set forward and reverse read fastq files
-fq1=$(echo "${fastq_dir}"/"${samp}"*R1.fastq.gz)
-fq2=$(echo "${fastq_dir}"/"${samp}"*R2.fastq.gz)
+## Set alias for fastq file
+fq=$(echo "${fastq_dir}"/"${samp}".fastq.gz)
 
 ## For some reason, the barcode indexes in FASTQ files can contain some N
 ## values for the first few reads. I don't know the significance of this. 
@@ -102,20 +87,11 @@ bowtie2 -x "${ref}" \
         --rg PL:ILLUMINA \
         --sensitive-local \
         --phred33 \
-        -1 "${fq1}" \
-        -2 "${fq2}" |
-        samtools sort -n -T "${out_dir}"/"${samp}"sort1 -O SAM - |
-        samtools fixmate -m -O SAM - - |
-        samtools sort -T "${out_dir}"/"${samp}"sort2 -O SAM - |
-        samtools markdup - "${out_dir}"/"${samp}".bam
+        -U "${fq}" |
+        samtools sort -T "${out_dir}"/"${samp}"sort1 -O BAM -o "${out_dir}"/"${samp}".bam
 
-## Default .bai indices can only handle contigs up to 2^29 bases. If any contig
-## exceeds this length, use the more robust .csi index
-if [[ $max_chr > 536870912 ]]; then
-    samtools index -c "${out_dir}"/"${samp}".bam
-else
-    samtools index -b "${out_dir}"/"${samp}".bam
-fi
+## Index BAM file using .csi index format
+samtools index -c "${out_dir}"/"${samp}".bam
 
 echo
 echo "End time:"
