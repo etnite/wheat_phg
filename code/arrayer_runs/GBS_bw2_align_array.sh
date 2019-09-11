@@ -19,13 +19,13 @@
 
 ## Options with two comment chars are deactivated
 
-#SBATCH --job-name="concat-fq"  #name of the job submitted
+#SBATCH --job-name="bw2-align"  #name of the job submitted
 #SBATCH --partition=short  #name of the queue you are submitting job to
 #SBATCH --array=1-58%5  #array range - can choose number simultaneous jobs with %, e.g. --array=1-12%4
-  ##SBATCH --nodes=1 #Number of nodes
-#SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
-  ##SBATCH --ntasks-per-node=10 #number of cores/tasks
-#SBATCH --time=02:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --nodes=1 #Number of nodes
+  ##SBATCH --ntasks=28  #Number of overall tasks - overrides tasks per node
+#SBATCH --ntasks-per-node=10 #number of cores/tasks
+#SBATCH --time=06:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -34,7 +34,7 @@
 
 #### User-Defined Constants ####
 
-script="../concat_fastqs_parallel.sh"
+script="/home/brian.ward/repos/wheat_phg/code/alignment/bowtie2_SE_align_parallel.sh"
 
 
 #### Executable ####

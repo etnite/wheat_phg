@@ -35,9 +35,13 @@
 #out_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
 #samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples.txt"
 
-in_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
-out_dir="/project/genolabswheatphg/merged_fastqs/v1_hapmap"
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/sample_names.txt"
+#in_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
+#out_dir="/project/genolabswheatphg/merged_fastqs/v1_hapmap"
+#samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/sample_names.txt"
+
+in_dir="/project/genolabswheatphg/filt_fastqs/SRW_GBS"
+out_dir="/project/genolabswheatphg/merged_fastqs/SRW_GBS"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_GBS_samps.txt"
 
 
 #### Executable ####
