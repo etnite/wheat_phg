@@ -24,8 +24,8 @@
 ##      slow...
 ##   5) Working directory inherited from parallelizing script - it is easiest
 ##      to define absolute paths
-##   6) Running one wheat exome capture alignment with 10 cores took 3 hours,
-##      20 minutes
+##   6) Running one wheat exome capture alignment (26,343,777 reads) on Ceres 
+##      with 10 cores took 3 hours, 20 minutes
 ################################################################################
 
 
