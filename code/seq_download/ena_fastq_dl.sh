@@ -30,14 +30,14 @@
 
 #### User-defined constants ####
 
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/SRA_samp_list.tsv"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/SRA_repeats.tsv"
 out_dir="/project/genolabswheatphg/raw_data/v1_hapmap"
 
 
 #### Executable ####
 
 module load miniconda
-source activate sra_dl  ## Newer conda versions use conda activate
+source activate ena_dl  ## Newer conda versions use conda activate
 
 echo
 echo "Start ena_fastq_dl.sh"

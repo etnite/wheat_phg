@@ -26,10 +26,15 @@
 #samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
 #out_dir="/project/genolabswheatphg/filt_fastqs/test_output"
 
-in_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
-adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa" 
-samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples_reform.txt" 
-out_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_parents" 
+#in_dir="/project/genolabswheatphg/merged_fastqs/wheatCAP_parents"
+#adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa" 
+#samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/wheatCAP_samples_reform.txt" 
+#out_dir="/project/genolabswheatphg/filt_fastqs/wheatCAP_parents" 
+
+in_dir="/project/genolabswheatphg/merged_fastqs/v1_hapmap"
+adapt_fasta="/home/brian.ward/repos/wheat_phg/TruSeq_paired_adapters.fa"
+samp_file="/home/brian.ward/repos/wheat_phg/sample_lists/v1_hapmap_bioproj/sample_names.txt"
+out_dir="/project/genolabswheatphg/filt_fastqs/v1_hapmap"
 
 
 #### Executable  ####
