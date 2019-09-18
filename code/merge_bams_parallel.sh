@@ -15,8 +15,15 @@
 ##   1) The user should take care to avoid "collisions" between sample names.
 ##      For instance, specifying different samples "Virginia14" and "Virginia14-01"
 ##      would cause problems.
-##   2) It's not currently clear to me how samtools merge sorts the output file.
-##      There is currently a call to samtools sort, but this may be redundant.
+##   2) This script assumes that the various BAM files being merged have the same
+##      read group defined in their headers. As long as this is really the case,
+##      it will just use the common read group, without appending any unique
+##      suffixes. However, if different files being merged have different read
+##      groups, these will be preserved (this is not a bug, but probably not
+##      what the user wants in this case).
+##   3) Generalizing further, the user should be certain that these are alignments
+##      that should actually be merged - i.e. from the same sample, using the
+##      same aligner, etc.
 ################################################################################      
 
 
@@ -32,29 +39,31 @@ echo "Start merge_bams_parallel.sh"
 echo "Start time:"
 date
 
+module load samtools
+samtools --version
+
 array_ind=$1
 mkdir -p "${out_bams_dir}"
 
 ## Get sample name
-samp=$(head -n "${array_ind}" "${samp_file}" | tail -n 1)
+samp=$(head -n "${array_ind}" "${samples_file}" | tail -n 1)
 
 ## Recursively find all .bam files in the input directory
 shopt -s globstar nullglob
 in_bams=( "${in_bams_dir}"/**/*.bam )
 
 ## Dump names of bams matching sample name pattern into a temporary file
-printf '%s\n' "${in_bams[@]}" | grep "${samp}" > "${out_bams_dir}"/sample_bams.txt
+printf '%s\n' "${in_bams[@]}" | grep "${samp}" > "${out_bams_dir}"/"${samp}"_bam_list.txt
 
 ## Merge and sort the BAM files
 ## This step currently does not perform any filtering, but can be customized
 ## with a call to samtools view
-samtools merge -c -b "${out_bams_dir}"/sample_bams.txt |
-    samtools sort -T "${out_bams_dir}"/"${samp}"sort1 -O BAM -o "${out_bams_dir}"/"${samp}".bam
+samtools merge -c -b "${out_bams_dir}"/"${samp}"_bam_list.txt "${out_bams_dir}"/"${samp}".bam
 	
 ## Index the merged bam file
 samtools index -c "${out_bams_dir}"/"${samp}".bam
 
-rm "${out_bams_dir}"/sample_bams.txt
+rm "${out_bams_dir}"/"${samp}"_bam_list.txt
 
 
 echo
