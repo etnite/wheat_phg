@@ -54,10 +54,9 @@ bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_merged_excap_GBS_b
 ref_gen="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
 out_vcf="/project/genolabswheatphg/gvcfs/SRW_bw2_excap_GBS/SRW_bw2_excap_GBS_all_samps.g.vcf.gz"
 samples="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
-ncores=$SLURM_NTASKS
+ncores=22
 mq_val=20
 mg_val=5
-
 save_pile_out="false"
 
 
@@ -69,6 +68,9 @@ module load bcftools
 echo
 echo "Start time:"
 date
+echo
+echo "Number of cores:"
+echo $ncores
 
 ## Grab first letter of save_pile_out
 save_pile_out=${save_pile_out:0:1}
@@ -77,7 +79,7 @@ save_pile_out=${save_pile_out:0:1}
 out_dir=$(dirname "${out_vcf}")
 mkdir -p "${out_dir}"
 cd "${out_dir}"
-mkdir chrom_var_bcfs
+mkdir -p chrom_var_bcfs
 
 ## Sanity check on save_pile_out
 if [[ $save_pile_out == [Tt] ]]; then
