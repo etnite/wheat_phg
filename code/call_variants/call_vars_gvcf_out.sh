@@ -4,7 +4,7 @@ set -e
 ## Call variants in parallel - gVCF output
 ##
 ## This script performs variant calling using BCFTools, running each chromosome
-## in parallel.
+## in parallel. It outputs a compressed gBCF file (contains reference blocks).
 ##
 ## A minimum mapping-quality threshold (mq_val) may be set. For bowtie2, probability of
 ## an incorrect alignment (p) is related to the mapping quality value (Q) by:
@@ -30,7 +30,7 @@ set -e
 ## mpileup BCFs is probably not a great idea, because they will be very large.
 ##
 ## The script creates a directory for indivual chromosome variant-only BCFs, but this is removed
-## at the end, as the final VCF should contain all the same information.
+## at the end, as the final BCF should contain all the same information.
 ################################################################################
 
 
@@ -50,13 +50,13 @@ set -e
 
 #### User-defined constants ####
 
-bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_merged_excap_GBS_bams"
+bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_bams/SRW_merged_excap_GBS_wholechrom_bw2_bams"
 ref_gen="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
-out_vcf="/project/genolabswheatphg/gvcfs/SRW_bw2_excap_GBS/SRW_bw2_excap_GBS_all_samps.g.vcf.gz"
+out_bcf="/project/genolabswheatphg/gvcfs/SRW_bw2_excap_GBS/SRW_bw2_excap_GBS_all_samps.g.bcf"
 samples="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
 ncores=22
 mq_val=20
-mg_val=5
+#mg_val=5
 save_pile_out="false"
 
 
@@ -76,7 +76,7 @@ echo $ncores
 save_pile_out=${save_pile_out:0:1}
 
 ## Create output directory, cd to it, create subdirectories for single-chrom BCFs
-out_dir=$(dirname "${out_vcf}")
+out_dir=$(dirname "${out_bcf}")
 mkdir -p "${out_dir}"
 cd "${out_dir}"
 mkdir -p chrom_var_bcfs
@@ -102,10 +102,10 @@ chroms=( $(cut -f 1 ${ref_gen}.fai) )
 ## By default, mpileup will skip reads that are unmapped, secondary,
 ##   PCR duplicates, or that failed QC.
 if [[ $save_pile_out == [Tt] ]]; then
-    time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val -g $mg_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
-    time parallel -j $ncores bcftools call -m -g $mg_val -Ou mpi_bcfs/chrom_{}.bcf -o chrom_var_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
+    time parallel -j $ncores bcftools mpileup -Ob -S $samples -q $mq_val -g 0 -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} -o mpi_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
+    time parallel -j $ncores bcftools call -m -g 0 -Ou mpi_bcfs/chrom_{}.bcf -o chrom_var_bcfs/chrom_{}.bcf ::: "${chroms[@]}"
 else
-    time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val -g $mg_val -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -m -g $mg_val -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
+    time parallel -j $ncores "bcftools mpileup -Ou -S $samples -q $mq_val -g 0 -a FORMAT/AD -f $ref_gen -b bam_list.txt -r {} | bcftools call -m -g 0 -Ou -o chrom_var_bcfs/chrom_{}.bcf" ::: "${chroms[@]}"
 fi
 
 ## Create list of single-chromosome variant BCFs
@@ -116,9 +116,9 @@ printf '%s\n' chrom_var_bcfs/*.bcf > chrom_var_bcfs/bcf_list.txt
 ## Normalize indels; discard all but one overlapping SNP, all but one overlapping indel
 bcftools concat --no-version --threads $ncores --file-list chrom_var_bcfs/bcf_list.txt -Ou |
     bcftools annotate --set-id +'S%CHROM\_%POS' -Ou |
-    bcftools norm -f ${ref_gen} -Oz > "${out_vcf}"
+    bcftools norm -f ${ref_gen} -Ob > "${out_bcf}"
  
-bcftools index -c $out_vcf
+bcftools index -c "${out_bcf}"
 
 rm -rf $chrom_var_bcfs
 

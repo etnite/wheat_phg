@@ -29,7 +29,7 @@
 
 in_bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_bams"
 out_bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_merged_excap_GBS_bams"
-samples_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
+samples_file="/home/brian.ward/repos/wheat_phg/sample_lists/SS-MPV57.txt"
 
 
 #### Executable ####

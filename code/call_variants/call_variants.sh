@@ -46,12 +46,12 @@ set -e
 
 #### User-defined constants ####
 
-bams_dir="/project/genolabswheatphg/alignments/KS_HRW_filt_bams"
+bams_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_bams/SRW_merged_excap_GBS_wholechrom_bw2_bams"
 ref_gen="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
-out_vcf="/project/genolabswheatphg/variants/KS_HRW/raw_vcf/KS_HRW_raw.vcf.gz"
-samples="/home/brian.ward/repos/wheat_phg/sample_lists/KS_HRW_reform_samples.txt"
+out_vcf="/project/genolabswheatphg/variants/SRW/ERSGGL_SRW_merged_excap_GBS_wholechr_bw2.vcf.gz"
+samples="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_reform_samples.txt"
 ncores=22
-mq_val=10
+mq_val=20
 save_pile_out="false"
 
 

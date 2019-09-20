@@ -43,9 +43,14 @@
 #out_dir="/project/genolabswheatphg/alignments/wheatCAP_wholechrom_bw2_bams" 
 #ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa" 
 
+#fastq_dir="/project/genolabswheatphg/merged_fastqs/SRW_GBS"
+#samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_GBS_samps.txt"
+#out_dir="/project/genolabswheatphg/alignments/SRW_GBS_wholechrom_bw2_bams"
+#ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+
 fastq_dir="/project/genolabswheatphg/merged_fastqs/SRW_GBS"
-samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/SRW_GBS_samps.txt"
-out_dir="/project/genolabswheatphg/alignments/SRW_GBS_wholechrom_bw2_bams"
+samps_file="/home/brian.ward/repos/wheat_phg/sample_lists/SS-MPV57.txt"
+out_dir="/project/genolabswheatphg/alignments/ERSGGL_SRW_bw2_bams/SRW_GBS_wholechrom_bw2_bams"
 ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
 
 
