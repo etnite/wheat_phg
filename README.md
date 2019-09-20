@@ -13,39 +13,6 @@ project. For that, refer to:
 Rather, this repository is a collection of scripts used to create a practical 
 haplotype graph for wheat.
 
-**NOTE:** All scripts ending in "parallel.sh" are intended to be run using the
-code/arrayer.sh helper script, which is used to submit arrays of independent jobs
-on a cluster. 
-
-Code in this repository may be used for either:
-
-1. Building a practical haplotype graph
-2. Performing the steps necessary for classical short variant calling
-using Illumina sequencing data.
-
-For either of these two tasks, a typical initial workflow would be:
-
-1. run code/concat_fastqs.sh to generate a single mated pair of fastq files for
-each individual sample
-2. run code/fastq_filt_trim/bbduk_filt_trim_paired_parallel.sh to clean fastq reads
-3. run code/alignment/bowtie2_align_parallel.sh to align reads using bowtie2 and create
-single sample bam alignment files
-4. run code/filt_bam_files_parallel.sh to filter bam files after alignment
-
-For subsequent loading of data into a PHG, the user can then optionally run
-code/create_gvcf.sh
-
-For traditional variant calling, the following steps may be performed after bam file
-generation:
-
-1. run code/call_variants/call_variants.sh
-2. run code/call_variants/filter_raw_vcf.sh
-3. run code/call_variants/rename_annotate_split_vcf.sh to (optionally) rename samples,
-predict variant transcriptional effects using a genome annotation file, and create subset 
-VCF files consisting of just indels and just SNPs.
-
-These steps should create VCF files suitable for subsequent imputation (if necessary).
-
 ## Dependencies
 
 ### Operating system and hardware
