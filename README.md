@@ -33,7 +33,13 @@ docker pull maizegenetics/phg_postgres
 ```
 
 Note that many clusters use Singularity instead of Docker. Singularity
-can import Docker images. However, one issue is that singularity does not appear to
+can import Docker images, e.g.: 
+
+```
+singularity pull docker://maizegenetics/phg
+```
+
+However, one issue is that singularity does not appear to
 support the creation of nested directory structures, which the PHG requires. Therefore,
 **ALL DIRECTORIES USED WITH SINGULARITY MUST BE MANUALLY SPECIFIED**
 
