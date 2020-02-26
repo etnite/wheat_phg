@@ -15,13 +15,6 @@
 
 BASE_DIR=""
 
-## These parameters require JUST THE BASENAME of each file - the script assumes
-## each file is located in the paths described above
-CONFIG_FILE="config.txt"
-REF=""
-INTERVALS_FILE=""
-GENOME_FILE=""
-
 
 #### Executable ####
 
@@ -30,4 +23,4 @@ singularity run \
         -B /workdir/${USER}/wheat_docker/DataFolders/:/tempFileDir/data \
         -B /workdir/${USER}/wheat_docker/DataFolders/:/tempFileDir/answer/ \
         /workdir/${USER}/wheat.simg \
-        /LoadGenomeIntervals.sh "$CONFIG_FILE" "$REF" "$INTERVALS_FILE" "$GENOME_FILE" true
+        /LoadGenomeIntervals.sh config.txt reference.fa intervals.bed gen_load_data.txt true
