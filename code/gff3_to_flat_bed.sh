@@ -7,6 +7,10 @@ set -e
 ## represent genes (i.e. get rid of subfeatures), and then will "flatten" it.
 ## The input .gff3 file can be gzipped or uncompressed.
 ##
+## A second positional input parameter specifies the merge distance - i.e. the
+## distance maximum distance between features (genes in this case) that will
+## cause them to be merged together.
+##
 ## In this context, flattening means that overlapping genes will be merged into
 ## single intervals. The output is a .bed file representing these flattened
 ## intervals. Bedtools is required to perform the flattening ("merging" in
@@ -39,6 +43,7 @@ set -e
 module load bedtools
 
 gff_file=$1
+dist=$2
 
 ## Remove the ".gff3.gz" for the output name
 outname="${gff_file%.*}"
@@ -51,6 +56,6 @@ tmpfile=$(mktemp -p "${outdir}")
 zgrep -P "\tgene\t" "${gff_file}" |
     sort -k1,1 -k4,4n -k5,5n > "${tmpfile}"
 
-bedtools merge -i "${tmpfile}" > "${outname}"_flat.bed
+bedtools merge -d $dist -i "${tmpfile}" > "${outname}"_flat.bed
 
 rm "${tmpfile}"
