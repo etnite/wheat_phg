@@ -2,37 +2,41 @@
 host=localHost
 user=sqlite
 password=sqlite
-DB=/tempFileDir/outputDir/wheat_phg_test.db
+DB=/tempFileDir/outputDir/DBFile500.db
 DBtype=sqlite
 
 #Java arguments
-Xmx=100G
-numThreads=10
+Xmx=240G
+
+#CreateHaplotype Params
+referenceFasta=/tempFileDir/data/reference/CSv1.fa
+LoadHaplotypesFromGVCFPlugin.keyFile=/tempFileDir/data/keyFile.txt
+LoadHaplotypesFromGVCFPlugin.gvcfDir=/tempFileDir/data/gvcfs/
+LoadHaplotypesFromGVCFPlugin.referenceFasta=/tempFileDir/data/reference/CSv1.fa
+LoadHaplotypesFromGVCFPlugin.haplotypeMethodName=GATK_PIPELINE
+LoadHaplotypesFromGVCFPlugin.haplotypeMethodDescription=GVCF_DESCRIPTION
 
 #Haplotype filtering
-mapQ=48
+mapQ=20
 DP_poisson_min=.01
 DP_poisson_max=.99
 GQ_min=50
 filterHets=t
 
 #sentieon license
-sentieon_license=cbsulogin2.tc.cornell.edu:8990
+#sentieon_license=cbsulogin2.tc.cornell.edu:8990
 
 #Consensus parameters
 #Optional argument to get out merged VCF files for debugging consensus
-exportMergedVCF=/tempFileDir/data/outputs/mergedVCFs/
-includeVariants=false
+includeVariants=true
 mxDiv=.001
 maxError=0.2
-useDepth=true
-replaceNsWithMajor=false
 
 #FindPath Config parameters
 maxNodesPerRange=30
 minTaxaPerRange=1
-minGBSReads=1
-maxGBSReads=100
+minReads=1
+maxReadsPerKB=100
 minTransitionProb=0.001
 probReadMappedCorrectly=0.99
 emissionMethod=allCounts
