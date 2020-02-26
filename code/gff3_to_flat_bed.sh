@@ -52,8 +52,9 @@ outdir=$(dirname "${outname}")
 
 tmpfile=$(mktemp -p "${outdir}")
 
-## Get only genes from .gff3 and sort 
-zgrep -P "\tgene\t" "${gff_file}" |
+## Remove comment lines; Get only genes from .gff3 and sort 
+zgrep -v "^#" "${gff_file}" |
+    grep -P "\tgene\t" |
     sort -k1,1 -k4,4n -k5,5n > "${tmpfile}"
 
 bedtools merge -d $dist -i "${tmpfile}" > "${outname}"_flat.bed
