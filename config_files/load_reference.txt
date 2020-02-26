@@ -1,2 +1,2 @@
-Genotype	Hapnumber	Dataline	ploidy	genesPhased	chromsPhased	confidence	Method	MethodDetails	RefVersion
-Chinese_Spring	0	IWGSC v1.0 Chinese Spring assembly	1	FALSE	FALSE	1	v1_gff_noexpand	Anchors from v1 gff gene coordinates - no expansion past genic regions	Chinese_Spring_gffGenes
+Genotype        Hapnumber       Dataline        ploidy  genesPhased     chromsPhased    confidence      Method  MethodDetails
+wheatRef        0       wheat from Triticum_aestivum    2       true    true    1       v5_gffGenes     Anchors are created from v5 gff gene coordinates. Embedded genes are tossed. Overlapping genes are merged.
