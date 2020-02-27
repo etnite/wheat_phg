@@ -1,2 +1,2 @@
-Genotype        Hapnumber       Dataline        ploidy  genesPhased     chromsPhased    confidence      Method  MethodDetails
-wheatRef        0       wheat from Triticum_aestivum    2       true    true    1       v5_gffGenes     Anchors are created from v5 gff gene coordinates. Embedded genes are tossed. Overlapping genes are merged.
+Genotype	Hapnumber	Dataline	Ploidy	GenesPhased	ChromsPhased	Confidence	Method	MethodDetails
+CSv1	0	Taestivum_1A_1B_1D	2	TRUE	TRUE	1	gff_merge	overlapping genes merged
