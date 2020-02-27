@@ -12,9 +12,11 @@
 ## Paths to the base directory (the directory which will house the sub-directory tree)
 ## Path to the reference genome fasta (this will be copied into the sub-dir tree)
 ## Path to config file (this will also be copied into the sub-dir tree)
-BASE_DIR="/workdir/$USER/test_gvcf_load"
-REF="/workdir/bpward2/wheat_docker/DataFolders/reference"
-CONFIG_FILE="/local/workdir/bpward2/wheat_docker/DataFolders/configSQLite.txt"
+BASE_DIR="/project/genolabswheatphg/SRW_1ABD_phg_test/phg"
+REF="/project/genolabswheatphg/SRW_1ABD_phg_test/input_files/wheat_1ABD.fa"
+INTERVALS_FILE="/project/genolabswheatphg/SRW_1ABD_phg_test/input_files/wheat_1ABD.bed"
+CONFIG_FILE="../config_files/config.txt"
+REF_LOAD_FILE="../config_files/load_reference.txt"
 
 
 #### Executable ####
@@ -32,5 +34,7 @@ mkdir "$BASE_DIR"/data/gvcfs
 ## Copy required files
 ## Reference and gVCFs take up a lot of space, so may want to
 ## consider deleting these afterwards
-cp "$REF" "$BASE_DIR"/data/reference/
+cp "$REF" "$BASE_DIR"/data/reference/reference.fa
 cp "$CONFIG_FILE" "$BASE_DIR"/data/config.txt
+cp "$INTERVALS_FILE" "$BASE_DIR"/answer/intervals.bed
+cp "$REF_LOAD_FILE" "$BASE_DIR"/data/ref_load_data.txt

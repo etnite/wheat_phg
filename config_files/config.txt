@@ -2,17 +2,18 @@
 host=localHost
 user=sqlite
 password=sqlite
-DB=/tempFileDir/outputDir/DBFile500.db
+DB=/tempFileDir/outputDir/phg_1ABD.db
 DBtype=sqlite
 
 #Java arguments
-Xmx=240G
+Xmx=100G
 
 #CreateHaplotype Params
-referenceFasta=/tempFileDir/data/reference/CSv1.fa
-LoadHaplotypesFromGVCFPlugin.keyFile=/tempFileDir/data/keyFile.txt
+numThreads=40
+referenceFasta=/tempFileDir/data/reference/reference.fa
+LoadHaplotypesFromGVCFPlugin.keyFile=/tempFileDir/data/keyfile.txt
 LoadHaplotypesFromGVCFPlugin.gvcfDir=/tempFileDir/data/gvcfs/
-LoadHaplotypesFromGVCFPlugin.referenceFasta=/tempFileDir/data/reference/CSv1.fa
+LoadHaplotypesFromGVCFPlugin.referenceFasta=/tempFileDir/data/reference/reference.fa
 LoadHaplotypesFromGVCFPlugin.haplotypeMethodName=GATK_PIPELINE
 LoadHaplotypesFromGVCFPlugin.haplotypeMethodDescription=GVCF_DESCRIPTION
 
@@ -29,7 +30,7 @@ filterHets=t
 #Consensus parameters
 #Optional argument to get out merged VCF files for debugging consensus
 includeVariants=true
-mxDiv=.001
+mxDiv=.0001
 maxError=0.2
 
 #FindPath Config parameters
