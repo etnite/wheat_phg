@@ -8,7 +8,7 @@ License: [GPLv3](https://opensource.org/licenses/GPL-3.0)
 This IS NOT a source code repository for the Practical Haplotype Graph (PHG) 
 project. For that, refer to:
 
-    https://bitbucket.org/bucklerlab/practicalhaplotypegraph/src
+[https://bitbucket.org/bucklerlab/practicalhaplotypegraph/src](https://bitbucket.org/bucklerlab/practicalhaplotypegraph/src)
 
 Rather, this repository is a collection of scripts used to create a practical 
 haplotype graph for wheat.
@@ -33,17 +33,28 @@ docker pull maizegenetics/phg_postgres
 ```
 
 Note that many clusters use Singularity instead of Docker. Singularity
-can import Docker images, e.g.: 
+can import Docker images, e.g. to create a Singularity image called "wheat.simg",
+run: 
 
 ```
-singularity pull docker://maizegenetics/phg
+singularity build  wheat.simg docker://maizegenetics/phg:0.0.17
 ```
 
-However, one issue is that singularity does not appear to
-support the creation of nested directory structures, which the PHG requires. Therefore,
+To then look inside the created Singularity image, you can run:
+
+```
+singularity shell wheat.simg
+cd /
+```
+
+singularity shell will enable a subshell to run within the Singularity image.
+However, the working directory remains the same, so the "cd /"
+
+However, one issue is that singularity does not support the creation of nested 
+directory structures, which the PHG requires. Therefore,
 **ALL DIRECTORIES USED WITH SINGULARITY MUST BE MANUALLY SPECIFIED**
 
-More to come on this later...
+This is the intended purpose of code/create_dir_tree.sh
 
 ## small_seq_test
 
