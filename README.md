@@ -21,7 +21,7 @@ Many scripts in this repository assume that the user is using a high-performance
 computing cluster running a 64-bit Linux distribution. It is assumed that the cluster uses
 SLURM scheduling.
 
-### Docker or Singularity
+### Docker and Singularity
 
 Although the PHG can be installed from source, it is designed to be used through
 a docker image to handle all software dependencies and achieve platform
@@ -47,14 +47,17 @@ singularity shell wheat.simg
 cd /
 ```
 
-singularity shell will enable a subshell to run within the Singularity image.
-However, the working directory remains the same, so the "cd /"
+`singularity shell` will run a subshell within the Singularity image.
+However, the working directory remains the same, so the "cd /" is required to
+access the image's root directory.
 
-However, one issue is that singularity does not support the creation of nested 
-directory structures, which the PHG requires. Therefore,
-**ALL DIRECTORIES USED WITH SINGULARITY MUST BE MANUALLY SPECIFIED**
+The main issue with using Singularity instead of Docker is that Singularity does
+not run with the privaleges necessary to create new directories. Therefore,
+steps in which the PHG Docker scripts create directories will fail when using
+Singularity. **code/create_dir_tree.sh** is intended to create an external directory
+structure which mirrors the internal directory structure used by the Docker scripts,
+thereby circumventing the directory creation problems.
 
-This is the intended purpose of code/create_dir_tree.sh
 
 ## small_seq_test
 

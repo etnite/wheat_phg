@@ -8,7 +8,7 @@ set -e
 ## The input .gff3 file can be gzipped or uncompressed.
 ##
 ## A second positional input parameter specifies the merge distance - i.e. the
-## distance maximum distance between features (genes in this case) that will
+## maximum distance between features (genes in this case) that will
 ## cause them to be merged together.
 ##
 ## In this context, flattening means that overlapping genes will be merged into
