@@ -8,8 +8,9 @@
 ## This wrapper script will proceed through the steps necessary to create and
 ## index a PHG pangenome fasta file. If the user supplies a consensus method
 ## name (parameter consens_meth), then Consensi will be created prior to indexing
-## a pangenome file. Otherwise, if consens_meth is set to "none", 
-## all haplotypes (number of taxa x number of reference ranges) are used.
+## a pangenome file. However, see description in user-defined constants section
+## below for more notes on different possibilities for creating haplotypes and/or
+## consensi.
 ##
 ## Always check the config.txt file INSIDE the mirrored Singularity directory
 ## tree, not the one that was initially copied by code/create_dir_tree.sh,
@@ -51,7 +52,7 @@ keyfile="/project/genolabswheatphg/SRW_1ABD_phg_test/gVCF_keyfile.txt"
 ##   Otherwise consens_meth can be any convenient name for the consensus method used
 ## Can get more creative - for instance load in reference sequence as a haplotype
 ## using <haplotype_method>:<reference_method>
-## use select * from methods; on SQLite DB to see the reference method
+## use select * from methods; on PHG SQLite DB to see the reference method's name
 haplo_meth="GATK_PIPELINE"
 consens_meth="CONSENSUS_MXDIV_1E-7"
 
