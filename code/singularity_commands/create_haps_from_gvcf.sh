@@ -31,8 +31,8 @@
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
 #SBATCH --ntasks-per-node=40 #number of cores/tasks
-#SBATCH --time=10:00:00 #time allocated for this job hours:mins:seconds
-#SBATCH --mail-user=jane.doe@isp.com #enter your email address to receive emails
+#SBATCH --time=4:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
 #SBATCH --error="stderr.%j.%N" #optional but it prints our standard error
@@ -48,9 +48,6 @@ base_dir="/project/genolabswheatphg/SRW_1ABD_phg_test/phg"
 ## Paths to input data folder and the keyfile
 gvcf_in_dir="/project/genolabswheatphg/gvcfs/SRW_single_samp_bw2_excap_GBS_mq20"
 keyfile="/project/genolabswheatphg/SRW_1ABD_phg_test/gVCF_keyfile.txt"
-
-#haplo_meth="GATK_PIPELINE"
-#consens_meth="CONSENSUS_MXDIV0001"
 
 
 #### Executable ####

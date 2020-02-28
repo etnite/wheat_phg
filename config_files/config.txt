@@ -30,7 +30,7 @@ filterHets=t
 #Consensus parameters
 #Optional argument to get out merged VCF files for debugging consensus
 includeVariants=true
-mxDiv=.0001
+mxDiv=.0000001
 maxError=0.2
 
 #FindPath Config parameters

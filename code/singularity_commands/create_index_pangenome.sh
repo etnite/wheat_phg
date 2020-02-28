@@ -21,12 +21,12 @@
 
 #### SLURM job control #### 
 
-#SBATCH --job-name="gvcf-haplos" #name of the job submitted
+#SBATCH --job-name="pangen" #name of the job submitted
 #SBATCH --partition=short #name of the queue you are submitting job to
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
 #SBATCH --ntasks-per-node=40 #number of cores/tasks
-#SBATCH --time=10:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=4:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=jane.doe@isp.com #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -46,10 +46,14 @@ keyfile="/project/genolabswheatphg/SRW_1ABD_phg_test/gVCF_keyfile.txt"
 
 ## Set names of haplotype and consensus method
 ## Haplotype method is generally set to "GATK_PIPELINE"
-## Consensus method can be "none" to skip generating consensi, or else any
-## convenient name to identify the method of generating consensi
+## If consens_meth == haplo_meth, then consensus building is skipped,
+##   and pangenome is built with all haplotypes
+##   Otherwise consens_meth can be any convenient name for the consensus method used
+## Can get more creative - for instance load in reference sequence as a haplotype
+## using <haplotype_method>:<reference_method>
+## use select * from methods; on SQLite DB to see the reference method
 haplo_meth="GATK_PIPELINE"
-consens_meth="CONSENSUS_MXDIV0001"
+consens_meth="CONSENSUS_MXDIV_1E-7"
 
 ## The number of bases for minimap2 to load into DB for each batch in format, e.g. "100G"
 ## Typically set to > number of bases in pangenome
@@ -68,25 +72,19 @@ date
 run_consens=$(echo "$consens_meth" | tr '[:upper:]' '[:lower:]')
 
 ## Pangenome creation/indexing
-if [[ "$run_consens" != "none" ]]; then
+if [[ "$consens_meth" != "$haplo_meth" ]]; then
 
     ## Create Consensus
     singularity run \
         -B "$base_dir":/tempFileDir/ \
         "$phg_simg" /CreateConsensi.sh /tempFileDir/data/config.txt reference.fa "$haplo_meth" "$consens_meth" 
 
-    ## Index the pangenome
+fi
+
+## Index the pangenome
     singularity run \
         -B "$base_dir":/tempFileDir/ \
         "$phg_simg" /IndexPangenome.sh pangenome config.txt "$consens_meth" "$n_base_load" 21 11x
-
-else
-
-    ## Index the pangenome using all haplotypes
-    singularity run \
-        -B "$base_dir":/tempFileDir/ \
-        "$phg_simg" /IndexPangenome.sh pangenome config.txt "$haplo_meth" "$n_base_load" 21 11x
-fi
 
 echo
 echo "End time:"
