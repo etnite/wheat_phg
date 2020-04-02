@@ -1,6 +1,9 @@
 #!/bin/bash
 
 ## Create directory structure for PHG
+## Brian Ward
+## brian@brianpward.net
+## https://github.com/etnite
 ## 
 ## The PHG requires a specific nested directory structure to operate.
 ## Docker can create nested directories on the fly, but Singularity doesn't run
