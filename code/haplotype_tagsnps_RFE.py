@@ -1,9 +1,44 @@
 #!/usr/bin/env python3
 
 '''
+Multinomial Logistic Regression Recursive Feature Elimination
+
 Brian Ward
 brian@brianpward.net
 https://github.com/etnite
+
+This script is an attempt to create a method to identify a minimal set of 
+predictors (SNPs) which fully describe a non-ordinal categorical response 
+(haplotypes) for a given region of the genome. My idea is to perform a (possibly 
+multinomial) logistic regression, using recursive feature elimination (RFE) to 
+select a subset of SNPs with high haplotype prediction accuracy.
+
+There are many different methods for finding "tag SNPs" which can capture the 
+variance explained by multiple surrounding SNPs. This problem is non-trivial and 
+potentially NP-hard. See https://doi.org/10.1109/CSB.2005.22 for one example and 
+some background on different methods. Much of this work was performed 
+around the time of the first human HapMap project (ca. 2005), and hence there are 
+many links to software on websites which no longer exist. These programs are 
+also likely to be written in C or Perl, and getting them to run and use current 
+data formats can be very difficult.
+
+Many tag SNP identification algorithms are designed to find sets of tag SNPs 
+across chromosomes/genomes, without any phenotypic data. I think that my particular
+use-case here is actually somewhat simpler, since I:
+
+1. Have access to a "phenotype" (haplotype groups determined by a simple distance 
+   matrix using all SNPs/variants in the region of interest)
+2. Only need to focus on a single region, obviating the need to find haploblock 
+   boundaries
+
+This script performs repeated k-fold validation for a user-specified range of
+SNP numbers. For instance, one could run 10 repeats of 5-fold validation using
+from 1 to 10 SNPs. The script will also always run the k-fold validation using
+all SNPs within the specified region.
+
+scikit-learn's RFE algorithm is used for feature elimination, and we use the
+handy scikit-allel module to import data from a VCF file: 
+http://alimanfoo.github.io/2017/06/14/read-vcf.html
 '''
 
 from sklearn.feature_selection import RFE
@@ -16,19 +51,30 @@ import numpy as np
 import pandas as pd
 
 
-## User-Defined constants
+#### User-Defined constants ####
+
+## Path to input VCF file, and region specified as CHROM:START-END
 vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_Yr_postimp_filt_KASP.vcf.gz'
 reg = '4B:526943215-598847646'
+
+## Haplotypes file (.csv with header and at least two columns - 'sample' and 
+## the specified response column)
 haps_file = '/home/brian/Downloads/haplotype_groupings.csv'
 response = '4BL'
-min_snps = 4
-max_snps = 5
+
+## Path to output .csv file
+out_file = '/home/brian/Downloads/mlogit_RFE_test.csv'
+
+## Cross-val parameters - range of SNP numbers, repeats, and number of folds
+min_snps = 1
+max_snps = 6
 n_reps = 5
 val_k = 5
 
 
-## Read in the VCF file
+#### Executable ####
 
+## Read in the VCF file using scikit-allel
 vcf = allel.read_vcf(vcf_file, region = reg)
 preds = vcf['variants/ID']
 gt = allel.GenotypeArray(vcf['calldata/GT'])
@@ -37,9 +83,7 @@ gt = allel.GenotypeArray(vcf['calldata/GT'])
 #gt
 
 
-
 ## Convert the genotypic matrix to dataframe in minor allele dosage format
-
 dos = gt.to_n_alt()
 dos = dos.transpose()
 dos_df = pd.DataFrame(dos)
@@ -48,67 +92,72 @@ dos_df["sample"] = vcf["samples"]
 
 
 ## Read in the line haplotype information
-
 haps = pd.read_csv(haps_file)
 haps = haps[["sample", response]]
 
 
 ## Merge together predictors (SNPs) and response (haplotype groupings)
 ## Set response vector and predictors matrix
-
 merged = pd.merge(haps, dos_df, how = "inner", on = "sample")
 y = merged[response]
 X = merged[vcf["variants/ID"]]
 
 
 ## Standardize SNPs
-
 sc = preprocessing.StandardScaler()
 X_std = sc.fit_transform(X)
 #X_std
 
-## Initialize Output Structures
+
+## Initialize Dataframe for output
 d = {'rep': list(range(1, n_reps + 1)) * val_k,
      'fold': list(range(1, val_k + 1)) * n_reps}
 d['rep'].sort()
 proto_df = pd.DataFrame(data = d)
 
 
-
-## Multinomial logistic regression
-mlogit = LogisticRegression(solver = 'lbfgs', penalty = 'none', multi_class = 'auto', max_iter = 5e3)
-
-
+## Create multinomial logistic regressor
+mlogit = LogisticRegression(solver = 'lbfgs', penalty = 'none', 
+    multi_class = 'auto', max_iter = 5e3)
 
 
-
-
-
-
-
-#print("Retained features array first 5 rows:")
-#X_sub[:5]
-
-
+## Loop through number of SNPs
 max_snps = max_snps + 1
-cv_list = [0] * len(range(min_snps, max_snps))
+cv_outlist = [0] * len(range(min_snps, max_snps))
 for i, n_snps in enumerate(range(min_snps, max_snps)):
     sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
 
+    ## Perform recursive feature elimination; subset SNP matrix
     rfe = RFE(mlogit, n_snps)
     fit = rfe.fit(X_std, y)
-    #sub_preds = preds[fit.support_]
     pred_str = ' + '.join(preds[fit.support_])
     X_sub = X_std[:, fit.support_]
 
+    ## Run repeated cross-validation
     for j in range(n_reps):
         k_fold = KFold(n_splits = val_k, random_state = j, shuffle = True)
         sub_score_arr[j,:] = cross_val_score(mlogit, X_sub, y, cv = k_fold, scoring = 'accuracy')
 
-    filled_df = proto_df
-    filled_df['accuracy'] = sub_score_arr.flatten()
-    filled_df['nSNPs'] = n_snps
-    filled_df['SNP_IDs'] = pred_str
+    ## Record cross-validation results
+    cv_outlist[i] = proto_df.copy()
+    cv_outlist[i]['nSNPs'] = n_snps
+    cv_outlist[i]['accuracy'] = sub_score_arr.flatten()
+    cv_outlist[i]['SNP_IDs'] = pred_str
 
 
+## One final iteration - using all the SNPs
+## Probably a simpler way to include this in the loop above, but this works
+sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
+for j in range(n_reps):
+        k_fold = KFold(n_splits = val_k, random_state = j, shuffle = True)
+        sub_score_arr[j,:] = cross_val_score(mlogit, X_std, y, cv = k_fold, scoring = 'accuracy')
+proto_df['nSNPs'] = X_std.shape[1]
+proto_df['accuracy'] = sub_score_arr.flatten()
+proto_df['SNP_IDs'] = 'all'
 
+
+## Concatenate all DFs together and write out
+cv_concat = pd.concat(cv_outlist)
+cv_concat = pd.concat([cv_concat, proto_df])
+cv_concat = cv_concat[['nSNPs', 'rep', 'fold', 'accuracy', 'SNP_IDs']]
+cv_concat.to_csv(out_file, na_rep = 'NA', index = False)
