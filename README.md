@@ -1,6 +1,8 @@
 # wheat_prac_hap_graph
 
-Author: [Brian Ward](https://brianpward.net/)  
+Author: [Brian Ward](https://brianpward.net/)
+Email: [brian@brianpward.net](mailto:brian@brianpward.net)
+Github: [etnite](https://github.com/etnite)  
 License: [GPLv3](https://opensource.org/licenses/GPL-3.0)
 
 ## Description
