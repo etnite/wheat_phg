@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ## Create PHG Pangenome
+##
 ## Brian Ward
 ## brian@brianpward.net
 ## https://github.com/etnite

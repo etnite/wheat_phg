@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 '''
-
+Brian Ward
+brian@brianpward.net
+https://github.com/etnite
 '''
 
 from sklearn.feature_selection import RFE

@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ## Create PHG haplotypes from gVCF files
+##
 ## Brian Ward
 ## brian@brianpward.net
 ## https://github.com/etnite

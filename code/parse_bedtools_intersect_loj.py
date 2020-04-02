@@ -3,6 +3,10 @@
 '''
 Process a bedtools intersect left outer join (-loj)
 
+Brian Ward
+brian@brianpward.net
+https://github.com/etnite
+
 This script processes the file that is output by bedtools intersect when performing
 a left outer join (-loj option). For regions in two .bed files (call them A.bed
 and B.bed), performing this operation will create a tab-delimited file with
