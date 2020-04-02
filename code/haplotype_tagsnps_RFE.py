@@ -30,9 +30,9 @@ val_k = 5
 vcf = allel.read_vcf(vcf_file, region = reg)
 preds = vcf['variants/ID']
 gt = allel.GenotypeArray(vcf['calldata/GT'])
-print("Number of Samples:", len(vcf['samples']))
-print("Number of SNPs:", len(preds))
-gt
+#print("Number of Samples:", len(vcf['samples']))
+#print("Number of SNPs:", len(preds))
+#gt
 
 
 
@@ -63,12 +63,13 @@ X = merged[vcf["variants/ID"]]
 
 sc = preprocessing.StandardScaler()
 X_std = sc.fit_transform(X)
-X_std
+#X_std
 
 ## Initialize Output Structures
-throw an error
-proto_df = pd.DataFrame
-
+d = {'rep': list(range(1, n_reps + 1)) * val_k,
+     'fold': list(range(1, val_k + 1)) * n_reps}
+d['rep'].sort()
+proto_df = pd.DataFrame(data = d)
 
 
 
@@ -89,7 +90,7 @@ mlogit = LogisticRegression(solver = 'lbfgs', penalty = 'none', multi_class = 'a
 
 max_snps = max_snps + 1
 cv_list = [0] * len(range(min_snps, max_snps))
-for i in enumerate(range(min_snps, max_snps)):
+for i, n_snps in enumerate(range(min_snps, max_snps)):
     sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
 
     rfe = RFE(mlogit, n_snps)
@@ -102,7 +103,10 @@ for i in enumerate(range(min_snps, max_snps)):
         k_fold = KFold(n_splits = val_k, random_state = j, shuffle = True)
         sub_score_arr[j,:] = cross_val_score(mlogit, X_sub, y, cv = k_fold, scoring = 'accuracy')
 
-
+    filled_df = proto_df
+    filled_df['accuracy'] = sub_score_arr.flatten()
+    filled_df['nSNPs'] = n_snps
+    filled_df['SNP_IDs'] = pred_str
 
 
 
