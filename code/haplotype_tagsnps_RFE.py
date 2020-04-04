@@ -41,14 +41,16 @@ handy scikit-allel module to import data from a VCF file:
 http://alimanfoo.github.io/2017/06/14/read-vcf.html
 '''
 
+import os
 from sklearn.feature_selection import RFE
-from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn import preprocessing
 import allel
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 #### User-Defined constants ####
@@ -62,8 +64,8 @@ reg = '4B:526943215-598847646'
 haps_file = '/home/brian/Downloads/haplotype_groupings.csv'
 response = '4BL'
 
-## Path to output .csv file
-out_file = '/home/brian/Downloads/mlogit_RFE_test.csv'
+## Path to directory to save output files
+out_dir = '/home/brian/Downloads/4BL_mlogit_rfe_out'
 
 ## Cross-val parameters - range of SNP numbers, repeats, and number of folds
 min_snps = 1
@@ -73,6 +75,8 @@ val_k = 5
 
 
 #### Executable ####
+
+os.makedirs(out_dir, exist_ok = True)
 
 ## Read in the VCF file using scikit-allel
 vcf = allel.read_vcf(vcf_file, region = reg)
@@ -156,8 +160,31 @@ proto_df['accuracy'] = sub_score_arr.flatten()
 proto_df['SNP_IDs'] = 'all'
 
 
-## Concatenate all DFs together and write out
+## Concatenate all DFs together
 cv_concat = pd.concat(cv_outlist)
 cv_concat = pd.concat([cv_concat, proto_df])
 cv_concat = cv_concat[['nSNPs', 'rep', 'fold', 'accuracy', 'SNP_IDs']]
-cv_concat.to_csv(out_file, na_rep = 'NA', index = False)
+
+
+## Calculate summary stats
+cv_summ = cv_concat[['nSNPs', 'accuracy']].groupby('nSNPs').describe()
+cv_summ.columns = cv_summ.columns.droplevel(0)
+cv_sem = cv_concat[['nSNPs', 'accuracy']].groupby('nSNPs').sem()
+cv_sem = cv_sem.rename(columns = {'accuracy': 'se'})
+cv_summ = pd.merge(cv_summ, cv_sem, how = "inner", on = 'nSNPs')
+cv_summ = cv_summ[['count', 'mean', 'std', 'se']]
+
+
+## Create barplot
+sns.set()
+acc_plot = sns.barplot(x = 'nSNPs', y = 'accuracy', data = cv_concat, color = 'royalblue')
+figure = acc_plot.get_figure()
+figure.set_size_inches(10, 8)
+
+
+## Output files and figures
+sub_preds = list(preds[fit.support_])
+merged[['sample', response] + sub_preds].to_csv(os.path.join(out_dir, 'haplotypes_SNPs.csv'), na_rep = 'NA', index = False)
+cv_concat.to_csv(os.path.join(out_dir, 'CV_accuracies.csv'), na_rep = 'NA', index = False)
+cv_summ.to_csv(os.path.join(out_dir, 'CV_summaries.csv'), na_rep = 'NA', index = True)
+figure.savefig(os.path.join(out_dir, 'CV_barplot.png'), dpi = 72)
