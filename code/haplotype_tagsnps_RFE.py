@@ -57,19 +57,20 @@ import seaborn as sns
 
 ## Path to input VCF file, and region specified as CHROM:START-END
 vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_Yr_postimp_filt_KASP.vcf.gz'
-reg = '4B:526943215-598847646'
+#reg = '4B:526943215-598847646'
+reg = '3B:5580612-7031798'
 
 ## Haplotypes file (.csv with header and at least two columns - 'sample' and 
 ## the specified response column)
 haps_file = '/home/brian/Downloads/haplotype_groupings.csv'
-response = '4BL'
+response = '3BS'
 
 ## Path to directory to save output files
-out_dir = '/home/brian/Downloads/4BL_mlogit_rfe_out'
+out_dir = '/home/brian/Downloads/3BS_mlogit_rfe_out'
 
 ## Cross-val parameters - range of SNP numbers, repeats, and number of folds
 min_snps = 1
-max_snps = 6
+max_snps = 8
 n_reps = 5
 val_k = 5
 
