@@ -45,4 +45,4 @@ for line in fileinput.input():
     highest = max(pos)
 
     ## Print to stdout
-    print(chrom + '\t' + str(lowest) + '\t' + str(highest) + '\n')
+    print(chrom + '\t' + str(lowest) + '\t' + str(highest))
