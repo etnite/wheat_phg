@@ -27,9 +27,9 @@
 #### User-Defined Constants ####
 
 ## Paths to the two input .bed file and the output .bed file
-a_bed_file="/project/genolabswheatphg/SRW_test_phg/find_ref_ranges/SRW_mdn5_dist500_size50_dp.bed"
-b_bed_file="/project/genolabswheatphg/v1_annotations/IWGSC_v1.1_HC_20170706_cleaned_flat_500bp_merge.bed"
-out_bed_file="/project/genolabswheatphg/SRW_test_phg/find_ref_ranges/SRW_reads_genes_loj_intervals.bed"
+a_bed_file="/home/brian/Downloads/A_test.bed"
+b_bed_file="/home/brian/Downloads/B_test.bed"
+out_bed_file="/home/brian/Downloads/test_loj.bed"
 
 ## Maximum merge distance for bedtools merge
 ## Setting to 0 will only merge overlapping/bookended features
@@ -38,19 +38,21 @@ merge_dist=0
 
 #### Executable ####
 
-module load bedtools
+#module load bedtools
 
 out_dir=$(dirname "$out_bed_file")
 mkdir -p "$out_dir"
+tmpfile=$(mktemp -p "$out_dir")
 
 ## Perform the intersection, parse the output and sort it for good measure
-bedtools intersect -loj -a "$a_bed_file" -b "$b_bed_file" |
+bedtools intersect -sorted -loj -a "$a_bed_file" -b "$b_bed_file" |
 	./parse_bedtools_intersect_loj.py |
-	sort -k 1,1 -k2,2n > "$out_dir"/temp_parsed_loj.bedtools
+	sort -k 1,1 -k2,2n > "$tmpfile"
 
 ## Unfortunately bedtools merge can't read from stdin
 ## We are also removing the Un "chromosome" here
-bedtools merge -d $merge_dist "$out_dir"/temp_parsed_loj.bedtools |
+bedtools merge -d $merge_dist -i "$tmpfile" |
 	grep -v "^Un" > "$out_bed_file"
 
-rm "$out_dir"/temp_parsed_loj.bedtools
+rm "$tmpfile"
+
