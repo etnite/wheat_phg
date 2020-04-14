@@ -42,23 +42,24 @@ http://alimanfoo.github.io/2017/06/14/read-vcf.html
 '''
 
 import os
+import sys
+import random
+import allel
+import numpy as np
+import pandas as pd
 from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn import preprocessing
-import allel
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+random.seed(123)
 
 
 #### User-Defined constants ####
 
 ## Path to input VCF file, and region specified as CHROM:START-END
-vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_Yr_postimp_filt_KASP.vcf.gz'
-#reg = '4B:526943215-598847646'
-reg = '3B:5580612-7031798'
+vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_KM_Yr_postimp_filt.vcf.gz'
+reg = '4B:5000000-7000000'
 
 ## Haplotypes file (.csv with header and at least two columns - 'sample' and 
 ## the specified response column)
@@ -66,12 +67,12 @@ haps_file = '/home/brian/Downloads/haplotype_groupings.csv'
 response = '3BS'
 
 ## Path to directory to save output files
-out_dir = '/home/brian/Downloads/3BS_mlogit_rfe_out'
+out_dir = '/home/brian/Downloads/3BS_mlogit_null_test_out'
 
 ## Cross-val parameters - range of SNP numbers, repeats, and number of folds
 min_snps = 1
-max_snps = 8
-n_reps = 5
+max_snps = 10
+n_reps = 10
 val_k = 5
 
 
@@ -81,11 +82,17 @@ os.makedirs(out_dir, exist_ok = True)
 
 ## Read in the VCF file using scikit-allel
 vcf = allel.read_vcf(vcf_file, region = reg)
-preds = vcf['variants/ID']
+if vcf is None:
+    sys.exit("\nNo variants present in specified region!")
+print("\nNumber of Samples:", len(vcf['samples']))
 gt = allel.GenotypeArray(vcf['calldata/GT'])
-#print("Number of Samples:", len(vcf['samples']))
-#print("Number of SNPs:", len(preds))
-#gt
+
+## Adjust max_snps if necessary
+preds = vcf['variants/ID']
+print("Number of SNPs in region:", str(len(preds)))
+if max_snps > len(preds):
+    max_snps = len(preds)
+    print("\nWARNING - max_snps was set to a value higher than the number of SNPs in the region\n\nAdjusting max_snps to", str(len(preds)))
 
 
 ## Convert the genotypic matrix to dataframe in minor allele dosage format
@@ -104,6 +111,7 @@ haps = haps[["sample", response]]
 ## Merge together predictors (SNPs) and response (haplotype groupings)
 ## Set response vector and predictors matrix
 merged = pd.merge(haps, dos_df, how = "inner", on = "sample")
+print("\nNumber of samples matching between VCF and haplotypes file:", str(merged.shape[0]))
 y = merged[response]
 X = merged[vcf["variants/ID"]]
 
@@ -111,7 +119,6 @@ X = merged[vcf["variants/ID"]]
 ## Standardize SNPs
 sc = preprocessing.StandardScaler()
 X_std = sc.fit_transform(X)
-#X_std
 
 
 ## Initialize Dataframe for output
@@ -149,25 +156,25 @@ for i, n_snps in enumerate(range(min_snps, max_snps)):
     cv_outlist[i]['accuracy'] = sub_score_arr.flatten()
     cv_outlist[i]['SNP_IDs'] = pred_str
 
+## Concatenate the DFs together
+cv_concat = pd.concat(cv_outlist)
 
-## One final iteration - using all the SNPs
-## Probably a simpler way to include this in the loop above, but this works
-sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
-for j in range(n_reps):
+
+## One final iteration using all SNPs in region
+## iff max_snps < number of all SNPs
+if max_snps < len(preds):
+    sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
+    for j in range(n_reps):
         k_fold = KFold(n_splits = val_k, random_state = j, shuffle = True)
         sub_score_arr[j,:] = cross_val_score(mlogit, X_std, y, cv = k_fold, scoring = 'accuracy')
-proto_df['nSNPs'] = X_std.shape[1]
-proto_df['accuracy'] = sub_score_arr.flatten()
-proto_df['SNP_IDs'] = 'all'
-
-
-## Concatenate all DFs together
-cv_concat = pd.concat(cv_outlist)
-cv_concat = pd.concat([cv_concat, proto_df])
-cv_concat = cv_concat[['nSNPs', 'rep', 'fold', 'accuracy', 'SNP_IDs']]
+    proto_df['nSNPs'] = X_std.shape[1]
+    proto_df['accuracy'] = sub_score_arr.flatten()
+    proto_df['SNP_IDs'] = 'all'
+    cv_concat = pd.concat([cv_concat, proto_df])
 
 
 ## Calculate summary stats
+cv_concat = cv_concat[['nSNPs', 'rep', 'fold', 'accuracy', 'SNP_IDs']]
 cv_summ = cv_concat[['nSNPs', 'accuracy']].groupby('nSNPs').describe()
 cv_summ.columns = cv_summ.columns.droplevel(0)
 cv_sem = cv_concat[['nSNPs', 'accuracy']].groupby('nSNPs').sem()
