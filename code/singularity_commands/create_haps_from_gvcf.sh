@@ -32,7 +32,7 @@
 #SBATCH --nodes=1 #Number of nodes
   ##SBATCH --ntasks=1  #Number of overall tasks - overrides tasks per node
 #SBATCH --ntasks-per-node=40 #number of cores/tasks
-#SBATCH --time=4:00:00 #time allocated for this job hours:mins:seconds
+#SBATCH --time=36:00:00 #time allocated for this job hours:mins:seconds
 #SBATCH --mail-user=bpward2@ncsu.edu #enter your email address to receive emails
 #SBATCH --mail-type=BEGIN,END,FAIL #will receive an email when job starts, ends or fails
 #SBATCH --output="stdout.%j.%N" # standard out %j adds job number to outputfile name and %N adds the node name
@@ -43,12 +43,12 @@
 
 ## Paths to the PHG Singularity image and the base directory created by
 ## code/create_dir_tree.sh
-phg_simg="/project/genolabswheatphg/phg_latest.sif"
-base_dir="/project/genolabswheatphg/SRW_1ABD_phg_test/phg"
+phg_simg="/project/genolabswheatphg/phg_latest.simg"
+base_dir="/project/genolabswheatphg/SRW_test_phg/phg"
 
 ## Paths to input data folder and the keyfile
 gvcf_in_dir="/project/genolabswheatphg/gvcfs/SRW_single_samp_bw2_excap_GBS_mq20"
-keyfile="/project/genolabswheatphg/SRW_1ABD_phg_test/gVCF_keyfile.txt"
+keyfile="/project/genolabswheatphg/SRW_test_phg/gVCF_keyfile.txt"
 
 
 #### Executable ####
@@ -58,6 +58,7 @@ echo "Start time:"
 date
 
 #### Load Reference Ranges
+mkdir -p "$base_dir"
 singularity run \
     -B "$base_dir":/tempFileDir/ \
     "$phg_simg" /LoadGenomeIntervals.sh config.txt reference.fa intervals.bed ref_load_data.txt true 

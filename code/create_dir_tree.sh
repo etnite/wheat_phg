@@ -27,9 +27,9 @@
 ## 3) Path to intervals (.bed) file defining reference ranges
 ## 4) Path to config file (example at https://github.com/etnite/wheat_phg/blob/master/config_files/config.txt)
 ## 5) Path to reference loading file (example at https://github.com/etnite/wheat_phg/blob/master/config_files/load_reference.txt)
-base_dir="/project/genolabswheatphg/SRW_1ABD_phg_test/phg"
-ref="/project/genolabswheatphg/SRW_1ABD_phg_test/input_files/wheat_1ABD.fa"
-intervals_file="/project/genolabswheatphg/SRW_1ABD_phg_test/input_files/wheat_1ABD.bed"
+base_dir="/project/genolabswheatphg/SRW_test_phg/phg"
+ref="/project/genolabswheatphg/v1_refseq/whole_chroms/Triticum_aestivum.IWGSC.dna.toplevel.fa"
+intervals_file="/project/genolabswheatphg/SRW_test_phg/find_ref_ranges/SRW_refs_genemodel_left_outer_join_parsed_noUn.txt"
 config_file="../config_files/config.txt"
 ref_load_file="../config_files/load_reference.txt"
 
