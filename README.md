@@ -39,7 +39,7 @@ can import Docker images, e.g. to create a Singularity image called "wheat.simg"
 run: 
 
 ```
-singularity build  wheat.simg docker://maizegenetics/phg:0.0.17
+singularity build  wheat.simg docker://maizegenetics/phg
 ```
 
 To then look inside the created Singularity image, you can run:
