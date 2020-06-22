@@ -58,8 +58,8 @@ random.seed(123)
 #### User-Defined constants ####
 
 ## Path to input VCF file, and region specified as CHROM:START-END
-vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_KM_Yr_postimp_filt.vcf.gz'
-reg = '4B:5000000-7000000'
+vcf_file = '/home/brian/repos/manuscripts/manu_2018_stripe_rust/input_data/geno/GAWN_KM_Yr_50miss_postimp_filt.vcf.gz'
+reg = '3B:5580612-7031798'
 
 ## Haplotypes file (.csv with header and at least two columns - 'sample' and 
 ## the specified response column)
@@ -67,7 +67,7 @@ haps_file = '/home/brian/Downloads/haplotype_groupings.csv'
 response = '3BS'
 
 ## Path to directory to save output files
-out_dir = '/home/brian/Downloads/3BS_mlogit_null_test_out'
+out_dir = '/home/brian/Downloads/3BS_mlogit_test_out'
 
 ## Cross-val parameters - range of SNP numbers, repeats, and number of folds
 min_snps = 1
@@ -140,7 +140,7 @@ for i, n_snps in enumerate(range(min_snps, max_snps)):
     sub_score_arr = np.zeros((n_reps, val_k), dtype = np.float)
 
     ## Perform recursive feature elimination; subset SNP matrix
-    rfe = RFE(mlogit, n_snps)
+    rfe = RFE(mlogit, n_features_to_select = n_snps)
     fit = rfe.fit(X_std, y)
     pred_str = ' + '.join(preds[fit.support_])
     X_sub = X_std[:, fit.support_]
